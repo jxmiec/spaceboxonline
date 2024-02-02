@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ url_for('static', filename='spacebox-logo.ico') }}" type="image/x-icon">
+    <link rel="icon" href='spacebox-logo.ico'>
     <title>SpaceBox - Making Space Simple... </title>
     <style>
         * {
@@ -94,7 +94,7 @@
             justify-content: center;
             align-items: center;
             height: calc(100vh - 78px);
-            background: url("{{ url_for('static', filename='index-background.jpg') }}") no-repeat center center/cover;
+            background: url("'index-background.jpg') no-repeat center center/cover;
             color: #fff;
             text-align: center;
             padding: 0 20px;
@@ -219,7 +219,7 @@
     <nav>
         <div id="logo">
             <a href="/">
-                <img src="{{ url_for('static', filename='spacebox-logo.png') }}" alt="SpaceBox Logo">
+                <img src='spacebox-logo.png' alt="SpaceBox Logo">
             </a>
             <span>SPACEBOX</span>
         </div>
@@ -245,7 +245,7 @@
             <h2><u>Discover</u></h2>
             <a href="/discover" style="display: block; text-decoration: none; color: inherit;">
             <p>Welcome to SpaceBox, your gateway to the universe of space news, stunning imagery, and exclusive merchandise. Dive into our world of cosmic exploration and let your style speak volumes with our star-studded t-shirt collection. Explore what SpaceBox has in store for you below. Join Our Telegram Channel to be updated on the latest space news!</p>
-            <img src="{{ url_for('static', filename='news-photo.jpg') }}">
+            <img src='news-photo.jpg'>
             <div style="height: 20px;"></div>
             <div class="dotted-line"></div>
             <div style="height: 20px;"></div>
@@ -255,7 +255,7 @@
             <a href="/images" style="display: block; text-decoration: none; color: inherit;">
                 <h2><u>Our Image Gallery</u></h2>
                 <p>Explore the beauty of the cosmos through our collection of breathtaking space imagery. From distant galaxies to vivid nebulae, immerse yourself in the wonders of the universe, all from the comfort of your home.</p>
-                <img src="{{ url_for('static', filename='image-photo.jpg') }}">
+                <img src='image-photo.jpg'>
                 <div style="height: 20px;"></div>
                 <div class="dotted-line"></div>
                 <div style="height: 20px;"></div>
@@ -266,7 +266,7 @@
             <a href="/merch" style="display: block; text-decoration: none; color: inherit;">
             <h2><u>Premium Merchandise</u></h2>
             <p>Adorn yourself with the cosmos. Our exclusive clothing collection brings the universe closer to you. Designed for comfort and style, each piece tells a story of celestial wonder. Choose your constellation and wear the stars!</p>
-            <img src="{{ url_for('static', filename='tshirt3.png') }}">
+            <img src='tshirt3.png'>
             <div style="height: 20px;"></div>
             <div class="dotted-line"></div>
             <div style="height: 20px;"></div>
