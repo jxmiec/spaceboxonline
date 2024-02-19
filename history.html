@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href='spacebox-logo.ico' type="image/x-icon">
+    <title>SpaceBox -  History</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            color: #fff;
+            padding: 20px 40px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        nav #logo {
+            display: flex;
+            align-items: center;
+        }
+
+        nav #logo img {
+            height: 40px;
+        }
+
+        nav #logo span {
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #0088cc;
+        }
+
+        nav ul li a:before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #0088cc;
+            border-radius: 50%;
+            top: -5px;
+            right: -5px;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover:before {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Add margin-top equal to the height of the navbar */
+        main {
+            max-width: 1140px;
+            margin: 140px auto;  /* increase top margin */
+            padding: 20px;
+            text-align: center;
+        }
+
+        section {
+            background: #fff;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 20px;
+            transition: box-shadow 0.3s ease;
+            display: inline-block;
+        }
+
+        section:hover {
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        section h2 {
+            margin-bottom: 15px;
+        }
+
+        section p {
+            margin-bottom: 20px;
+        }
+
+        .paypal-button {
+            display: inline-block;
+            width: 150px;
+            height: 50px;
+            background-color: #0070ba;
+            color: #fff;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .paypal-button:hover {
+            background-color: #005c8b;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .bold-line {
+            border-top: 3px solid #000;
+            height: 0px;
+            width: 100%;
+        }
+
+        /* Modify media queries */
+        @media (max-width: 768px) {
+            nav {
+                padding: 10px 20px;  /* decrease padding */
+            }
+            nav #logo {
+                margin-bottom: 0.5rem;  /* decrease bottom margin */
+            }
+            nav ul li {
+                margin-left: 1rem;  /* decrease left margin */
+                margin-bottom: 0.5rem;  /* decrease bottom margin */
+            }
+        }
+
+        /* Ensure images are not wider than the screen */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div id="logo">
+            <a href="/">
+                <img src='logo.png' alt="Insight Logo">
+            </a>
+            <span>SPACEBOX</span>
+        </div>
+        <ul>
+            <li><a href="/discover">Discover</a></li>
+            <li><a href="/history">History</a></li>
+            <li><a href="/shop">Shop</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2 style="text-decoration: underline;">Mercury Program</h2>
+            <p><strong>Mercury Redstone 1A (MR-1A)</strong>: 19 December 1960, suborbital.</p>
+            <p><strong>Mercury Redstone 2 (MR-2)</strong>: 31 January 1961, suborbital, carried chimpanzee "Ham".</p>
+            <p><strong>Mercury Redstone 3 (MR-3)</strong>: 5 May 1961, suborbital, piloted by Alan Shepard.</p>
+            <p><strong>Mercury Redstone 4 (MR-4)</strong>: 21 July 1961, piloted by Gus Grissom, film was lost when the spacecraft sank. (Images not available)</p>
+            <p><strong>Mercury Atlas 4 (MA-4)</strong>: 13 September 1961, 1 orbit.</p>
+            <p><strong>Mercury Atlas 5 (MA-5)</strong>: 29 November 1961, 2 orbits, carried chimpanzee "Enos".</p>
+            <p><strong>Mercury Atlas 6 (MA-6)</strong>: 20 February 1962, 3 orbits, piloted by John Glenn.</p>
+            <p><strong>Mercury Atlas 7 (MA-7)</strong>: 24 May 1962, 3 orbits, piloted by Scott Carpenter.</p>
+            <p><strong>Mercury Atlas 8 (MA-8)</strong>: 3 October 1962, 6 orbits, piloted by Walter Schirra.</p>
+            <p><strong>Mercury Atlas 9 (MA-9)</strong>: 15 May 1963, 22 orbits, piloted by Gordon Cooper.</p>
+        </section>
+    
+        <section>
+            <h2 style="text-decoration: underline;">Gemini Program</h2>
+            <p><strong>Gemini III</strong>: 23 March 1965, first crewed flight.</p>
+            <p><strong>Gemini IV</strong>: 3-7 June 1965, first EVA.</p>
+            <p><strong>Gemini V</strong>: 21-29 August 1965, first week-long flight, first fuel cells.</p>
+            <p><strong>Gemini VII</strong>: 4-18 December 1965, first rendezvous with crewed vehicle (Gemini VI-A).</p>
+            <p><strong>Gemini VI-A</strong>: 15-16 December 1965, first rendezvous with crewed vehicle (Gemini VII).</p>
+            <p><strong>Gemini VIII</strong>: 16-17 March 1966, first docking (Agena target vehicle).</p>
+            <p><strong>Gemini IX-A</strong>: 3-6 June 1966, third rendezvous.</p>
+            <p><strong>Gemini X</strong>: 18-21 July 1966, first use of docked Agena to propel Gemini spacecraft.</p>
+            <p><strong>Gemini XI</strong>: 12-15 September 1966, docking and maneuvering with Agena, altitude record.</p>
+            <p><strong>Gemini XII</strong>: 11-15 November 1966, first fully successful EVA (2 hours 6 minutes).</p>
+        </section>
+    
+        <section>
+            <h2 style="text-decoration: underline;">Apollo Program</h2>
+            <p><strong>Apollo 1</strong>: 27 January 1967, Not flown, Cabin fire (Saturn-IB)</p>
+            <p><strong>Apollo 4</strong>: 09 November 1967, First test of the Saturn V</p>
+            <p><strong>Apollo 5</strong>: 22 January 1968, Unmanned test of the LM (Saturn-IB, same used in Apollo 1)</p>
+            <p><strong>Apollo 6</strong>: 04 April 1968, Second test of the Saturn V</p>
+            <p><strong>Apollo 7</strong>: 11-22 October 1968, First manned CSM, Earth orbit (Saturn-IB)</p>
+            <p><strong>Apollo 8</strong>: 21-27 December 1968, First humans in lunar orbit</p>
+            <p><strong>Apollo 9</strong>: 3-13 March 1969, Manned docking of the LM and CSM in Earth orbit</p>
+            <p><strong>Apollo 10</strong>: 18-26 May 1969, Manned testing the LM in lunar orbit</p>
+            <p><strong>Apollo 11</strong>: 16-24 July 1969, First manned landing on the Moon</p>
+            <p><strong>Apollo 12</strong>: 14-24 November 1969, Precision landing near Surveyor 3</p>
+            <p><strong>Apollo 13</strong>: 11-17 April 1970, Successful failure, in-flight abort</p>
+            <p><strong>Apollo 14</strong>: 31 January-9 February 1971, Exploration of Fra Mauro</p>
+            <p><strong>Apollo 15</strong>: 26 July-7 August 1971, First J-type mission, lunar rover used</p>
+            <p><strong>Apollo 16</strong>: 16-27 April 1972, Exploration of Descartes Highlands</p>
+            <p><strong>Apollo 17</strong>: 7-19 December 1972, Last manned Moon landing, Taurus-Littrow valley</p>
+            <p class="footnote" style="margin-top:20px;">Note: The designations Apollo 2 and 3 were not used for any missions. Following the tragic Apollo 1 fire, the widows of the Apollo 1 crew requested the next successful manned mission to be named Apollo 1 in honor of their husbands. The missions AS-201, AS-202, and AS-203, which were important tests leading up to the manned flights, are worth noting but were not officially named Apollo 2 or 3.</p>
+        </section>
+    </main>    
+
+    <footer>
+        <p>&copy; 2024 SpaceBox. All rights reserved. Together, we explore the infinite cosmos.</p>
+    </footer>
+</body>
+</html>
