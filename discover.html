@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href='spacebox-logo.ico'>
     <title>SpaceBox - Thrust Vector Control</title>
+    <link rel="icon" type="image/x-icon" href="logo.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #0088cc;
-            --secondary-color: #005f88;
-            --bg-color: #f5f5f5;
+            --primary-color: #1a237e;
+            --secondary-color: #0d47a1;
             --text-color: #333;
+            --bg-color: #f0f2f5;
         }
 
         * {
@@ -20,7 +21,7 @@
         }
 
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Roboto', Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
@@ -29,12 +30,10 @@
         header {
             background: #000;
             color: #fff;
-            padding: 1rem;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            position: fixed;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
             z-index: 1000;
         }
 
@@ -42,14 +41,16 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 0 2rem;
         }
 
         .navbar a {
             color: #fff;
             text-decoration: none;
             padding: 0.5rem 1rem;
+            font-size: 0.9rem;
             transition: background 0.3s ease;
         }
 
@@ -68,7 +69,12 @@
         }
 
         .logo span {
-            font-weight: bold; /* Making SPACEBOX bold */
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .logo a:hover {
+            background: none;
         }
 
         .nav-links {
@@ -81,28 +87,40 @@
         }
 
         main {
-            max-width: 1200px;
-            margin: 100px auto 2rem; /* Increased to ensure no overlap with header */
+            max-width: 1400px;
+            margin: 0 auto;
             padding: 0 20px;
+            margin-top: 80px;
         }
 
         section {
             background: #fff;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            padding: 3rem;
+            margin: 4rem 0;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         section:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
         }
 
         section h1, section h2 {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             color: var(--primary-color);
+            font-size: 2.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        section h3 {
+            margin-bottom: 0.75rem;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
         }
 
         .cta-button {
@@ -110,59 +128,51 @@
             background-color: var(--primary-color);
             color: #fff;
             padding: 10px 20px;
-            border-radius: 5px;
+            border-radius: 30px;
             text-decoration: none;
+            transition: all 0.3s ease;
             font-size: 1rem;
-            transition: background-color 0.3s ease;
         }
 
         .cta-button:hover {
             background-color: var(--secondary-color);
+            transform: scale(1.05);
         }
 
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1rem;
+        ul {
+            list-style-type: none;
         }
 
-        .bold-line {
-            border-top: 3px solid var(--primary-color);
-            height: 0;
-            margin: 20px 0;
+        li {
+            margin-bottom: 0.3rem;
+            padding-left: 0;
         }
 
         img {
             max-width: 100%;
             height: auto;
+            margin: 1.5rem 0;
         }
 
-        ul {
-            list-style-type: none; /* Remove default bullets */
+        footer {
+            background-color: #1a237e;
+            color: #fff;
+            text-align: center;
+            padding: 2rem 0;
+            transition: background-color 0.3s ease;
         }
 
-        li::before {
-            content: "•"; /* Add bullet manually */
-            color: var(--primary-color); /* Match bullet color with theme */
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
+        footer:hover {
+            background-color: var(--secondary-color);
         }
 
-        li {
-            margin-bottom: 0.5rem; /* Space between items */
-            padding-left: 1.5rem; /* Indent for bullet */
+        footer p {
+            font-size: 0.9rem;
         }
 
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .nav-links {
-                margin-top: 1rem;
-            }
+        .shop-cta {
+            text-align: center;
+            margin: 2rem 0;
         }
     </style>
 </head>
@@ -186,10 +196,8 @@
     <main>
         <section id="discover">
             <h1>Mastering Thrust Vector Control</h1>
-            <div class="bold-line"></div>
             <p>Thrust Vector Control (TVC) is crucial for modern rocketry, allowing for precise control over a rocket's flight path by altering the direction of thrust. But we start with something simpler, understanding the basics before diving into complex control systems.</p>
             <p>Here at SpaceBox, we guide you through the essentials of rocketry engineering, from fundamental principles to advanced TVC mechanisms. Learn how to steer your model rockets with precision and expertise.</p>
-            <div class="bold-line"></div>
         </section>
         
         <section id="guide">
@@ -204,12 +212,10 @@
                 <li><strong>Hybrid Motors</strong> - Combines solid fuel with a liquid or gaseous oxidizer, offering a balance between control and simplicity.</li>
             </ul>
             <img src='rocket-propulsion.jpg' alt="Rocket Propulsion Diagram">
-            <div style="height: 20px;"></div>
 
             <h3>Step 2: Sensors/Information</h3>
             <p>The rocket knows where it is by knowing where it isn't. By precisely measuring its current position through sensors like gyroscopes, accelerometers, and GPS, the system can calculate where it needs to go to reach its target or maintain its course.</p>
             <img src='sensors.jpg' alt="Rocket Sensors">
-            <div style="height: 20px;"></div>
 
             <h3>Step 3: Control Systems</h3>
             <p>Control systems in rocketry include:</p>
@@ -219,23 +225,19 @@
                 <li><strong>Model Predictive Control (MPC)</strong> - Predicts future states of the system to optimize control actions over time.</li>
             </ul>
             <img src='control-systems.jpg' alt="Control Systems in Rocketry">
-            <div style="height: 20px;"></div>
 
             <h3>Step 4: Understanding Thrust Vector Control</h3>
             <p>TVC involves directing the exhaust of the rocket engine to control its flight. Common methods include gimballed nozzles, jet vanes, and vernier thrusters. Each method has its advantages in terms of precision, weight, and cost.</p>
             <img src='tvc-system.jpg' alt="TVC System">
         </section>
 
-        <section id="advanced">
-            <h2>Advanced Thrust Vector Techniques</h2>
-            <p>While basic TVC gives you control, advanced techniques offer precision for complex maneuvers. Learn about differential throttling, multiple engine vectoring, and dynamic control algorithms.</p>
-            <p>SpaceBox introduces you to the next level of rocketry with insights into how these technologies have shaped space travel, from satellite launches to interplanetary missions.</p>
-            <p>Join us to explore how these advanced control methods can be applied in your model rocket projects for enhanced performance and learning.</p>
+        <section id="start">
+            <h2>Where to Start</h2>
+            <p>Begin your journey into rocket science by researching the fundamentals. Use this website to assist you in gaining a deeper understanding of rocketry. If you want to get started right away, consider exploring our shop for hands-on learning:</p>
+            <div class="shop-cta">
+                <a href="/shop" class="cta-button">Visit Our Shop</a>
+            </div>
         </section>
-
-        <div class="cta-button-container" style="text-align: center;">
-            <a href="https://t.me/+5ZxGU1nRvwtiZWU0" class="cta-button">Join Our Telegram!</a>
-        </div>
     </main>
 
     <footer>
