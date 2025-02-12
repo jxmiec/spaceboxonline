@@ -4,239 +4,242 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href='spacebox-logo.ico'>
-    <title>SpaceBox - Discover</title>
+    <title>SpaceBox - Thrust Vector Control</title>
     <style>
+        :root {
+            --primary-color: #0088cc;
+            --secondary-color: #005f88;
+            --bg-color: #f5f5f5;
+            --text-color: #333;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
         }
 
         body {
-            background: #f5f5f5;
-            margin: 0;
-            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #000;
+        header {
+            background: #000;
             color: #fff;
-            padding: 20px 40px;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
         }
 
-        nav #logo {
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background: var(--primary-color);
+        }
+
+        .logo {
             display: flex;
             align-items: center;
         }
 
-        nav #logo img {
+        .logo img {
             height: 40px;
+            margin-right: 10px;
         }
 
-        nav #logo span {
-            margin-left: 10px;
-            font-weight: bold;
+        .logo span {
+            font-weight: bold; /* Making SPACEBOX bold */
         }
 
-        nav ul {
-            list-style-type: none;
+        .nav-links {
+            list-style: none;
             display: flex;
         }
 
-        nav ul li {
-            margin-left: 2rem;
-            position: relative;
+        .nav-links li {
+            margin-left: 1rem;
         }
 
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            color: #0088cc;
-        }
-
-        nav ul li a:before {
-            content: '';
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #0088cc;
-            border-radius: 50%;
-            top: -5px;
-            right: -5px;
-            opacity: 0;
-            transform: scale(0);
-            transition: all 0.3s ease;
-        }
-
-        nav ul li a:hover:before {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: #0088cc;
-            color: #fff;
-            padding: 15px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            transition: background-color 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background-color: #005f88;
-        }
-
-
-        /* Add margin-top equal to the height of the navbar */
         main {
-            max-width: 1140px;
-            margin: 140px auto;  /* increase top margin */
-            padding: 20px;
-            text-align: center;
+            max-width: 1200px;
+            margin: 100px auto 2rem; /* Increased to ensure no overlap with header */
+            padding: 0 20px;
         }
 
         section {
             background: #fff;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
             border-radius: 10px;
-            margin-bottom: 20px;
-            padding: 20px;
-            transition: box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         section:hover {
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
         }
 
-        section h1,
-        section h2 {
-            margin-bottom: 15px;
+        section h1, section h2 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--secondary-color);
         }
 
         footer {
             background-color: #333;
             color: #fff;
             text-align: center;
-            padding: 20px;
+            padding: 1rem;
         }
 
         .bold-line {
-            border-top: 3px solid #000;
-            height: 0px;
-            width: 100%;
+            border-top: 3px solid var(--primary-color);
+            height: 0;
+            margin: 20px 0;
         }
 
-        /* Modify media queries */
-        @media (max-width: 768px) {
-            nav {
-                padding: 10px 20px;  /* decrease padding */
-            }
-            nav #logo {
-                margin-bottom: 0.5rem;  /* decrease bottom margin */
-            }
-            nav ul li {
-                margin-left: 1rem;  /* decrease left margin */
-                margin-bottom: 0.5rem;  /* decrease bottom margin */
-            }
-        }
-
-        /* Ensure images are not wider than the screen */
         img {
             max-width: 100%;
             height: auto;
         }
 
-    </style>
+        ul {
+            list-style-type: none; /* Remove default bullets */
+        }
 
+        li::before {
+            content: "•"; /* Add bullet manually */
+            color: var(--primary-color); /* Match bullet color with theme */
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        li {
+            margin-bottom: 0.5rem; /* Space between items */
+            padding-left: 1.5rem; /* Indent for bullet */
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-links {
+                margin-top: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <nav>
-        <div id="logo">
-            <a href="/">
-                <img src='logo.png' alt="SpaceBox Logo">
-            </a>
-            <span>SPACEBOX</span>
-        </div>
-        <ul>
-            <li><a href="/discover">Discover</a></li>
-            <li><a href="/history">History</a></li>
-            <li><a href="/shop">Shop</a></li>
-        </ul>
-    </nav>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="/">
+                    <img src='logo.png' alt="SpaceBox Logo">
+                </a>
+                <span>SPACEBOX</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/discover">Discover</a></li>
+                <li><a href="/history">History</a></li>
+                <li><a href="/shop">Shop</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main>
         <section id="discover">
-            <h1>Galactic Insights Delivered Daily</h1>
+            <h1>Mastering Thrust Vector Control</h1>
             <div class="bold-line"></div>
-            <div style="height: 20px;"></div>
-            <p>At SpaceBox, our mission is to bridge the cosmos to enthusiasts worldwide. We bring the universe closer to you by providing daily insights into the vast expanse of space. Join our community and receive the latest astronomical discoveries, cosmic phenomena, and stargazing tips directly through our SpaceBox portal.</p>
-            <div style="height: 20px;"></div>
-            <p>Become part of our exclusive community to engage with fellow space enthusiasts, share your celestial experiences, and grow your knowledge of the cosmos. Start your interstellar journey with SpaceBox today.</p>
-            <div style="height: 20px;"></div>
+            <p>Thrust Vector Control (TVC) is crucial for modern rocketry, allowing for precise control over a rocket's flight path by altering the direction of thrust. But we start with something simpler, understanding the basics before diving into complex control systems.</p>
+            <p>Here at SpaceBox, we guide you through the essentials of rocketry engineering, from fundamental principles to advanced TVC mechanisms. Learn how to steer your model rockets with precision and expertise.</p>
             <div class="bold-line"></div>
         </section>
         
         <section id="guide">
-            <h2>Your Celestial Guide...</h2>
-            <p>Embarking on your space exploration journey is seamless with SpaceBox.</p>
+            <h2>Rocketry Fundamentals</h2>
+            <p>Explore the foundational principles of rocketry and control systems.</p>
+
+            <h3>Step 1: Basics of Rocket Propulsion</h3>
+            <p>Rocket propulsion involves:</p>
+            <ul>
+                <li><strong>Liquid Propulsion</strong> - Uses liquid fuel and oxidizer; provides high control over thrust through variable flow rates.</li>
+                <li><strong>Solid Motors</strong> - Pre-packed fuel and oxidizer in a solid form; simple, reliable but less controllable once ignited.</li>
+                <li><strong>Hybrid Motors</strong> - Combines solid fuel with a liquid or gaseous oxidizer, offering a balance between control and simplicity.</li>
+            </ul>
+            <img src='rocket-propulsion.jpg' alt="Rocket Propulsion Diagram">
             <div style="height: 20px;"></div>
 
-            <h3>Step 1: Receive Cosmic Updates</h3>
-            <div style="height: 20px;"></div>
-            <p>Our team of astronomers and space enthusiasts curate and share fascinating insights about the universe. From cosmic events to discoveries, you’ll be in the loop of the latest space news.</p>
-            <div style="height: 20px;"></div>
-            <img src='image1.png' alt="Cosmic Update Example">
+            <h3>Step 2: Sensors/Information</h3>
+            <p>The rocket knows where it is by knowing where it isn't. By precisely measuring its current position through sensors like gyroscopes, accelerometers, and GPS, the system can calculate where it needs to go to reach its target or maintain its course.</p>
+            <img src='sensors.jpg' alt="Rocket Sensors">
             <div style="height: 20px;"></div>
 
-            <h3>Step 2: Explore the Universe</h3>
-            <div style="height: 20px;"></div>
-            <p>Utilize the information and resources provided to delve deeper into space exploration. Whether it’s stargazing, understanding cosmic events, or learning about space missions, SpaceBox is your companion.</p>
-            <img src='discover-photo.jpg'>
+            <h3>Step 3: Control Systems</h3>
+            <p>Control systems in rocketry include:</p>
+            <ul>
+                <li><strong>PID Control</strong> - Proportional-Integral-Derivative control for maintaining stability by correcting errors in position or attitude.</li>
+                <li><strong>State Space Control</strong> - An advanced method using state variables for complex system dynamics.</li>
+                <li><strong>Model Predictive Control (MPC)</strong> - Predicts future states of the system to optimize control actions over time.</li>
+            </ul>
+            <img src='control-systems.jpg' alt="Control Systems in Rocketry">
             <div style="height: 20px;"></div>
 
-            <h3>Step 3: Engage with the Community</h3>
-            <div style="height: 20px;"></div>
-            <p>Join discussions, share your observations, and connect with like-minded individuals. Every interaction is a step forward in our collective journey through the cosmos.</p>
-            <div style="height: 20px;"></div>
-            <img src='image2.jpg' alt="Space Community Engagement">
+            <h3>Step 4: Understanding Thrust Vector Control</h3>
+            <p>TVC involves directing the exhaust of the rocket engine to control its flight. Common methods include gimballed nozzles, jet vanes, and vernier thrusters. Each method has its advantages in terms of precision, weight, and cost.</p>
+            <img src='tvc-system.jpg' alt="TVC System">
         </section>
 
         <section id="advanced">
-            <h2>Embark on an Advanced Mission</h2>
-            <p>While our daily insights offer a gateway to the cosmos, becoming a member of our Advanced Mission provides a deeper, more immersive experience. Gain access to premium content, exclusive events, and direct dialogues with experts in the field.</p>
-            <div style="height: 20px;"></div>
-            <p>Our Advanced Mission is not just about receiving content; it's about actively participating in the frontiers of space exploration. Engage with specialized content, deep-dive into celestial studies, and be part of pioneering space initiatives.</p>
-            <div style="height: 20px;"></div>
-            <p>Ready to elevate your space journey? Follow the stars to our Advanced Mission page and take the leap into a universe of deeper understanding and exploration. Your space odyssey awaits!</p>
+            <h2>Advanced Thrust Vector Techniques</h2>
+            <p>While basic TVC gives you control, advanced techniques offer precision for complex maneuvers. Learn about differential throttling, multiple engine vectoring, and dynamic control algorithms.</p>
+            <p>SpaceBox introduces you to the next level of rocketry with insights into how these technologies have shaped space travel, from satellite launches to interplanetary missions.</p>
+            <p>Join us to explore how these advanced control methods can be applied in your model rocket projects for enhanced performance and learning.</p>
         </section>
 
-
-        <div class="hero">
+        <div class="cta-button-container" style="text-align: center;">
             <a href="https://t.me/+5ZxGU1nRvwtiZWU0" class="cta-button">Join Our Telegram!</a>
-            <div class="arrow-down"></div>
         </div>
-
     </main>
 
     <footer>
-        <p>&copy; 2024 SpaceBox. All rights reserved. Together, we explore the infinite cosmos.</p>
+        <p>© 2024 SpaceBox. All rights reserved. Powering innovation in rocketry.</p>
     </footer>
 </body>
 </html>
