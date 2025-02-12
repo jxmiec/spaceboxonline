@@ -161,11 +161,6 @@
             background-color: var(--secondary-color);
             transform: scale(1.05);
         }
-
-        /* Style for PayPal button container */
-        .paypal-button-container {
-            margin-top: 20px;
-        }
     </style>
 </head>
 <body>
@@ -197,44 +192,40 @@
             <img src='product3.jpg' alt="Book" class="product-image">
             <p>Dive into the ultimate Apollo moon landing breakdown with 'Apollo Unveiled' by SpaceBox. Whether you're a space buff, a curious mind, or just love a good read. Explore the real deal behind humanity's epic trip to the moon, separating fact from fiction. 'Apollo Unveiled' is your go-to guide for unraveling the mysteries and marvels of the Apollo era.</p>
             <b>Price: £0.79</b>
-            <div class="paypal-button-container" id="paypal-button-container-3"></div>
+            <p>Coming Soon...</p>
+        </section>
+
+        <section class="variant-section">
+            <h2>EFC-4.2: High-Speed Flight Computer 🖥️</h2>
+            <img src='product1.jpg' alt="EFC-4.2" class="product-image">
+            <p>Experience the power of the EFC-4.2, a flight computer boasting 600MHz processing speed, integrated with MPU6050 for motion tracking and BMP280 for precise pressure and altitude readings.</p>
+            <p>Coming Soon...</p>
+        </section>
+
+        <section class="variant-section">
+            <h2>TVC: Thrust Vector Control Mount 🚀</h2>
+            <img src='product2.jpg' alt="TVC Mount" class="product-image">
+            <p>Enhance your rocket's maneuverability with our TVC mount offering 19 degrees of freedom, controlled by two robust MG90s servos for precise thrust vectoring.</p>
+            <p>Coming Soon...</p>
+        </section>
+
+        <section class="variant-section">
+            <h2>Starter Kit: Beginner's Rocket Building Set 🔧</h2>
+            <img src='product4.jpg' alt="Starter Kit" class="product-image">
+            <p>Launch into rocket engineering with our Starter Kit. Includes Parachute-Ejection-System (PES), Static (Non-vectoring) Mount, and a basic flight computer for safe and educational rocket launches.</p>
+            <p>Coming Soon...</p>
+        </section>
+
+        <section class="variant-section">
+            <h2>Advanced Kit: Comprehensive Rocket Building Experience 💡</h2>
+            <img src='product5.jpg' alt="Advanced Kit" class="product-image">
+            <p>Take your skills to the next level with our Advanced Kit, featuring a Rocket Body, EFC-4.2, TVC mount, and more for an in-depth rocket building project.</p>
+            <p>Coming Soon...</p>
         </section>
     </main>
 
     <footer>
-        <p>© 2024 SpaceBox | Contact: spacebox.website@gmail.com | Carry the universe with you.</p>
+        <p>© 2024 SpaceBox, where the future of engineering and exploration begins.</p>
     </footer>
-
-    <script src="https://www.paypal.com/sdk/js?client-id=ARBP2J91GoENDAery-WC1o6ZqQgjLzLbr7jedb-PXyDW60j_tBu5__N_iUm8kpYH0gf9Yqnwz0V3-f5j&currency=GBP&vault=true"></script>
-    <script>
-        function createButton(containerId, price) {
-            paypal.Buttons({
-                style: {
-                    shape: 'pill',
-                    color: 'blue',
-                    layout: 'horizontal',
-                    label: 'paypal',
-                    tagline: false
-                },
-                createOrder: function(data, actions) {
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: price,
-                                currency_code: 'GBP'
-                            }
-                        }]
-                    });
-                },
-                onApprove: function(data, actions) {
-                    return actions.order.capture().then(function(details) {
-                        alert('Transaction completed by ' + details.payer.name.given_name);
-                    });
-                }
-            }).render('#' + containerId);
-        }
-
-        createButton('paypal-button-container-3', '0.79');
-    </script>
 </body>
 </html>
