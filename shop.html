@@ -161,6 +161,11 @@
             background-color: var(--secondary-color);
             transform: scale(1.05);
         }
+
+        /* Style for PayPal button container */
+        .paypal-button-container {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -228,7 +233,7 @@
         <p>© 2024 SpaceBox, where the future of engineering and exploration begins.</p>
     </footer>
 
-    <script src="https://www.paypal.com/sdk/js?client-id=ARBP2J91GoENDAery-WC1o6ZqQgjLzLbr7jedb-PXyDW60j_tBu5__N_iUm8kpYH0gf9Yqnwz0V3-f5j¤cy=GBP&vault=true"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=ARBP2J91GoENDAery-WC1o6ZqQgjLzLbr7jedb-PXyDW60j_tBu5__N_iUm8kpYH0gf9Yqnwz0V3-f5j&currency=GBP&vault=true"></script>
     <script>
         function createButton(containerId, price) {
             paypal.Buttons({
