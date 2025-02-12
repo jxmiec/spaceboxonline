@@ -3,193 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href='spacebox-logo.ico' type="image/x-icon">
-    <title>SpaceBox -  History</title>
+    <title>SpaceBox - History</title>
+    <link rel="icon" type="image/x-icon" href="spacebox-logo.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #0d47a1;
+            --text-color: #333;
+            --bg-color: #f0f2f5;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
         }
 
         body {
-            background: #f5f5f5;
-            margin: 0;
-            padding: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
         }
 
-        nav {
+        header {
+            background: #000;
+            color: #fff;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #000;
-            color: #fff;
-            padding: 20px 40px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
-
-        nav #logo {
+        
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: background 0.3s ease;
+        }
+        
+        .navbar a:hover {
+            background: var(--primary-color);
+        }
+        
+        .logo {
             display: flex;
             align-items: center;
         }
-
-        nav #logo img {
-            height: 40px;
+        
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
         }
-
-        nav #logo span {
-            margin-left: 10px;
+        
+        .logo span {
+            font-size: 1.5rem;
             font-weight: bold;
         }
-
-        nav ul {
-            list-style-type: none;
+        
+        .logo a:hover {
+            background: none;
+        }
+        
+        .nav-links {
+            list-style: none;
             display: flex;
         }
-
-        nav ul li {
-            margin-left: 2rem;
-            position: relative;
+        
+        .nav-links li {
+            margin-left: 1.5rem;
         }
 
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            color: #0088cc;
-        }
-
-        nav ul li a:before {
-            content: '';
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #0088cc;
-            border-radius: 50%;
-            top: -5px;
-            right: -5px;
-            opacity: 0;
-            transform: scale(0);
-            transition: all 0.3s ease;
-        }
-
-        nav ul li a:hover:before {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* Add margin-top equal to the height of the navbar */
         main {
-            max-width: 1140px;
-            margin: 140px auto;  /* increase top margin */
-            padding: 20px;
-            text-align: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            margin-top: 80px;
         }
 
         section {
             background: #fff;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            margin-bottom: 20px;
-            padding: 20px;
-            transition: box-shadow 0.3s ease;
-            display: inline-block;
+            padding: 3rem;
+            margin: 4rem 0;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         section:hover {
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
         }
 
         section h2 {
-            margin-bottom: 15px;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
         }
 
         section p {
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
         }
 
-        .paypal-button {
-            display: inline-block;
-            width: 150px;
-            height: 50px;
-            background-color: #0070ba;
-            color: #fff;
-            border-radius: 25px;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .paypal-button:hover {
-            background-color: #005c8b;
-        }
-
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .bold-line {
-            border-top: 3px solid #000;
-            height: 0px;
-            width: 100%;
-        }
-
-        /* Modify media queries */
-        @media (max-width: 768px) {
-            nav {
-                padding: 10px 20px;  /* decrease padding */
-            }
-            nav #logo {
-                margin-bottom: 0.5rem;  /* decrease bottom margin */
-            }
-            nav ul li {
-                margin-left: 1rem;  /* decrease left margin */
-                margin-bottom: 0.5rem;  /* decrease bottom margin */
-            }
-        }
-
-        /* Ensure images are not wider than the screen */
         img {
             max-width: 100%;
             height: auto;
+            margin: 1.5rem auto;
+            display: block;
+            width: 50%;
         }
 
+        footer {
+            background-color: #1a237e;
+            color: #fff;
+            text-align: center;
+            padding: 2rem 0;
+            transition: background-color 0.3s ease;
+        }
+
+        footer:hover {
+            background-color: var(--secondary-color);
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
-    <nav>
-        <div id="logo">
-            <a href="/">
-                <img src='logo.png' alt="Insight Logo">
-            </a>
-            <span>SPACEBOX</span>
-        </div>
-        <ul>
-            <li><a href="/discover">Discover</a></li>
-            <li><a href="/history">History</a></li>
-            <li><a href="/shop">Shop</a></li>
-        </ul>
-    </nav>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="/">
+                    <img src='logo.png' alt="SpaceBox Logo">
+                </a>
+                <span>SPACEBOX</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/discover">Discover</a></li>
+                <li><a href="/history">History</a></li>
+                <li><a href="/shop">Shop</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main>
         <section>
-            <h2 style="text-decoration: underline;">Mercury Program</h2>
+            <h2>Mercury Program</h2>
             <p><strong>Mercury Redstone 1A (MR-1A)</strong>: 19 December 1960, suborbital.</p>
             <p><strong>Mercury Redstone 2 (MR-2)</strong>: 31 January 1961, suborbital, carried chimpanzee "Ham".</p>
             <p><strong>Mercury Redstone 3 (MR-3)</strong>: 5 May 1961, suborbital, piloted by Alan Shepard.</p>
-            <p><strong>Mercury Redstone 4 (MR-4)</strong>: 21 July 1961, piloted by Gus Grissom, film was lost when the spacecraft sank. (Images not available)</p>
+            <p><strong>Mercury Redstone 4 (MR-4)</strong>: 21 July 1961, piloted by Gus Grissom, film was lost when the spacecraft sank.</p>
             <p><strong>Mercury Atlas 4 (MA-4)</strong>: 13 September 1961, 1 orbit.</p>
             <p><strong>Mercury Atlas 5 (MA-5)</strong>: 29 November 1961, 2 orbits, carried chimpanzee "Enos".</p>
             <p><strong>Mercury Atlas 6 (MA-6)</strong>: 20 February 1962, 3 orbits, piloted by John Glenn.</p>
@@ -199,7 +176,7 @@
         </section>
     
         <section>
-            <h2 style="text-decoration: underline;">Gemini Program</h2>
+            <h2>Gemini Program</h2>
             <p><strong>Gemini III</strong>: 23 March 1965, first crewed flight.</p>
             <p><strong>Gemini IV</strong>: 3-7 June 1965, first EVA.</p>
             <p><strong>Gemini V</strong>: 21-29 August 1965, first week-long flight, first fuel cells.</p>
@@ -213,7 +190,7 @@
         </section>
     
         <section>
-            <h2 style="text-decoration: underline;">Apollo Program</h2>
+            <h2>Apollo Program</h2>
             <p><strong>Apollo 1</strong>: 27 January 1967, Not flown, Cabin fire (Saturn-IB)</p>
             <p><strong>Apollo 4</strong>: 09 November 1967, First test of the Saturn V</p>
             <p><strong>Apollo 5</strong>: 22 January 1968, Unmanned test of the LM (Saturn-IB, same used in Apollo 1)</p>
@@ -229,12 +206,12 @@
             <p><strong>Apollo 15</strong>: 26 July-7 August 1971, First J-type mission, lunar rover used</p>
             <p><strong>Apollo 16</strong>: 16-27 April 1972, Exploration of Descartes Highlands</p>
             <p><strong>Apollo 17</strong>: 7-19 December 1972, Last manned Moon landing, Taurus-Littrow valley</p>
-            <p class="footnote" style="margin-top:20px;">Note: The designations Apollo 2 and 3 were not used for any missions. Following the tragic Apollo 1 fire, the widows of the Apollo 1 crew requested the next successful manned mission to be named Apollo 1 in honor of their husbands. The missions AS-201, AS-202, and AS-203, which were important tests leading up to the manned flights, are worth noting but were not officially named Apollo 2 or 3.</p>
+            <p>Note: The designations Apollo 2 and 3 were not used for any missions. Following the tragic Apollo 1 fire, the widows of the Apollo 1 crew requested the next successful manned mission to be named Apollo 1 in honor of their husbands. The missions AS-201, AS-202, and AS-203, which were important tests leading up to the manned flights, are worth noting but were not officially named Apollo 2 or 3.</p>
         </section>
     </main>    
 
     <footer>
-        <p>&copy; 2024 SpaceBox. All rights reserved. Together, we explore the infinite cosmos.</p>
+        <p>© 2024 SpaceBox. All rights reserved. Together, we explore the infinite cosmos.</p>
     </footer>
 </body>
 </html>
