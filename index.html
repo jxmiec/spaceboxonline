@@ -300,22 +300,22 @@
             
             .logo {
                 margin-bottom: 0; /* Remove bottom margin on mobile */
-                order: 2; /* Place logo below menu toggle */
-                flex-direction: row; /* Ensure logo items are in row */
                 width: 100%; /* Make logo span full width */
-                justify-content: center; /* Center the logo items */
+                display: flex; /* Ensure flex properties work */
+                justify-content: space-between; /* Space between text and image */
+                align-items: center; /* Vertically align items */
                 padding-top: 1rem; /* Add space above logo for better visual balance */
                 padding-bottom: 1rem; /* Ensure padding below logo for balance */
             }
         
-            .logo a {
-                order: 2; /* Move image to the right */
-                margin-left: 0; /* Reset margin to ensure alignment */
+            .logo span {
+                margin-left: auto; /* Push text to the center */
+                margin-right: auto; /* Ensure text is centered */
             }
         
-            .logo span {
-                order: 1; /* Move text to the left */
-                margin-right: 0; /* Reset margin to ensure alignment */
+            .logo a {
+                margin-left: auto; /* Push image to the far right */
+                margin-right: 0; /* Ensure image stays to the right */
             }
         
             .menu-toggle {
