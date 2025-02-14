@@ -135,16 +135,24 @@
             margin: 0 auto;
             padding: 0 10px;
         }
-
+        
+        .shop-cta {
+            text-align: center; /* Center align the button container */
+            margin-top: 20px;   /* Add some space above the button */
+        }
+        
         .cta-button {
-            background-color: var(--primary-color);
-            color: #fff;
-            padding: 10px 20px; 
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1rem; 
-            animation: pulse 2s infinite;
+            /* Existing styles... */
+            display: inline-block; /* Ensure the button is inline-block for centering */
+        }
+        
+        .propulsion-list {
+            padding-left: 2rem; /* Indent the list */
+        }
+        
+        /* If you need to adjust the list's bullet points too */
+        .propulsion-list li {
+            list-style-type: disc; /* or any other bullet type if needed */
         }
 
         .cta-button:hover {
@@ -289,28 +297,28 @@
         </nav>
     </header>
 
-    <main>
-        <section id="start">
-            <h2>Where to Start</h2>
-            <p>Begin your journey into rocket science by researching the fundamentals. Use this website to assist you in gaining a deeper understanding of rocketry. If you want to get started right away, consider exploring our shop for hands-on learning:</p>
-            <div class="shop-cta">
-                <a href="/shop" class="cta-button">Visit Our Shop</a>
-            </div>
-        </section>
+<main>
+    <section id="start">
+        <h2>Where to Start</h2>
+        <p>Begin your journey into rocket science by researching the fundamentals. Use this website to assist you in gaining a deeper understanding of rocketry. If you want to get started right away, consider exploring our shop for hands-on learning:</p>
+        <div class="shop-cta">
+            <a href="/shop" class="cta-button">Visit Our Shop</a>
+        </div>
+    </section>
 
-      <section id="guide">
-            <h2>Rocketry Fundamentals</h2>
-            <p>Explore the foundational principles of rocketry and control systems.</p>
+    <section id="guide">
+        <h2>Rocketry Fundamentals</h2>
+        <p>Explore the foundational principles of rocketry and control systems.</p>
 
-            <h3>Step 1: Basics of Rocket Propulsion</h3>
-            <p>Rocket propulsion involves:</p>
-            <ul>
-                <li><strong>Liquid Propulsion</strong> - Uses liquid fuel and oxidizer; provides high control over thrust through variable flow rates.</li>
-                <li><strong>Solid Motors</strong> - Pre-packed fuel and oxidizer in a solid form; simple, reliable but less controllable once ignited.</li>
-                <li><strong>Hybrid Motors</strong> - Combines solid fuel with a liquid or gaseous oxidizer, offering a balance between control and simplicity.</li>
-            </ul>
-        </section>
-    </main>
+        <h3>Step 1: Basics of Rocket Propulsion</h3>
+        <p>Rocket propulsion involves:</p>
+        <ul class="propulsion-list">
+            <li><strong>Liquid Propulsion</strong> - Uses liquid fuel and oxidizer; provides high control over thrust through variable flow rates.</li>
+            <li><strong>Solid Motors</strong> - Pre-packed fuel and oxidizer in a solid form; simple, reliable but less controllable once ignited.</li>
+            <li><strong>Hybrid Motors</strong> - Combines solid fuel with a liquid or gaseous oxidizer, offering a balance between control and simplicity.</li>
+        </ul>
+    </section>
+</main>
 
     <footer>
         <p>© 2024 SpaceBox, where the future of engineering and exploration begins.</p>
