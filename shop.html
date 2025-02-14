@@ -31,7 +31,7 @@
         header {
             background: #000;
             color: #fff;
-            padding: 1rem 0; /* Adjusted back to match Discover page */
+            padding: 1rem 0; /* Adjusted to match Discover page */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
@@ -50,7 +50,7 @@
         .navbar a {
             color: #fff;
             text-decoration: none;
-            padding: 0.5rem 1rem; /* Adjusted back to match Discover page */
+            padding: 0.5rem 1rem; /* Adjusted to match Discover page */
             transition: background 0.3s ease;
         }
 
@@ -64,13 +64,13 @@
         }
 
         .logo img {
-            height: 50px; /* Adjusted back to match Discover page */
+            height: 50px; /* Adjusted to match Discover page */
             width: auto;
-            margin-right: 15px; /* Adjusted back to match Discover page */
+            margin-right: 15px; /* Adjusted to match Discover page */
         }
 
         .logo span {
-            font-size: 1.5rem; /* Adjusted back to match Discover page */
+            font-size: 1.5rem; /* Adjusted to match Discover page */
             font-weight: bold;
         }
 
@@ -84,7 +84,7 @@
         }
 
         .nav-links li {
-            margin-left: 1.5rem; /* Adjusted back to match Discover page */
+            margin-left: 1.5rem; /* Adjusted to match Discover page */
         }
 
         .mobile-menu {
@@ -96,16 +96,16 @@
             cursor: pointer;
             color: #fff;
             font-size: 1.5rem;
-            padding: 0.5rem; /* Adjusted back to match Discover page */
-            margin-right: 1rem; /* Adjusted back to match Discover page */
+            padding: 0.5rem; /* Adjusted to match Discover page */
+            margin-right: 1rem; /* Adjusted to match Discover page */
         }
 
         .menu-toggle span {
             display: block;
-            width: 25px; /* Adjusted back to match Discover page */
-            height: 3px; /* Adjusted back to match Discover page */
+            width: 25px; /* Adjusted to match Discover page */
+            height: 3px; /* Adjusted to match Discover page */
             background: #fff;
-            margin: 5px 0; /* Adjusted back to match Discover page */
+            margin: 5px 0; /* Adjusted to match Discover page */
             transition: all 0.3s ease;
         }
 
@@ -113,7 +113,7 @@
             display: none;
             width: 100%;
             background: rgba(0, 0, 0, 0.9);
-            padding: 1rem 0; /* Adjusted back to match Discover page */
+            padding: 1rem 0; /* Adjusted to match Discover page */
             position: absolute;
             top: 100%;
             left: 0;
@@ -127,7 +127,7 @@
         #mobileNav a {
             display: block;
             text-align: left;
-            padding: 10px 1rem; /* Adjusted back to match Discover page */
+            padding: 10px 1rem; /* Adjusted to match Discover page */
         }
 
         main {
@@ -174,6 +174,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease-out, transform 0.5s ease-out;
             opacity: 0;
             transform: translateY(50px);
+            text-align: left; /* Changed from center to left for consistency */
         }
 
         section:hover {
@@ -229,48 +230,6 @@
             }
             to {
                 opacity: 1;
-            }
-        }
-
-        .hero {
-            text-align: center;
-            background: url('shop-background.jpg') no-repeat center center/cover;
-            min-height: 40vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            padding: 2rem 1rem;
-            position: relative;
-            width: 100%;
-        }
-        
-        .hero h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .hero p {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 300;
-            font-size: 1.5rem;
-            margin-bottom: 3rem;
-            letter-spacing: 1px;
-            animation: fadeInUp 1.5s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
             }
         }
 
@@ -347,7 +306,7 @@
         </nav>
     </header>
 
-    <!-- Retaining the Hero Section for Shop -->
+    <!-- Added Hero Section for Shop -->
     <div class="hero">
         <h1>Shop SpaceBox</h1>
         <p>Explore our universe of rocket parts and educational kits.</p>
