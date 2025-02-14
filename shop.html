@@ -139,24 +139,19 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 10px;
-            margin-top: 80px; /* Adjusted to match previous pages */
-            /* Adjusting for mobile and ensuring content fits */
-            min-height: calc(100vh - 150px);
+            margin-top: 0; /* Adjusted to remove extra space */
         }
 
         section {
             background: #fff;
-            padding: 2rem; /* Adjusted to match previous pages */
-            margin: 3rem 0; /* Adjusted to match previous pages */
+            padding: 2rem;
+            margin: 3rem 0;
             border-radius: 20px;
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease-out, transform 0.5s ease-out;
             opacity: 0;
             transform: translateY(50px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
+            text-align: left; /* Changed from center to left for consistency with index */
         }
 
         section:hover {
@@ -184,9 +179,8 @@
         img {
             max-width: 100%;
             height: auto;
-            margin: 1.5rem auto;
+            margin: 1.5rem 0; /* Adjusted margin for better flow */
             display: block;
-            width: 50%;
         }
 
         footer {
@@ -225,6 +219,48 @@
 
         .paypal-button-container {
             margin-top: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            background: url('shop-background.jpg') no-repeat center center/cover;
+            min-height: 40vh; /* Added a smaller hero for shop context */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            padding: 2rem 1rem;
+            position: relative;
+            width: 100%;
+        }
+        
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            letter-spacing: 1px;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @media (max-width: 768px) {
@@ -289,16 +325,22 @@
             </div>
             <ul class="nav-links">
                 <li><a href="/discover">Discover</a></li>
-                <li><a href="/history" class="active">History</a></li>
-                <li><a href="/shop">Shop</a></li>
+                <li><a href="/history">History</a></li>
+                <li><a href="/shop" class="active">Shop</a></li> <!-- Corrected active class -->
             </ul>
             <ul class="nav-links" id="mobileNav">
                 <li><a href="/discover">Discover</a></li>
-                <li><a href="/history" class="active">History</a></li>
-                <li><a href="/shop">Shop</a></li>
+                <li><a href="/history">History</a></li>
+                <li><a href="/shop" class="active">Shop</a></li> <!-- Corrected active class -->
             </ul>
         </nav>
     </header>
+
+    <!-- Added Hero Section for Shop -->
+    <div class="hero">
+        <h1>Shop SpaceBox</h1>
+        <p>Explore our universe of rocket parts and educational kits.</p>
+    </div>
 
     <main>
         <section id="welcome-section">
