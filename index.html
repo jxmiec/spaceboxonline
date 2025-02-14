@@ -132,14 +132,15 @@
         .hero {
             text-align: center;
             background: url('index-background.jpg') no-repeat center center/cover;
-            min-height: 80vh; 
+            min-height: 100vh; /* Changed from 80vh to 100vh to cover the entire viewport height */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             color: #fff;
-            padding: 2rem 1rem; 
+            padding: 2rem 1rem;
             position: relative;
+            width: 100%; /* Ensures it takes full width of the viewport */
         }
 
         .hero-content {
