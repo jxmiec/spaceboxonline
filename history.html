@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SpaceBox - History</title>
     <link rel="icon" type="image/x-icon" href="spacebox-logo.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet"> 
     <style>
         :root {
             --primary-color: #1a237e;
@@ -24,110 +24,183 @@
             font-family: 'Roboto', Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.6;
+            line-height: 1.8;
+            font-size: 16px; 
         }
 
         header {
             background: #000;
             color: #fff;
-            padding: 1.5rem 0;
+            padding: 1rem 0;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
-        
+
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
         }
-        
+
         .navbar a {
             color: #fff;
             text-decoration: none;
             padding: 0.5rem 1rem;
             transition: background 0.3s ease;
         }
-        
+
         .navbar a:hover {
             background: var(--primary-color);
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
         }
-        
+
         .logo img {
             height: 50px;
+            width: auto;
             margin-right: 15px;
         }
-        
+
         .logo span {
             font-size: 1.5rem;
             font-weight: bold;
         }
-        
+
         .logo a:hover {
             background: none;
         }
-        
+
         .nav-links {
             list-style: none;
             display: flex;
         }
-        
+
         .nav-links li {
             margin-left: 1.5rem;
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        .menu-toggle {
+            display: block;
+            cursor: pointer;
+            color: #fff;
+            font-size: 1.5rem;
+            padding: 0.5rem;
+            margin-right: 1rem;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        #mobileNav {
+            display: none;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem 0;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 999;
+        }
+
+        #mobileNav li {
+            margin: 0;
+        }
+
+        #mobileNav a {
+            display: block;
+            text-align: left;
+            padding: 10px 1rem;
         }
 
         main {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
-            margin-top: 80px;
+            padding: 0 10px;
+        }
+        
+        .shop-cta {
+            text-align: center; /* Center align the button container */
+            margin-top: 20px;   /* Add some space above the button */
+        }
+        
+        .cta-button {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 10px 20px; 
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem; 
+            display: inline-block; /* Ensure the button is inline-block for centering */
+        }
+        
+        .propulsion-list {
+            padding-left: 2rem; /* Indent the list */
+        }
+        
+        /* If you need to adjust the list's bullet points too */
+        .propulsion-list li {
+            list-style-type: disc; /* or any other bullet type if needed */
         }
 
+        .cta-button:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.05);
+        }
+        
         section {
             background: #fff;
-            padding: 3rem;
-            margin: 4rem 0;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 2rem;
+            margin: 3rem 0;
+            border-radius: 20px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease-out, transform 0.5s ease-out;
+            opacity: 0;
+            transform: translateY(50px);
         }
 
         section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         section h2 {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             color: var(--primary-color);
-            font-size: 2.5rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
+            font-size: 2rem;
         }
 
-        section p {
-            margin-bottom: 1rem;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            margin: 1.5rem auto;
+        .section-link {
+            text-decoration: none;
+            color: inherit;
             display: block;
-            width: 50%;
         }
 
         footer {
-            background-color: #1a237e;
+            background-color: var(--primary-color);
             color: #fff;
             text-align: center;
             padding: 2rem 0;
@@ -139,79 +212,187 @@
         }
 
         footer p {
-            font-size: 0.9rem;
+            font-size: 1rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 768px) {
+            .navbar .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+                position: absolute;
+                left: 1rem;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .logo {
+                margin-bottom: 0;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+        
+            .logo span {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        
+            .logo a {
+                margin-left: auto;
+                margin-right: 0;
+            }
+        
+            .menu-toggle {
+                order: 1;
+            }
         }
     </style>
 </head>
 <body>
     <header>
         <nav class="navbar">
+            <div class="mobile-menu">
+                <a href="#" class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </div>
             <div class="logo">
+                <span>SPACEBOX</span>
                 <a href="/">
                     <img src='logo.png' alt="SpaceBox Logo">
                 </a>
-                <span>SPACEBOX</span>
             </div>
             <ul class="nav-links">
                 <li><a href="/discover">Discover</a></li>
-                <li><a href="/history">History</a></li>
+                <li><a href="/history" class="active">History</a></li>
+                <li><a href="/shop">Shop</a></li>
+            </ul>
+            <ul class="nav-links" id="mobileNav">
+                <li><a href="/discover">Discover</a></li>
+                <li><a href="/history" class="active">History</a></li>
                 <li><a href="/shop">Shop</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <section>
-            <h2>Mercury Program</h2>
-            <p><strong>Mercury Redstone 1A (MR-1A)</strong>: 19 December 1960, suborbital.</p>
-            <p><strong>Mercury Redstone 2 (MR-2)</strong>: 31 January 1961, suborbital, carried chimpanzee "Ham".</p>
-            <p><strong>Mercury Redstone 3 (MR-3)</strong>: 5 May 1961, suborbital, piloted by Alan Shepard.</p>
-            <p><strong>Mercury Redstone 4 (MR-4)</strong>: 21 July 1961, piloted by Gus Grissom, film was lost when the spacecraft sank.</p>
-            <p><strong>Mercury Atlas 4 (MA-4)</strong>: 13 September 1961, 1 orbit.</p>
-            <p><strong>Mercury Atlas 5 (MA-5)</strong>: 29 November 1961, 2 orbits, carried chimpanzee "Enos".</p>
-            <p><strong>Mercury Atlas 6 (MA-6)</strong>: 20 February 1962, 3 orbits, piloted by John Glenn.</p>
-            <p><strong>Mercury Atlas 7 (MA-7)</strong>: 24 May 1962, 3 orbits, piloted by Scott Carpenter.</p>
-            <p><strong>Mercury Atlas 8 (MA-8)</strong>: 3 October 1962, 6 orbits, piloted by Walter Schirra.</p>
-            <p><strong>Mercury Atlas 9 (MA-9)</strong>: 15 May 1963, 22 orbits, piloted by Gordon Cooper.</p>
-        </section>
-    
-        <section>
-            <h2>Gemini Program</h2>
-            <p><strong>Gemini III</strong>: 23 March 1965, first crewed flight.</p>
-            <p><strong>Gemini IV</strong>: 3-7 June 1965, first EVA.</p>
-            <p><strong>Gemini V</strong>: 21-29 August 1965, first week-long flight, first fuel cells.</p>
-            <p><strong>Gemini VII</strong>: 4-18 December 1965, first rendezvous with crewed vehicle (Gemini VI-A).</p>
-            <p><strong>Gemini VI-A</strong>: 15-16 December 1965, first rendezvous with crewed vehicle (Gemini VII).</p>
-            <p><strong>Gemini VIII</strong>: 16-17 March 1966, first docking (Agena target vehicle).</p>
-            <p><strong>Gemini IX-A</strong>: 3-6 June 1966, third rendezvous.</p>
-            <p><strong>Gemini X</strong>: 18-21 July 1966, first use of docked Agena to propel Gemini spacecraft.</p>
-            <p><strong>Gemini XI</strong>: 12-15 September 1966, docking and maneuvering with Agena, altitude record.</p>
-            <p><strong>Gemini XII</strong>: 11-15 November 1966, first fully successful EVA (2 hours 6 minutes).</p>
-        </section>
-    
-        <section>
-            <h2>Apollo Program</h2>
-            <p><strong>Apollo 1</strong>: 27 January 1967, Not flown, Cabin fire (Saturn-IB)</p>
-            <p><strong>Apollo 4</strong>: 09 November 1967, First test of the Saturn V</p>
-            <p><strong>Apollo 5</strong>: 22 January 1968, Unmanned test of the LM (Saturn-IB, same used in Apollo 1)</p>
-            <p><strong>Apollo 6</strong>: 04 April 1968, Second test of the Saturn V</p>
-            <p><strong>Apollo 7</strong>: 11-22 October 1968, First manned CSM, Earth orbit (Saturn-IB)</p>
-            <p><strong>Apollo 8</strong>: 21-27 December 1968, First humans in lunar orbit</p>
-            <p><strong>Apollo 9</strong>: 3-13 March 1969, Manned docking of the LM and CSM in Earth orbit</p>
-            <p><strong>Apollo 10</strong>: 18-26 May 1969, Manned testing the LM in lunar orbit</p>
-            <p><strong>Apollo 11</strong>: 16-24 July 1969, First manned landing on the Moon</p>
-            <p><strong>Apollo 12</strong>: 14-24 November 1969, Precision landing near Surveyor 3</p>
-            <p><strong>Apollo 13</strong>: 11-17 April 1970, Successful failure, in-flight abort</p>
-            <p><strong>Apollo 14</strong>: 31 January-9 February 1971, Exploration of Fra Mauro</p>
-            <p><strong>Apollo 15</strong>: 26 July-7 August 1971, First J-type mission, lunar rover used</p>
-            <p><strong>Apollo 16</strong>: 16-27 April 1972, Exploration of Descartes Highlands</p>
-            <p><strong>Apollo 17</strong>: 7-19 December 1972, Last manned Moon landing, Taurus-Littrow valley</p>
-            <p>Note: The designations Apollo 2 and 3 were not used for any missions. Following the tragic Apollo 1 fire, the widows of the Apollo 1 crew requested the next successful manned mission to be named Apollo 1 in honor of their husbands. The missions AS-201, AS-202, and AS-203, which were important tests leading up to the manned flights, are worth noting but were not officially named Apollo 2 or 3.</p>
-        </section>
-    </main>    
+<main>
+    <section>
+        <h2>Mercury Program</h2>
+        <p><strong>Mercury Redstone 1A (MR-1A)</strong>: 19 December 1960, suborbital.</p>
+        <p><strong>Mercury Redstone 2 (MR-2)</strong>: 31 January 1961, suborbital, carried chimpanzee "Ham".</p>
+        <p><strong>Mercury Redstone 3 (MR-3)</strong>: 5 May 1961, suborbital, piloted by Alan Shepard.</p>
+        <p><strong>Mercury Redstone 4 (MR-4)</strong>: 21 July 1961, piloted by Gus Grissom, film was lost when the spacecraft sank.</p>
+        <p><strong>Mercury Atlas 4 (MA-4)</strong>: 13 September 1961, 1 orbit.</p>
+        <p><strong>Mercury Atlas 5 (MA-5)</strong>: 29 November 1961, 2 orbits, carried chimpanzee "Enos".</p>
+        <p><strong>Mercury Atlas 6 (MA-6)</strong>: 20 February 1962, 3 orbits, piloted by John Glenn.</p>
+        <p><strong>Mercury Atlas 7 (MA-7)</strong>: 24 May 1962, 3 orbits, piloted by Scott Carpenter.</p>
+        <p><strong>Mercury Atlas 8 (MA-8)</strong>: 3 October 1962, 6 orbits, piloted by Walter Schirra.</p>
+        <p><strong>Mercury Atlas 9 (MA-9)</strong>: 15 May 1963, 22 orbits, piloted by Gordon Cooper.</p>
+    </section>
+
+    <section>
+        <h2>Gemini Program</h2>
+        <p><strong>Gemini III</strong>: 23 March 1965, first crewed flight.</p>
+        <p><strong>Gemini IV</strong>: 3-7 June 1965, first EVA.</p>
+        <p><strong>Gemini V</strong>: 21-29 August 1965, first week-long flight, first fuel cells.</p>
+        <p><strong>Gemini VII</strong>: 4-18 December 1965, first rendezvous with crewed vehicle (Gemini VI-A).</p>
+        <p><strong>Gemini VI-A</strong>: 15-16 December 1965, first rendezvous with crewed vehicle (Gemini VII).</p>
+        <p><strong>Gemini VIII</strong>: 16-17 March 1966, first docking (Agena target vehicle).</p>
+        <p><strong>Gemini IX-A</strong>: 3-6 June 1966, third rendezvous.</p>
+        <p><strong>Gemini X</strong>: 18-21 July 1966, first use of docked Agena to propel Gemini spacecraft.</p>
+        <p><strong>Gemini XI</strong>: 12-15 September 1966, docking and maneuvering with Agena, altitude record.</p>
+        <p><strong>Gemini XII</strong>: 11-15 November 1966, first fully successful EVA (2 hours 6 minutes).</p>
+    </section>
+
+    <section>
+        <h2>Apollo Program</h2>
+        <p><strong>Apollo 1</strong>: 27 January 1967, Not flown, Cabin fire (Saturn-IB)</p>
+        <p><strong>Apollo 4</strong>: 09 November 1967, First test of the Saturn V</p>
+        <p><strong>Apollo 5</strong>: 22 January 1968, Unmanned test of the LM (Saturn-IB, same used in Apollo 1)</p>
+        <p><strong>Apollo 6</strong>: 04 April 1968, Second test of the Saturn V</p>
+        <p><strong>Apollo 7</strong>: 11-22 October 1968, First manned CSM, Earth orbit (Saturn-IB)</p>
+        <p><strong>Apollo 8</strong>: 21-27 December 1968, First humans in lunar orbit</p>
+        <p><strong>Apollo 9</strong>: 3-13 March 1969, Manned docking of the LM and CSM in Earth orbit</p>
+        <p><strong>Apollo 10</strong>: 18-26 May 1969, Manned testing the LM in lunar orbit</p>
+        <p><strong>Apollo 11</strong>: 16-24 July 1969, First manned landing on the Moon</p>
+        <p><strong>Apollo 12</strong>: 14-24 November 1969, Precision landing near Surveyor 3</p>
+        <p><strong>Apollo 13</strong>: 11-17 April 1970, Successful failure, in-flight abort</p>
+        <p><strong>Apollo 14</strong>: 31 January-9 February 1971, Exploration of Fra Mauro</p>
+        <p><strong>Apollo 15</strong>: 26 July-7 August 1971, First J-type mission, lunar rover used</p>
+        <p><strong>Apollo 16</strong>: 16-27 April 1972, Exploration of Descartes Highlands</p>
+        <p><strong>Apollo 17</strong>: 7-19 December 1972, Last manned Moon landing, Taurus-Littrow valley</p>
+        <p>Note: The designations Apollo 2 and 3 were not used for any missions. Following the tragic Apollo 1 fire, the widows of the Apollo 1 crew requested the next successful manned mission to be named Apollo 1 in honor of their husbands. The missions AS-201, AS-202, and AS-203, which were important tests leading up to the manned flights, are worth noting but were not officially named Apollo 2 or 3.</p>
+    </section>
+</main>
 
     <footer>
         <p>© 2024 SpaceBox, where the future of engineering and exploration begins.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileNav = document.getElementById('mobileNav');
+            
+            function isElementInViewport(el) {
+                const rect = el.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
+
+            function handleScroll() {
+                sections.forEach(section => {
+                    if (isElementInViewport(section)) {
+                        section.classList.add('visible');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', handleScroll);
+            handleScroll();
+
+            menuToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (mobileNav.style.display === "block") {
+                    mobileNav.style.display = "none";
+                } else {
+                    mobileNav.style.display = "block";
+                }
+            });
+        });
+    </script>
 </body>
 </html>
