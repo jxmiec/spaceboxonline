@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SpaceBox - Discover</title>
     <link rel="icon" type="image/x-icon" href="spacebox-logo.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #1a237e;
@@ -24,65 +24,63 @@
             font-family: 'Roboto', Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.8;
-            font-size: 16px; 
+            line-height: 1.6;
         }
 
         header {
             background: #000;
             color: #fff;
-            padding: 1rem 0; /* Ensure this matches the home page's header padding */
+            padding: 1.5rem 0;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
-
+        
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 1rem; 
+            padding: 0 2rem;
         }
-
+        
         .navbar a {
             color: #fff;
             text-decoration: none;
             padding: 0.5rem 1rem;
             transition: background 0.3s ease;
         }
-
+        
         .navbar a:hover {
             background: var(--primary-color);
         }
-
+        
         .logo {
             display: flex;
             align-items: center;
         }
-
+        
         .logo img {
-            height: 50px; /* Ensure this matches the home page's logo height */
-            width: auto; /* This will maintain the aspect ratio */
+            height: 50px;
             margin-right: 15px;
         }
-
+        
         .logo span {
             font-size: 1.5rem;
             font-weight: bold;
         }
-
+        
         .logo a:hover {
-            background: none; 
+            background: none;
         }
-
+        
         .nav-links {
             list-style: none;
             display: flex;
         }
-
+        
         .nav-links li {
             margin-left: 1.5rem;
         }
@@ -92,12 +90,12 @@
         }
 
         .menu-toggle {
-            display: block;
+            display: none;
             cursor: pointer;
             color: #fff;
             font-size: 1.5rem;
-            padding: 0.5rem; /* Adjusted for inline alignment */
-            margin-right: 1rem; /* Space from logo */
+            padding: 0.5rem;
+            margin-right: 1rem;
         }
 
         .menu-toggle span {
@@ -115,7 +113,7 @@
             background: rgba(0, 0, 0, 0.9);
             padding: 1rem 0;
             position: absolute;
-            top: 100%; 
+            top: 100%; /* Position right below the header */
             left: 0;
             z-index: 999;
         }
@@ -124,149 +122,183 @@
             margin: 0;
         }
 
-            #mobileNav a {
+        #mobileNav a {
+            display: block;
+            text-align: left;
+            padding: 10px 1rem;
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            margin-top: 80px;
+        }
+
+        section {
+            background: #fff;
+            padding: 3rem;
+            margin: 4rem 0;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        section h1, section h2 {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        section h3 {
+            margin-bottom: 0.75rem;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            margin-bottom: 0.3rem;
+            padding-left: 0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 1.5rem auto;
+            display: block;
+            width: 50%;
+        }
+
+        footer {
+            background-color: #1a237e;
+            color: #fff;
+            text-align: center;
+            padding: 2rem 0;
+            transition: background-color 0.3s ease;
+        }
+
+        footer:hover {
+            background-color: var(--secondary-color);
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        .shop-cta {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .navbar .nav-links {
+                display: none; /* Hide desktop nav on mobile */
+            }
+            
+            .mobile-menu {
                 display: block;
-                text-align: left; 
-                padding: 10px 1rem; 
+                position: absolute;
+                left: 1rem;
+                top: 50%;
+                transform: translateY(-50%);
             }
-
-            main {
-                max-width: 1400px;
-                margin: 0 auto;
-                padding: 0 10px; 
+        
+            .navbar {
+                flex-direction: column;
+                align-items: center;
             }
-
-            section {
-                background: #fff;
-                padding: 2rem; 
-                margin: 3rem 0; 
-                border-radius: 20px;
-                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-                transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease-out, transform 0.5s ease-out;
-                opacity: 0;
-                transform: translateY(50px);
+            
+            .logo {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
             }
-
-            section:hover {
-                transform: translateY(-10px);
-                box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+        
+            .logo span {
+                margin-left: auto;
+                margin-right: auto;
+                order: 1; /* Ensure SPACEBOX is in the center */
             }
-
-            section.visible {
-                opacity: 1;
-                transform: translateY(0);
+        
+            .logo a {
+                margin-left: auto; /* Push the logo image to the right */
+                margin-right: 0;
+                order: 2; /* Ensure logo image is to the right of SPACEBOX */
             }
-
-            section h2 {
-                margin-bottom: 2rem;
-                color: var(--primary-color);
-                font-size: 2rem; 
+        
+            .logo img {
+                height: auto; /* Adjust height to maintain aspect ratio */
+                width: 50px; /* Set a fixed width to avoid distortion */
             }
-
-            .section-link {
-                text-decoration: none;
-                color: inherit;
-                display: block; 
+        
+            .menu-toggle {
+                display: block;
+                order: 0; /* Place burger menu above logo */
             }
-
-            footer {
-                background-color: var(--primary-color);
-                color: #fff;
-                text-align: center;
-                padding: 2rem 0; 
-                transition: background-color 0.3s ease;
-            }
-
-            footer:hover {
-                background-color: var(--secondary-color);
-            }
-
-            footer p {
-                font-size: 1rem; 
-                animation: fadeIn 1s ease-out;
-            }
-
-            @keyframes fadeIn {
-                from {
-                    opacity: 0;
-                }
-                to {
-                    opacity: 1;
-                }
-            }
-
-            @media (max-width: 768px) {
-                .navbar .nav-links {
-                    display: none; /* Hide desktop nav on mobile */
-                }
+        }
                 
-                .mobile-menu {
-                    display: block;
-                    position: absolute; 
-                    left: 1rem;
-                    top: 50%; 
-                    transform: translateY(-50%); 
-                }
-            
-                .navbar {
-                    flex-direction: column; 
-                    align-items: center; 
-                }
-                
-                .logo {
-                    margin-bottom: 0; 
-                    width: 100%; 
-                    display: flex; 
-                    justify-content: space-between; 
-                    align-items: center; 
-                    padding-top: 1rem; 
-                    padding-bottom: 1rem; 
-                }
-            
-                .logo span {
-                    margin-left: auto; 
-                    margin-right: auto; 
-                }
-            
-                .logo a {
-                    margin-left: auto; 
-                    margin-right: 0; 
-                }
-            
-                .menu-toggle {
-                    order: 1; 
-                }
-            }
-        </style>
-    </head>
-    <body>
-        <header>
-            <nav class="navbar">
-                <div class="mobile-menu">
-                    <a href="#" class="menu-toggle">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </a>
-                </div>
-                <div class="logo">
-                    <span>SPACEBOX</span>
-                    <a href="/">
-                        <img src='logo.png' alt="SpaceBox Logo">
-                    </a>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="/discover">Discover</a></li>
-                    <li><a href="/history">History</a></li>
-                    <li><a href="/shop">Shop</a></li>
-                </ul>
-                <ul class="nav-links" id="mobileNav">
-                    <li><a href="/discover">Discover</a></li>
-                    <li><a href="/history">History</a></li>
-                    <li><a href="/shop">Shop</a></li>
-                </ul>
-            </nav>
-        </header>
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="mobile-menu">
+                <a href="#" class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </div>
+            <div class="logo">
+                <a href="/">
+                    <img src='logo.png' alt="SpaceBox Logo">
+                </a>
+                <span>SPACEBOX</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/discover">Discover</a></li>
+                <li><a href="/history">History</a></li>
+                <li><a href="/shop">Shop</a></li>
+            </ul>
+            <ul class="nav-links" id="mobileNav">
+                <li><a href="/discover">Discover</a></li>
+                <li><a href="/history">History</a></li>
+                <li><a href="/shop">Shop</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main>
         <section id="discover">
@@ -315,47 +347,25 @@
         </section>
     </main>
 
-        <footer>
-            <p>© 2024 SpaceBox, where the future of engineering and exploration begins.</p>
-        </footer>
+    <footer>
+        <p>© 2024 SpaceBox, where the future of engineering and exploration begins.</p>
+    </footer>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const sections = document.querySelectorAll('section');
-                const menuToggle = document.querySelector('.menu-toggle');
-                const mobileNav = document.getElementById('mobileNav');
-                
-                function isElementInViewport(el) {
-                    const rect = el.getBoundingClientRect();
-                    return (
-                        rect.top >= 0 &&
-                        rect.left >= 0 &&
-                        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-                    );
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileNav = document.getElementById('mobileNav');
+            
+            // Mobile menu toggle
+            menuToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (mobileNav.style.display === "block") {
+                    mobileNav.style.display = "none";
+                } else {
+                    mobileNav.style.display = "block";
                 }
-
-                function handleScroll() {
-                    sections.forEach(section => {
-                        if (isElementInViewport(section)) {
-                            section.classList.add('visible');
-                        }
-                    });
-                }
-
-                window.addEventListener('scroll', handleScroll);
-                handleScroll();
-
-                menuToggle.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    if (mobileNav.style.display === "block") {
-                        mobileNav.style.display = "none";
-                    } else {
-                        mobileNav.style.display = "block";
-                    }
-                });
             });
-        </script>
-    </body>
+        });
+    </script>
+</body>
 </html>
-           
