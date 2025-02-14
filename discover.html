@@ -32,10 +32,13 @@
             background: #000;
             color: #fff;
             padding: 1rem 0; 
+            height: 60px; /* Set a specific height to match homepage */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
+            display: flex;
+            align-items: center; /* Center items vertically within the header */
         }
 
         .navbar {
@@ -43,6 +46,7 @@
             justify-content: space-between;
             align-items: center;
             max-width: 1400px;
+            width: 100%;
             margin: 0 auto;
             padding: 0 1rem; 
         }
@@ -64,7 +68,8 @@
         }
 
         .logo img {
-            height: 50px;
+            height: 50px; /* Set a fixed height */
+            width: auto; /* Auto width to maintain aspect ratio */
             margin-right: 15px;
         }
 
@@ -234,6 +239,11 @@
         
             .menu-toggle {
                 order: 1; 
+            }
+            
+            .logo img {
+                height: 40px; /* Adjust height for mobile */
+                width: auto; /* Keep width auto to maintain aspect ratio */
             }
         }
     </style>
