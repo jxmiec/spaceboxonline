@@ -280,46 +280,48 @@
             }
         }
 
-        @media (max-width: 768px) {
-            .navbar .nav-links {
-                display: none; /* Hide desktop nav on mobile */
-            }
-            
-            .mobile-menu {
-                display: block;
-                position: absolute; /* Position burger menu at the left */
-                left: 1rem;
-                top: 50%; /* Vertically center the hamburger menu */
-                transform: translateY(-50%); /* Adjust for exact vertical centering */
-            }
+@media (max-width: 768px) {
+    .navbar .nav-links {
+        display: none; /* Hide desktop nav on mobile */
+    }
+    
+    .mobile-menu {
+        display: block;
+        position: absolute; /* Position burger menu at the left */
+        left: 1rem;
+        top: 50%; /* Vertically center the hamburger menu */
+        transform: translateY(-50%); /* Adjust for exact vertical centering */
+    }
 
-            .navbar {
-                flex-direction: column; /* Changed to column to stack logo and menu toggle vertically */
-                align-items: center; /* Center align items */
-            }
-            
-            .logo {
-                margin-bottom: 0; /* Remove bottom margin on mobile */
-                order: 2; /* Place logo below menu toggle */
-                flex-direction: row; /* Ensure logo items are in row */
-                width: 100%; /* Make logo span full width */
-                justify-content: center; /* Center the logo items */
-                padding-top: 1rem; /* Add space above logo for better visual balance */
-            }
+    .navbar {
+        flex-direction: column; /* Changed to column to stack logo and menu toggle vertically */
+        align-items: center; /* Center align items */
+    }
+    
+    .logo {
+        margin-bottom: 0; /* Remove bottom margin on mobile */
+        order: 2; /* Place logo below menu toggle */
+        flex-direction: row; /* Ensure logo items are in row */
+        width: 100%; /* Make logo span full width */
+        justify-content: center; /* Center the logo items */
+        padding-top: 1rem; /* Add space above logo for better visual balance */
+        padding-bottom: 1rem; /* Ensure padding below logo for balance */
+    }
 
-            .logo a {
-                order: 2; /* Move image to the right */
-            }
+    .logo a {
+        order: 2; /* Move image to the right */
+    }
 
-            .logo span {
-                order: 1; /* Move text to the left */
-                margin-right: 15px; /* Space between text and image */
-            }
+    .logo span {
+        order: 1; /* Move text to the left */
+        margin-right: 15px; /* Space between text and image */
+    }
 
-            .menu-toggle {
-                order: 1; /* Place burger menu above logo */
-            }
-        }
+    .menu-toggle {
+        order: 1; /* Place burger menu above logo */
+    }
+}
+        
     </style>
 </head>
 <body>
