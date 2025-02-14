@@ -231,14 +231,13 @@
                 top: 50%;
                 transform: translateY(-50%);
             }
-
+        
             .navbar {
                 flex-direction: column;
                 align-items: center;
             }
             
             .logo {
-                margin-bottom: 0;
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
@@ -246,22 +245,30 @@
                 padding-top: 1rem;
                 padding-bottom: 1rem;
             }
-
+        
             .logo span {
                 margin-left: auto;
                 margin-right: auto;
+                order: 1; /* Ensure SPACEBOX is in the center */
             }
-
+        
             .logo a {
-                margin-left: auto;
+                margin-left: auto; /* Push the logo image to the right */
                 margin-right: 0;
+                order: 2; /* Ensure logo image is to the right of SPACEBOX */
             }
-
+        
+            .logo img {
+                height: auto; /* Adjust height to maintain aspect ratio */
+                width: 50px; /* Set a fixed width to avoid distortion */
+            }
+        
             .menu-toggle {
                 display: block;
-                order: 1;
+                order: 0; /* Place burger menu above logo */
             }
         }
+                
     </style>
 </head>
 <body>
