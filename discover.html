@@ -114,7 +114,7 @@
             background: rgba(0, 0, 0, 0.9);
             padding: 1rem 0;
             position: absolute;
-            top: 100%; /* Position right below the header */
+            top: 100%; 
             left: 0;
             z-index: 999;
         }
@@ -125,78 +125,47 @@
 
         #mobileNav a {
             display: block;
-            text-align: left; /* Align text to the left */
-            padding: 10px 1rem; /* Added left padding for better look */
+            text-align: left; 
+            padding: 10px 1rem; 
         }
 
         main {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
-            margin-top: 80px;
+            padding: 0 10px; 
         }
 
         section {
             background: #fff;
-            padding: 3rem;
-            margin: 4rem 0;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 2rem; 
+            margin: 3rem 0; 
+            border-radius: 20px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease-out, transform 0.5s ease-out;
+            opacity: 0;
+            transform: translateY(50px);
         }
 
         section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
         }
 
-        section h1, section h2 {
-            margin-bottom: 1.5rem;
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section h2 {
+            margin-bottom: 2rem;
             color: var(--primary-color);
-            font-size: 2.5rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
+            font-size: 2rem; 
         }
 
-        section h3 {
-            margin-bottom: 0.75rem;
-            color: var(--text-color);
-            font-size: 1.5rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 300;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 30px;
+        .section-link {
             text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .cta-button:hover {
-            background-color: var(--secondary-color);
-            transform: scale(1.05);
-        }
-
-        ul {
-            list-style-type: none;
-        }
-
-        li {
-            margin-bottom: 0.3rem;
-            padding-left: 0;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            margin: 1.5rem auto;
-            display: block;
-            width: 50%;
+            color: inherit;
+            display: block; 
         }
 
         footer {
@@ -213,11 +182,16 @@
 
         footer p {
             font-size: 1rem; 
+            animation: fadeIn 1s ease-out;
         }
 
-        .shop-cta {
-            text-align: center;
-            margin: 2rem 0;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
         @media (max-width: 768px) {
@@ -227,42 +201,41 @@
             
             .mobile-menu {
                 display: block;
-                position: absolute; /* Position burger menu at the left */
+                position: absolute; 
                 left: 1rem;
-                top: 50%; /* Vertically center the hamburger menu */
-                transform: translateY(-50%); /* Adjust for exact vertical centering */
+                top: 50%; 
+                transform: translateY(-50%); 
             }
         
             .navbar {
-                flex-direction: column; /* Changed to column to stack logo and menu toggle vertically */
-                align-items: center; /* Center align items */
+                flex-direction: column; 
+                align-items: center; 
             }
             
             .logo {
-                margin-bottom: 0; /* Remove bottom margin on mobile */
-                width: 100%; /* Make logo span full width */
-                display: flex; /* Ensure flex properties work */
-                justify-content: space-between; /* Space between text and image */
-                align-items: center; /* Vertically align items */
-                padding-top: 1rem; /* Add space above logo for better visual balance */
-                padding-bottom: 1rem; /* Ensure padding below logo for balance */
+                margin-bottom: 0; 
+                width: 100%; 
+                display: flex; 
+                justify-content: space-between; 
+                align-items: center; 
+                padding-top: 1rem; 
+                padding-bottom: 1rem; 
             }
         
             .logo span {
-                margin-left: auto; /* Push text to the center */
-                margin-right: auto; /* Ensure text is centered */
+                margin-left: auto; 
+                margin-right: auto; 
             }
         
             .logo a {
-                margin-left: auto; /* Push image to the far right */
-                margin-right: 0; /* Ensure image stays to the right */
+                margin-left: auto; 
+                margin-right: 0; 
             }
         
             .menu-toggle {
-                order: 1; /* Place burger menu above logo */
+                order: 1; 
             }
         }
-        
     </style>
 </head>
 <body>
@@ -296,7 +269,7 @@
 
     <main>
         <section id="discover">
-            <h1>Mastering Thrust Vector Control</h1>
+            <h2>Mastering Thrust Vector Control</h2>
             <p>Thrust Vector Control (TVC) is crucial for modern rocketry, allowing for precise control over a rocket's flight path by altering the direction of thrust. But we start with something simpler, understanding the basics before diving into complex control systems.</p>
             <p>Here at SpaceBox, we guide you through the essentials of rocketry engineering, from fundamental principles to advanced TVC mechanisms. Learn how to steer your model rockets with precision and expertise.</p>
         </section>
@@ -347,10 +320,31 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
             const menuToggle = document.querySelector('.menu-toggle');
             const mobileNav = document.getElementById('mobileNav');
             
-            // Mobile menu toggle
+            function isElementInViewport(el) {
+                const rect = el.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
+
+            function handleScroll() {
+                sections.forEach(section => {
+                    if (isElementInViewport(section)) {
+                        section.classList.add('visible');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', handleScroll);
+            handleScroll();
+
             menuToggle.addEventListener('click', function(e) {
                 e.preventDefault();
                 if (mobileNav.style.display === "block") {
