@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SpaceBox - Discover</title>
+    <title>SpaceBox - Explore, Learn, Innovate</title>
     <link rel="icon" type="image/x-icon" href="spacebox-logo.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet"> 
     <style>
@@ -31,7 +31,7 @@
         header {
             background: #000;
             color: #fff;
-            padding: 1rem 0;
+            padding: 1rem 0; 
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
@@ -114,7 +114,7 @@
             background: rgba(0, 0, 0, 0.9);
             padding: 1rem 0;
             position: absolute;
-            top: 100%; 
+            top: 100%; /* Position right below the header */
             left: 0;
             z-index: 999;
         }
@@ -125,13 +125,13 @@
 
         #mobileNav a {
             display: block;
-            text-align: left; 
-            padding: 10px 1rem; 
+            text-align: left; /* Align text to the left */
+            padding: 10px 1rem; /* Added left padding for better look */
         }
 
         .hero {
             text-align: center;
-            background: url('discover-background.jpg') no-repeat center center/cover;
+            background: url('index-background.jpg') no-repeat center center/cover;
             min-height: 80vh; 
             display: flex;
             flex-direction: column;
@@ -282,46 +282,47 @@
 
         @media (max-width: 768px) {
             .navbar .nav-links {
-                display: none; 
+                display: none; /* Hide desktop nav on mobile */
             }
             
             .mobile-menu {
                 display: block;
-                position: absolute; 
+                position: absolute; /* Position burger menu at the left */
                 left: 1rem;
-                top: 50%; 
-                transform: translateY(-50%); 
+                top: 50%; /* Vertically center the hamburger menu */
+                transform: translateY(-50%); /* Adjust for exact vertical centering */
             }
         
             .navbar {
-                flex-direction: column; 
-                align-items: center; 
+                flex-direction: column; /* Changed to column to stack logo and menu toggle vertically */
+                align-items: center; /* Center align items */
             }
             
             .logo {
-                margin-bottom: 0; 
-                width: 100%; 
-                display: flex; 
-                justify-content: space-between; 
-                align-items: center; 
-                padding-top: 1rem; 
-                padding-bottom: 1rem; 
+                margin-bottom: 0; /* Remove bottom margin on mobile */
+                width: 100%; /* Make logo span full width */
+                display: flex; /* Ensure flex properties work */
+                justify-content: space-between; /* Space between text and image */
+                align-items: center; /* Vertically align items */
+                padding-top: 1rem; /* Add space above logo for better visual balance */
+                padding-bottom: 1rem; /* Ensure padding below logo for balance */
             }
         
             .logo span {
-                margin-left: auto; 
-                margin-right: auto; 
+                margin-left: auto; /* Push text to the center */
+                margin-right: auto; /* Ensure text is centered */
             }
         
             .logo a {
-                margin-left: auto; 
-                margin-right: 0; 
+                margin-left: auto; /* Push image to the far right */
+                margin-right: 0; /* Ensure image stays to the right */
             }
         
             .menu-toggle {
-                order: 1; 
+                order: 1; /* Place burger menu above logo */
             }
         }
+        
     </style>
 </head>
 <body>
