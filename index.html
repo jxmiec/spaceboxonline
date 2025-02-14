@@ -287,14 +287,19 @@
             
             .mobile-menu {
                 display: block;
+                position: absolute; /* Position burger menu at the left */
+                left: 1rem;
+                top: 1rem; /* Adjust for vertical centering if needed */
             }
 
             .navbar {
-                flex-direction: row; /* Changed back to row for inline look */
-                justify-content: flex-start; /* Align items to the left */
+                flex-direction: column; /* Changed to column to stack logo and menu toggle vertically */
+                align-items: center; /* Center align items */
             }
             
             .logo {
+                margin-bottom: 0; /* Remove bottom margin on mobile */
+                order: 2; /* Place logo below menu toggle */
                 flex-direction: row; /* Ensure logo items are in row */
                 width: 100%; /* Make logo span full width */
                 justify-content: center; /* Center the logo items */
@@ -310,9 +315,7 @@
             }
 
             .menu-toggle {
-                position: absolute; /* Position burger menu at the left */
-                left: 1rem;
-                top: 1rem; /* Adjust for vertical centering if needed */
+                order: 1; /* Place burger menu above logo */
             }
         }
     </style>
