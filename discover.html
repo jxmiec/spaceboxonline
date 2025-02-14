@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SpaceBox - Thrust Vector Control</title>
     <link rel="icon" type="image/x-icon" href="spacebox-logo.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
@@ -83,6 +83,49 @@
         
         .nav-links li {
             margin-left: 1.5rem;
+        }
+
+        .mobile-menu {
+            display: none; /* Hidden by default on non-mobile */
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            color: #fff;
+            font-size: 1.5rem;
+            padding: 0.5rem;
+            margin-right: 1rem;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        #mobileNav {
+            display: none;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem 0;
+            position: absolute;
+            top: 100%; /* Position right below the header */
+            left: 0;
+            z-index: 999;
+        }
+
+        #mobileNav li {
+            margin: 0;
+        }
+
+        #mobileNav a {
+            display: block;
+            text-align: left;
+            padding: 10px 1rem;
         }
 
         main {
@@ -175,11 +218,62 @@
             text-align: center;
             margin: 2rem 0;
         }
+
+        @media (max-width: 768px) {
+            .navbar .nav-links {
+                display: none; /* Hide desktop nav on mobile */
+            }
+            
+            .mobile-menu {
+                display: block;
+                position: absolute;
+                left: 1rem;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .logo {
+                margin-bottom: 0;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+
+            .logo span {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .logo a {
+                margin-left: auto;
+                margin-right: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+                order: 1;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
         <nav class="navbar">
+            <div class="mobile-menu">
+                <a href="#" class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </div>
             <div class="logo">
                 <a href="/">
                     <img src='logo.png' alt="SpaceBox Logo">
@@ -187,6 +281,11 @@
                 <span>SPACEBOX</span>
             </div>
             <ul class="nav-links">
+                <li><a href="/discover">Discover</a></li>
+                <li><a href="/history">History</a></li>
+                <li><a href="/shop">Shop</a></li>
+            </ul>
+            <ul class="nav-links" id="mobileNav">
                 <li><a href="/discover">Discover</a></li>
                 <li><a href="/history">History</a></li>
                 <li><a href="/shop">Shop</a></li>
@@ -244,5 +343,22 @@
     <footer>
         <p>© 2024 SpaceBox, where the future of engineering and exploration begins.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileNav = document.getElementById('mobileNav');
+            
+            // Mobile menu toggle
+            menuToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (mobileNav.style.display === "block") {
+                    mobileNav.style.display = "none";
+                } else {
+                    mobileNav.style.display = "block";
+                }
+            });
+        });
+    </script>
 </body>
 </html>
