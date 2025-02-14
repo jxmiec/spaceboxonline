@@ -113,7 +113,6 @@
             width: 100%;
             background: rgba(0, 0, 0, 0.9);
             padding: 1rem 0;
-            margin-top: 0; /* No margin since it starts from the logo */
             position: absolute;
             top: 100%; /* Position right below the header */
             left: 0;
@@ -287,12 +286,11 @@
             }
             
             .mobile-menu {
-                display: flex;
-                order: -1; /* Make the menu first in line */
+                display: block;
             }
 
             .navbar {
-                flex-direction: column;
+                flex-direction: row; /* Changed back to row for inline look */
             }
             
             .logo {
@@ -340,7 +338,26 @@
     </div>
 
     <main>
-        <!-- Main content sections remain the same -->
+        <a href="/discover" class="section-link">
+            <section>
+                <h2>Discover</h2>
+                <p>Step into the boundless universe with SpaceBox, where every day brings new discoveries. From the latest astronomical breakthroughs to breathtaking images from our telescopes, we're your portal to the stars. Engage with our community, learn from experts, and stay updated with the universe's pulse. Join our Telegram for real-time updates on cosmic events and new findings!</p>
+            </section>
+        </a>
+
+        <a href="/history" class="section-link">
+            <section id="history">
+                <h2>History</h2>
+                <p>Travel through time with us as we explore the monumental achievements in space exploration. Our history section details the iconic Mercury, Gemini, and Apollo missions, providing insights into the trials, triumphs, and lessons that shaped our understanding of space travel. Whether you're a historian, a student, or simply curious, our comprehensive timeline is crafted to educate and inspire.</p>
+            </section>
+        </a>
+
+        <a href="/shop" class="section-link">
+            <section id="shop">
+                <h2>Shop</h2>
+                <p>Embark on your own space journey with our curated collection of products designed for aspiring and seasoned engineers alike. From kits that teach the basics of Thrust Vector Control to advanced modules for intricate projects, our shop is your launchpad for learning and innovation. Each product is chosen to ignite creativity, enhance knowledge, and foster a passion for space technology. Explore, learn, and grow with SpaceBox!</p>
+            </section>
+        </a>
     </main>
 
     <footer>
