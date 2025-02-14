@@ -86,6 +86,39 @@
             margin-left: 1.5rem;
         }
 
+        .mobile-menu {
+            display: none; /* Hidden by default on non-mobile */
+        }
+
+        .menu-toggle {
+            display: block;
+            cursor: pointer;
+            padding: 10px 15px;
+            background-color: var(--secondary-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        #mobileNav {
+            display: none;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem 0;
+            margin-top: 1rem;
+        }
+
+        #mobileNav li {
+            margin: 0;
+        }
+
+        #mobileNav a {
+            display: block;
+            text-align: center;
+            padding: 10px 0;
+        }
+
         .hero {
             text-align: center;
             background: url('index-background.jpg') no-repeat center center/cover;
@@ -238,22 +271,18 @@
         }
 
         @media (max-width: 768px) {
+            .navbar .nav-links {
+                display: none; /* Hide desktop nav on mobile */
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+
             .navbar {
                 flex-direction: column;
             }
             
-            .nav-links {
-                flex-direction: column;
-                width: 100%;
-                text-align: center;
-                margin-top: 1rem;
-            }
-
-            .nav-links li {
-                margin-left: 0;
-                margin-bottom: 0.5rem;
-            }
-
             .logo {
                 margin-bottom: 1rem;
             }
@@ -269,11 +298,14 @@
                 </a>
                 <span>SPACEBOX</span>
             </div>
-            <ul class="nav-links">
-                <li><a href="/discover">Discover</a></li>
-                <li><a href="/history">History</a></li>
-                <li><a href="/shop">Shop</a></li>
-            </ul>
+            <div class="mobile-menu">
+                <a href="#" class="menu-toggle">Menu</a>
+                <ul class="nav-links" id="mobileNav">
+                    <li><a href="/discover">Discover</a></li>
+                    <li><a href="/history">History</a></li>
+                    <li><a href="/shop">Shop</a></li>
+                </ul>
+            </div>
         </nav>
     </header>
 
@@ -316,6 +348,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const sections = document.querySelectorAll('section');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileNav = document.getElementById('mobileNav');
             
             // Function to check if an element is in the viewport
             function isElementInViewport(el) {
@@ -337,10 +371,20 @@
                 });
             }
 
-            // Add scroll event listener
+            // Add scroll event listener for section animations
             window.addEventListener('scroll', handleScroll);
             // Trigger once on load in case the user doesn't scroll
             handleScroll();
+
+            // Mobile menu toggle
+            menuToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (mobileNav.style.display === "block") {
+                    mobileNav.style.display = "none";
+                } else {
+                    mobileNav.style.display = "block";
+                }
+            });
         });
     </script>
 </body>
