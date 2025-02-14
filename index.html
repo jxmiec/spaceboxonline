@@ -94,11 +94,21 @@
             display: block;
             cursor: pointer;
             padding: 10px 15px;
-            background-color: var(--secondary-color);
             color: #fff;
             text-decoration: none;
-            border-radius: 5px;
-            font-size: 1rem;
+            font-size: 1.5rem;
+            position: absolute; /* Position at top left */
+            top: 0;
+            left: 0;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            margin: 5px 0;
+            transition: all 0.3s ease;
         }
 
         #mobileNav {
@@ -106,7 +116,7 @@
             width: 100%;
             background: rgba(0, 0, 0, 0.9);
             padding: 1rem 0;
-            margin-top: 1rem;
+            margin-top: 3rem; /* Space for the hamburger menu */
         }
 
         #mobileNav li {
@@ -292,20 +302,29 @@
 <body>
     <header>
         <nav class="navbar">
-            <div class="logo">
-                <a href="/">
-                    <img src='logo.png' alt="SpaceBox Logo">
-                </a>
-                <span>SPACEBOX</span>
-            </div>
             <div class="mobile-menu">
-                <a href="#" class="menu-toggle">Menu</a>
+                <a href="#" class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
                 <ul class="nav-links" id="mobileNav">
                     <li><a href="/discover">Discover</a></li>
                     <li><a href="/history">History</a></li>
                     <li><a href="/shop">Shop</a></li>
                 </ul>
             </div>
+            <div class="logo">
+                <a href="/">
+                    <img src='logo.png' alt="SpaceBox Logo">
+                </a>
+                <span>SPACEBOX</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/discover">Discover</a></li>
+                <li><a href="/history">History</a></li>
+                <li><a href="/shop">Shop</a></li>
+            </ul>
         </nav>
     </header>
 
