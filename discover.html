@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SpaceBox - Discover</title>
     <link rel="icon" type="image/x-icon" href="spacebox-logo.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet"> 
     <style>
         :root {
             --primary-color: #1a237e;
@@ -24,63 +24,65 @@
             font-family: 'Roboto', Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.6;
+            line-height: 1.8;
+            font-size: 16px; 
         }
 
         header {
             background: #000;
             color: #fff;
-            padding: 1.5rem 0;
+            padding: 1rem 0; /* Ensure this matches the home page's header padding */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
-        
+
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem; 
         }
-        
+
         .navbar a {
             color: #fff;
             text-decoration: none;
             padding: 0.5rem 1rem;
             transition: background 0.3s ease;
         }
-        
+
         .navbar a:hover {
             background: var(--primary-color);
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
         }
-        
+
         .logo img {
-            height: 50px;
+            height: 50px; /* Ensure this matches the home page's logo height */
+            width: auto; /* This will maintain the aspect ratio */
             margin-right: 15px;
         }
-        
+
         .logo span {
             font-size: 1.5rem;
             font-weight: bold;
         }
-        
+
         .logo a:hover {
-            background: none;
+            background: none; 
         }
-        
+
         .nav-links {
             list-style: none;
             display: flex;
         }
-        
+
         .nav-links li {
             margin-left: 1.5rem;
         }
@@ -90,12 +92,12 @@
         }
 
         .menu-toggle {
-            display: none;
+            display: block;
             cursor: pointer;
             color: #fff;
             font-size: 1.5rem;
-            padding: 0.5rem;
-            margin-right: 1rem;
+            padding: 0.5rem; /* Adjusted for inline alignment */
+            margin-right: 1rem; /* Space from logo */
         }
 
         .menu-toggle span {
@@ -113,7 +115,7 @@
             background: rgba(0, 0, 0, 0.9);
             padding: 1rem 0;
             position: absolute;
-            top: 100%; /* Position right below the header */
+            top: 100%; 
             left: 0;
             z-index: 999;
         }
@@ -122,250 +124,237 @@
             margin: 0;
         }
 
-        #mobileNav a {
-            display: block;
-            text-align: left;
-            padding: 10px 1rem;
-        }
-
-        main {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-            margin-top: 80px;
-        }
-
-        section {
-            background: #fff;
-            padding: 3rem;
-            margin: 4rem 0;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-        }
-
-        section h1, section h2 {
-            margin-bottom: 1.5rem;
-            color: var(--primary-color);
-            font-size: 2.5rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-        }
-
-        section h3 {
-            margin-bottom: 0.75rem;
-            color: var(--text-color);
-            font-size: 1.5rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 300;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 30px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .cta-button:hover {
-            background-color: var(--secondary-color);
-            transform: scale(1.05);
-        }
-
-        ul {
-            list-style-type: none;
-        }
-
-        li {
-            margin-bottom: 0.3rem;
-            padding-left: 0;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            margin: 1.5rem auto;
-            display: block;
-            width: 50%;
-        }
-
-        footer {
-            background-color: #1a237e;
-            color: #fff;
-            text-align: center;
-            padding: 2rem 0;
-            transition: background-color 0.3s ease;
-        }
-
-        footer:hover {
-            background-color: var(--secondary-color);
-        }
-
-        footer p {
-            font-size: 0.9rem;
-        }
-
-        .shop-cta {
-            text-align: center;
-            margin: 2rem 0;
-        }
-
-        @media (max-width: 768px) {
-            .navbar .nav-links {
-                display: none; /* Hide desktop nav on mobile */
-            }
-            
-            .mobile-menu {
+            #mobileNav a {
                 display: block;
-                position: absolute;
-                left: 1rem;
-                top: 50%;
-                transform: translateY(-50%);
+                text-align: left; 
+                padding: 10px 1rem; 
             }
-        
-            .navbar {
-                flex-direction: column;
-                align-items: center;
+
+            main {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 0 10px; 
             }
-            
-            .logo {
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding-top: 1rem;
-                padding-bottom: 1rem;
+
+            section {
+                background: #fff;
+                padding: 2rem; 
+                margin: 3rem 0; 
+                border-radius: 20px;
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease-out, transform 0.5s ease-out;
+                opacity: 0;
+                transform: translateY(50px);
             }
-        
-            .logo span {
-                margin-left: auto;
-                margin-right: auto;
-                order: 1; /* Ensure SPACEBOX is in the center */
+
+            section:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
             }
-        
-            .logo a {
-                margin-left: auto; /* Push the logo image to the right */
-                margin-right: 0;
-                order: 2; /* Ensure logo image is to the right of SPACEBOX */
+
+            section.visible {
+                opacity: 1;
+                transform: translateY(0);
             }
-        
-            .logo img {
-                height: auto; /* Adjust height to maintain aspect ratio */
-                width: 50px; /* Set a fixed width to avoid distortion */
+
+            section h2 {
+                margin-bottom: 2rem;
+                color: var(--primary-color);
+                font-size: 2rem; 
             }
-        
-            .menu-toggle {
-                display: block;
-                order: 0; /* Place burger menu above logo */
+
+            .section-link {
+                text-decoration: none;
+                color: inherit;
+                display: block; 
             }
-        }
-                
-    </style>
-</head>
-<body>
-    <header>
-        <nav class="navbar">
-            <div class="mobile-menu">
-                <a href="#" class="menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </a>
-            </div>
-            <div class="logo">
-                <a href="/">
-                    <img src='logo.png' alt="SpaceBox Logo">
-                </a>
-                <span>SPACEBOX</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="/discover">Discover</a></li>
-                <li><a href="/history">History</a></li>
-                <li><a href="/shop">Shop</a></li>
-            </ul>
-            <ul class="nav-links" id="mobileNav">
-                <li><a href="/discover">Discover</a></li>
-                <li><a href="/history">History</a></li>
-                <li><a href="/shop">Shop</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main>
-        <section id="discover">
-            <h1>Mastering Thrust Vector Control</h1>
-            <p>Thrust Vector Control (TVC) is crucial for modern rocketry, allowing for precise control over a rocket's flight path by altering the direction of thrust. But we start with something simpler, understanding the basics before diving into complex control systems.</p>
-            <p>Here at SpaceBox, we guide you through the essentials of rocketry engineering, from fundamental principles to advanced TVC mechanisms. Learn how to steer your model rockets with precision and expertise.</p>
-        </section>
-        
-        <section id="guide">
-            <h2>Rocketry Fundamentals</h2>
-            <p>Explore the foundational principles of rocketry and control systems.</p>
+            footer {
+                background-color: var(--primary-color);
+                color: #fff;
+                text-align: center;
+                padding: 2rem 0; 
+                transition: background-color 0.3s ease;
+            }
 
-            <h3>Step 1: Basics of Rocket Propulsion</h3>
-            <p>Rocket propulsion involves:</p>
-            <ul>
-                <li><strong>Liquid Propulsion</strong> - Uses liquid fuel and oxidizer; provides high control over thrust through variable flow rates.</li>
-                <li><strong>Solid Motors</strong> - Pre-packed fuel and oxidizer in a solid form; simple, reliable but less controllable once ignited.</li>
-                <li><strong>Hybrid Motors</strong> - Combines solid fuel with a liquid or gaseous oxidizer, offering a balance between control and simplicity.</li>
-            </ul>
-            <img src='rocket-propulsion.jpg' alt="Rocket Propulsion Diagram">
+            footer:hover {
+                background-color: var(--secondary-color);
+            }
 
-            <h3>Step 2: Sensors/Information</h3>
-            <p>The rocket knows where it is by knowing where it isn't. By precisely measuring its current position through sensors like gyroscopes, accelerometers, and GPS, the system can calculate where it needs to go to reach its target or maintain its course.</p>
-            <img src='sensors.jpg' alt="Rocket Sensors">
+            footer p {
+                font-size: 1rem; 
+                animation: fadeIn 1s ease-out;
+            }
 
-            <h3>Step 3: Control Systems</h3>
-            <p>Control systems in rocketry include:</p>
-            <ul>
-                <li><strong>PID Control</strong> - Proportional-Integral-Derivative control for maintaining stability by correcting errors in position or attitude.</li>
-                <li><strong>State Space Control</strong> - An advanced method using state variables for complex system dynamics.</li>
-                <li><strong>Model Predictive Control (MPC)</strong> - Predicts future states of the system to optimize control actions over time.</li>
-            </ul>
-            <img src='control-systems.jpg' alt="Control Systems in Rocketry">
-
-            <h3>Step 4: Understanding Thrust Vector Control</h3>
-            <p>TVC involves directing the exhaust of the rocket engine to control its flight. Common methods include gimballed nozzles, jet vanes, and vernier thrusters. Each method has its advantages in terms of precision, weight, and cost.</p>
-            <img src='tvc-system.jpg' alt="TVC System">
-        </section>
-
-        <section id="start">
-            <h2>Where to Start</h2>
-            <p>Begin your journey into rocket science by researching the fundamentals. Use this website to assist you in gaining a deeper understanding of rocketry. If you want to get started right away, consider exploring our shop for hands-on learning:</p>
-            <div class="shop-cta">
-                <a href="/shop" class="cta-button">Visit Our Shop</a>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>© 2024 SpaceBox, where the future of engineering and exploration begins.</p>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const mobileNav = document.getElementById('mobileNav');
-            
-            // Mobile menu toggle
-            menuToggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                if (mobileNav.style.display === "block") {
-                    mobileNav.style.display = "none";
-                } else {
-                    mobileNav.style.display = "block";
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
                 }
+                to {
+                    opacity: 1;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .navbar .nav-links {
+                    display: none; /* Hide desktop nav on mobile */
+                }
+                
+                .mobile-menu {
+                    display: block;
+                    position: absolute; 
+                    left: 1rem;
+                    top: 50%; 
+                    transform: translateY(-50%); 
+                }
+            
+                .navbar {
+                    flex-direction: column; 
+                    align-items: center; 
+                }
+                
+                .logo {
+                    margin-bottom: 0; 
+                    width: 100%; 
+                    display: flex; 
+                    justify-content: space-between; 
+                    align-items: center; 
+                    padding-top: 1rem; 
+                    padding-bottom: 1rem; 
+                }
+            
+                .logo span {
+                    margin-left: auto; 
+                    margin-right: auto; 
+                }
+            
+                .logo a {
+                    margin-left: auto; 
+                    margin-right: 0; 
+                }
+            
+                .menu-toggle {
+                    order: 1; 
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="mobile-menu">
+                    <a href="#" class="menu-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </a>
+                </div>
+                <div class="logo">
+                    <span>SPACEBOX</span>
+                    <a href="/">
+                        <img src='logo.png' alt="SpaceBox Logo">
+                    </a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="/discover">Discover</a></li>
+                    <li><a href="/history">History</a></li>
+                    <li><a href="/shop">Shop</a></li>
+                </ul>
+                <ul class="nav-links" id="mobileNav">
+                    <li><a href="/discover">Discover</a></li>
+                    <li><a href="/history">History</a></li>
+                    <li><a href="/shop">Shop</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section id="discover">
+                <h2>Mastering Thrust Vector Control</h2>
+                <p>Thrust Vector Control (TVC) is crucial for modern rocketry, allowing for precise control over a rocket's flight path by altering the direction of thrust. But we start with something simpler, understanding the basics before diving into complex control systems.</p>
+                <p>Here at SpaceBox, we guide you through the essentials of rocketry engineering, from fundamental principles to advanced TVC mechanisms. Learn how to steer your model rockets with precision and expertise.</p>
+            </section>
+            
+            <section id="guide">
+                <h2>Rocketry Fundamentals</h2>
+                <p>Explore the foundational principles of rocketry and control systems.</p>
+
+                <h3>Step 1: Basics of Rocket Propulsion</h3>
+                <p>Rocket propulsion involves:</p>
+                <ul>
+                    <li><strong>Liquid Propulsion</strong> - Uses liquid fuel and oxidizer; provides high control over thrust through variable flow rates.</li>
+                    <li><strong>Solid Motors</strong> - Pre-packed fuel and oxidizer in a solid form; simple, reliable but less controllable once ignited.</li>
+                    <li><strong>Hybrid Motors</strong> - Combines solid fuel with a liquid or gaseous oxidizer, offering a balance between control and simplicity.</li>
+                </ul>
+                <img src='rocket-propulsion.jpg' alt="Rocket Propulsion Diagram">
+
+                <h3>Step 2: Sensors/Information</h3>
+                <p>The rocket knows where it is by knowing where it isn't. By precisely measuring its current position through sensors like gyroscopes, accelerometers, and GPS, the system can calculate where it needs to go to reach its target or maintain its course.</p>
+                <img src='sensors.jpg' alt="Rocket Sensors">
+
+                <h3>Step 3: Control Systems</h3>
+                <p>Control systems in rocketry include:</p>
+                <ul>
+                    <li><strong>PID Control</strong> - Proportional-Integral-Derivative control for maintaining stability by correcting errors in position or attitude.</li>
+                    <li><strong>State Space Control</strong> - An advanced method using state variables for complex system dynamics.</li>
+                    <li><strong>Model Predictive Control (MPC)</strong> - Predicts future states of the system to optimize control actions over time.</li>
+                </ul>
+                <img src='control-systems.jpg' alt="Control Systems in Rocketry">
+
+                <h3>Step 4: Understanding Thrust Vector Control</h3>
+                <p>TVC involves directing the exhaust of the rocket engine to control its flight. Common methods include gimballed nozzles, jet vanes, and vernier thrusters. Each method has its advantages in terms of precision, weight, and cost.</p>
+                <img src='tvc-system.jpg' alt="TVC System">
+            </section>
+
+            <section id="start">
+                <h2>Where to Start</h2>
+                <p>Begin your journey into rocket science by researching the fundamentals. Use this website to assist you in gaining a deeper understanding of rocketry. If you want to get started right away, consider exploring our shop for hands-on learning:</p>
+                <div class="shop-cta">
+                    <a href="/shop" class="cta-button">Visit Our Shop</a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2024 SpaceBox, where the future of engineering and exploration begins.</p>
+        </footer>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const sections = document.querySelectorAll('section');
+                const menuToggle = document.querySelector('.menu-toggle');
+                const mobileNav = document.getElementById('mobileNav');
+                
+                function isElementInViewport(el) {
+                    const rect = el.getBoundingClientRect();
+                    return (
+                        rect.top >= 0 &&
+                        rect.left >= 0 &&
+                        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                    );
+                }
+
+                function handleScroll() {
+                    sections.forEach(section => {
+                        if (isElementInViewport(section)) {
+                            section.classList.add('visible');
+                        }
+                    });
+                }
+
+                window.addEventListener('scroll', handleScroll);
+                handleScroll();
+
+                menuToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (mobileNav.style.display === "block") {
+                        mobileNav.style.display = "none";
+                    } else {
+                        mobileNav.style.display = "block";
+                    }
+                });
             });
-        });
-    </script>
-</body>
+        </script>
+    </body>
 </html>
