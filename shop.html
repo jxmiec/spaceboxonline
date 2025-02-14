@@ -36,7 +36,7 @@
         header {
             background: #000;
             color: #fff;
-            padding: 1rem 0;
+            padding: 0.5rem 0; /* Reduced padding for a thinner header */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
@@ -55,7 +55,7 @@
         .navbar a {
             color: #fff;
             text-decoration: none;
-            padding: 0.5rem 1rem;
+            padding: 0.3rem 0.7rem; /* Reduced padding for links to fit in thinner header */
             transition: background 0.3s ease;
         }
 
@@ -69,13 +69,13 @@
         }
 
         .logo img {
-            height: 50px;
+            height: 40px; /* Reduced height to match thinner header */
             width: auto;
-            margin-right: 15px;
+            margin-right: 10px; /* Adjusted margin */
         }
 
         .logo span {
-            font-size: 1.5rem;
+            font-size: 1.3rem; /* Reduced font size to match thinner header */
             font-weight: bold;
         }
 
@@ -89,7 +89,7 @@
         }
 
         .nav-links li {
-            margin-left: 1.5rem;
+            margin-left: 1rem; /* Reduced margin for links */
         }
 
         .mobile-menu {
@@ -101,16 +101,16 @@
             cursor: pointer;
             color: #fff;
             font-size: 1.5rem;
-            padding: 0.5rem;
-            margin-right: 1rem;
+            padding: 0.3rem; /* Reduced padding */
+            margin-right: 0.5rem; /* Reduced margin */
         }
 
         .menu-toggle span {
             display: block;
-            width: 25px;
-            height: 3px;
+            width: 20px; /* Reduced width for smaller header */
+            height: 2px; /* Reduced height */
             background: #fff;
-            margin: 5px 0;
+            margin: 4px 0; /* Adjusted margin */
             transition: all 0.3s ease;
         }
 
@@ -118,7 +118,7 @@
             display: none;
             width: 100%;
             background: rgba(0, 0, 0, 0.9);
-            padding: 1rem 0;
+            padding: 0.5rem 0; /* Reduced padding */
             position: absolute;
             top: 100%;
             left: 0;
@@ -132,14 +132,14 @@
         #mobileNav a {
             display: block;
             text-align: left;
-            padding: 10px 1rem;
+            padding: 8px 1rem; /* Reduced padding */
         }
 
         main {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 10px;
-            margin-top: 0; /* Adjusted to remove extra space */
+            margin-top: 0;
         }
 
         section {
@@ -151,7 +151,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease-out, transform 0.5s ease-out;
             opacity: 0;
             transform: translateY(50px);
-            text-align: left; /* Changed from center to left for consistency with index */
+            text-align: left;
         }
 
         section:hover {
@@ -179,7 +179,7 @@
         img {
             max-width: 100%;
             height: auto;
-            margin: 1.5rem 0; /* Adjusted margin for better flow */
+            margin: 1.5rem 0;
             display: block;
         }
 
@@ -224,7 +224,7 @@
         .hero {
             text-align: center;
             background: url('shop-background.jpg') no-repeat center center/cover;
-            min-height: 40vh; /* Added a smaller hero for shop context */
+            min-height: 40vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -287,8 +287,8 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                padding-top: 1rem;
-                padding-bottom: 1rem;
+                padding-top: 0.5rem; /* Adjusted for thinner header */
+                padding-bottom: 0.5rem; /* Adjusted for thinner header */
             }
         
             .logo span {
@@ -326,12 +326,12 @@
             <ul class="nav-links">
                 <li><a href="/discover">Discover</a></li>
                 <li><a href="/history">History</a></li>
-                <li><a href="/shop" class="active">Shop</a></li> <!-- Corrected active class -->
+                <li><a href="/shop" class="active">Shop</a></li>
             </ul>
             <ul class="nav-links" id="mobileNav">
                 <li><a href="/discover">Discover</a></li>
                 <li><a href="/history">History</a></li>
-                <li><a href="/shop" class="active">Shop</a></li> <!-- Corrected active class -->
+                <li><a href="/shop" class="active">Shop</a></li>
             </ul>
         </nav>
     </header>
