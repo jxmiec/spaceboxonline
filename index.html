@@ -291,10 +291,21 @@
 
             .navbar {
                 flex-direction: row; /* Changed back to row for inline look */
+                justify-content: flex-start; /* Align items to the left */
             }
             
             .logo {
                 margin-bottom: 0; /* Remove bottom margin on mobile */
+                flex-direction: row; /* Ensure logo items are in row */
+            }
+
+            .logo a {
+                order: 2; /* Move image to the right */
+            }
+
+            .logo span {
+                order: 1; /* Move text to the left */
+                margin-right: 15px; /* Space between text and image */
             }
         }
     </style>
@@ -310,10 +321,10 @@
                 </a>
             </div>
             <div class="logo">
+                <span>SPACEBOX</span>
                 <a href="/">
                     <img src='logo.png' alt="SpaceBox Logo">
                 </a>
-                <span>SPACEBOX</span>
             </div>
             <ul class="nav-links">
                 <li><a href="/discover">Discover</a></li>
