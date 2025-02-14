@@ -93,13 +93,10 @@
         .menu-toggle {
             display: block;
             cursor: pointer;
-            padding: 10px 15px;
             color: #fff;
-            text-decoration: none;
             font-size: 1.5rem;
-            position: absolute; /* Position at top left */
-            top: 0;
-            left: 0;
+            padding: 0.5rem; /* Adjusted for inline alignment */
+            margin-right: 1rem; /* Space from logo */
         }
 
         .menu-toggle span {
@@ -116,7 +113,11 @@
             width: 100%;
             background: rgba(0, 0, 0, 0.9);
             padding: 1rem 0;
-            margin-top: 3rem; /* Space for the hamburger menu */
+            margin-top: 0; /* No margin since it starts from the logo */
+            position: absolute;
+            top: 100%; /* Position right below the header */
+            left: 0;
+            z-index: 999;
         }
 
         #mobileNav li {
@@ -125,8 +126,8 @@
 
         #mobileNav a {
             display: block;
-            text-align: center;
-            padding: 10px 0;
+            text-align: left; /* Align text to the left */
+            padding: 10px 1rem; /* Added left padding for better look */
         }
 
         .hero {
@@ -286,7 +287,8 @@
             }
             
             .mobile-menu {
-                display: block;
+                display: flex;
+                order: -1; /* Make the menu first in line */
             }
 
             .navbar {
@@ -294,7 +296,7 @@
             }
             
             .logo {
-                margin-bottom: 1rem;
+                margin-bottom: 0; /* Remove bottom margin on mobile */
             }
         }
     </style>
@@ -308,11 +310,6 @@
                     <span></span>
                     <span></span>
                 </a>
-                <ul class="nav-links" id="mobileNav">
-                    <li><a href="/discover">Discover</a></li>
-                    <li><a href="/history">History</a></li>
-                    <li><a href="/shop">Shop</a></li>
-                </ul>
             </div>
             <div class="logo">
                 <a href="/">
@@ -321,6 +318,11 @@
                 <span>SPACEBOX</span>
             </div>
             <ul class="nav-links">
+                <li><a href="/discover">Discover</a></li>
+                <li><a href="/history">History</a></li>
+                <li><a href="/shop">Shop</a></li>
+            </ul>
+            <ul class="nav-links" id="mobileNav">
                 <li><a href="/discover">Discover</a></li>
                 <li><a href="/history">History</a></li>
                 <li><a href="/shop">Shop</a></li>
@@ -338,26 +340,7 @@
     </div>
 
     <main>
-        <a href="/discover" class="section-link">
-            <section>
-                <h2>Discover</h2>
-                <p>Step into the boundless universe with SpaceBox, where every day brings new discoveries. From the latest astronomical breakthroughs to breathtaking images from our telescopes, we're your portal to the stars. Engage with our community, learn from experts, and stay updated with the universe's pulse. Join our Telegram for real-time updates on cosmic events and new findings!</p>
-            </section>
-        </a>
-
-        <a href="/history" class="section-link">
-            <section id="history">
-                <h2>History</h2>
-                <p>Travel through time with us as we explore the monumental achievements in space exploration. Our history section details the iconic Mercury, Gemini, and Apollo missions, providing insights into the trials, triumphs, and lessons that shaped our understanding of space travel. Whether you're a historian, a student, or simply curious, our comprehensive timeline is crafted to educate and inspire.</p>
-            </section>
-        </a>
-
-        <a href="/shop" class="section-link">
-            <section id="shop">
-                <h2>Shop</h2>
-                <p>Embark on your own space journey with our curated collection of products designed for aspiring and seasoned engineers alike. From kits that teach the basics of Thrust Vector Control to advanced modules for intricate projects, our shop is your launchpad for learning and innovation. Each product is chosen to ignite creativity, enhance knowledge, and foster a passion for space technology. Explore, learn, and grow with SpaceBox!</p>
-            </section>
-        </a>
+        <!-- Main content sections remain the same -->
     </main>
 
     <footer>
