@@ -295,8 +295,9 @@
             }
             
             .logo {
-                margin-bottom: 0; /* Remove bottom margin on mobile */
                 flex-direction: row; /* Ensure logo items are in row */
+                width: 100%; /* Make logo span full width */
+                justify-content: center; /* Center the logo items */
             }
 
             .logo a {
@@ -306,6 +307,12 @@
             .logo span {
                 order: 1; /* Move text to the left */
                 margin-right: 15px; /* Space between text and image */
+            }
+
+            .menu-toggle {
+                position: absolute; /* Position burger menu at the left */
+                left: 1rem;
+                top: 1rem; /* Adjust for vertical centering if needed */
             }
         }
     </style>
