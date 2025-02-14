@@ -20,11 +20,6 @@
             box-sizing: border-box;
         }
 
-        html, body {
-            overflow: auto;
-            min-height: 100vh;
-        }
-
         body {
             font-family: 'Roboto', Arial, sans-serif;
             background-color: var(--bg-color);
@@ -36,7 +31,7 @@
         header {
             background: #000;
             color: #fff;
-            padding: 0.5rem 0; /* Reduced padding for a thinner header */
+            padding: 1rem 0; /* Adjusted to match Discover page */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
@@ -55,7 +50,7 @@
         .navbar a {
             color: #fff;
             text-decoration: none;
-            padding: 0.3rem 0.7rem; /* Reduced padding for links to fit in thinner header */
+            padding: 0.5rem 1rem; /* Adjusted to match Discover page */
             transition: background 0.3s ease;
         }
 
@@ -69,13 +64,13 @@
         }
 
         .logo img {
-            height: 40px; /* Reduced height to match thinner header */
+            height: 50px; /* Adjusted to match Discover page */
             width: auto;
-            margin-right: 10px; /* Adjusted margin */
+            margin-right: 15px; /* Adjusted to match Discover page */
         }
 
         .logo span {
-            font-size: 1.3rem; /* Reduced font size to match thinner header */
+            font-size: 1.5rem; /* Adjusted to match Discover page */
             font-weight: bold;
         }
 
@@ -89,7 +84,7 @@
         }
 
         .nav-links li {
-            margin-left: 1rem; /* Reduced margin for links */
+            margin-left: 1.5rem; /* Adjusted to match Discover page */
         }
 
         .mobile-menu {
@@ -101,16 +96,16 @@
             cursor: pointer;
             color: #fff;
             font-size: 1.5rem;
-            padding: 0.3rem; /* Reduced padding */
-            margin-right: 0.5rem; /* Reduced margin */
+            padding: 0.5rem; /* Adjusted to match Discover page */
+            margin-right: 1rem; /* Adjusted to match Discover page */
         }
 
         .menu-toggle span {
             display: block;
-            width: 20px; /* Reduced width for smaller header */
-            height: 2px; /* Reduced height */
+            width: 25px; /* Adjusted to match Discover page */
+            height: 3px; /* Adjusted to match Discover page */
             background: #fff;
-            margin: 4px 0; /* Adjusted margin */
+            margin: 5px 0; /* Adjusted to match Discover page */
             transition: all 0.3s ease;
         }
 
@@ -118,7 +113,7 @@
             display: none;
             width: 100%;
             background: rgba(0, 0, 0, 0.9);
-            padding: 0.5rem 0; /* Reduced padding */
+            padding: 1rem 0; /* Adjusted to match Discover page */
             position: absolute;
             top: 100%;
             left: 0;
@@ -132,16 +127,44 @@
         #mobileNav a {
             display: block;
             text-align: left;
-            padding: 8px 1rem; /* Reduced padding */
+            padding: 10px 1rem; /* Adjusted to match Discover page */
         }
 
         main {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 10px;
-            margin-top: 0;
+        }
+        
+        .shop-cta {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .cta-button {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            display: inline-block;
+        }
+        
+        .propulsion-list {
+            padding-left: 2rem;
+        }
+        
+        .propulsion-list li {
+            list-style-type: disc;
         }
 
+        .cta-button:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.05);
+        }
+        
         section {
             background: #fff;
             padding: 2rem;
@@ -151,7 +174,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease-out, transform 0.5s ease-out;
             opacity: 0;
             transform: translateY(50px);
-            text-align: left;
+            text-align: left; /* Changed from center to left for consistency */
         }
 
         section:hover {
@@ -201,65 +224,12 @@
             animation: fadeIn 1s ease-out;
         }
 
-        .cta-button {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 30px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .cta-button:hover {
-            background-color: var(--secondary-color);
-            transform: scale(1.05);
-        }
-
-        .paypal-button-container {
-            margin-top: 20px;
-        }
-
-        .hero {
-            text-align: center;
-            background: url('shop-background.jpg') no-repeat center center/cover;
-            min-height: 40vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            padding: 2rem 1rem;
-            position: relative;
-            width: 100%;
-        }
-        
-        .hero h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .hero p {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 300;
-            font-size: 1.5rem;
-            margin-bottom: 3rem;
-            letter-spacing: 1px;
-            animation: fadeInUp 1.5s ease-out;
-        }
-
-        @keyframes fadeInUp {
+        @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(20px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
             }
         }
 
@@ -287,8 +257,8 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                padding-top: 0.5rem; /* Adjusted for thinner header */
-                padding-bottom: 0.5rem; /* Adjusted for thinner header */
+                padding-top: 1rem;
+                padding-bottom: 1rem;
             }
         
             .logo span {
@@ -399,15 +369,11 @@
             
             function isElementInViewport(el) {
                 const rect = el.getBoundingClientRect();
-                const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
-                const windowWidth = (window.innerWidth || document.documentElement.clientWidth);
-                const buffer = 100; // Small buffer in pixels
-
                 return (
-                    rect.top <= windowHeight + buffer &&
-                    rect.left <= windowWidth + buffer &&
-                    rect.bottom >= 0 - buffer &&
-                    rect.right >= 0 - buffer
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
                 );
             }
 
