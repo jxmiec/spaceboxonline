@@ -22,7 +22,7 @@
 
         html, body {
             overflow: auto;
-            min-height: 100vh;
+            min-height: 100vh; /* Ensures body content extends at least to viewport height */
         }
 
         body {
@@ -36,13 +36,13 @@
         header {
             background: #000;
             color: #fff;
-            padding: 0.5rem 0; /* Thinner header */
+            padding: 1rem 0;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
-        
+
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -51,22 +51,11 @@
             margin: 0 auto;
             padding: 0 1rem;
         }
-        
-        /* Ensure logo and links are aligned the same across pages */
-        .logo img {
-            height: 50px;
-            width: auto;
-            margin-right: 15px;
-        }
-        
-        .nav-links li {
-            margin-left: 1.5rem;
-        }
 
         .navbar a {
             color: #fff;
             text-decoration: none;
-            padding: 0.3rem 0.7rem;
+            padding: 0.5rem 1rem;
             transition: background 0.3s ease;
         }
 
@@ -80,12 +69,13 @@
         }
 
         .logo img {
-            height: 40px;
+            height: 50px;
             width: auto;
-            margin-right: 10px;
+            margin-right: 15px;
         }
+
         .logo span {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: bold;
         }
 
@@ -99,7 +89,7 @@
         }
 
         .nav-links li {
-            margin-left: 1rem;
+            margin-left: 1.5rem;
         }
 
         .mobile-menu {
@@ -111,16 +101,16 @@
             cursor: pointer;
             color: #fff;
             font-size: 1.5rem;
-            padding: 0.3rem;
-            margin-right: 0.5rem;
+            padding: 0.5rem;
+            margin-right: 1rem;
         }
 
         .menu-toggle span {
             display: block;
-            width: 20px;
-            height: 2px;
+            width: 25px;
+            height: 3px;
             background: #fff;
-            margin: 4px 0;
+            margin: 5px 0;
             transition: all 0.3s ease;
         }
 
@@ -128,7 +118,7 @@
             display: none;
             width: 100%;
             background: rgba(0, 0, 0, 0.9);
-            padding: 0.5rem 0;
+            padding: 1rem 0;
             position: absolute;
             top: 100%;
             left: 0;
@@ -142,16 +132,47 @@
         #mobileNav a {
             display: block;
             text-align: left;
-            padding: 8px 1rem;
+            padding: 10px 1rem;
         }
 
         main {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 10px;
-            margin-top: 0;
+            /* Ensure main has enough space */
+            min-height: calc(100vh - 150px); /* Assuming header/footer take up 150px in height */
+        }
+        
+        .shop-cta {
+            text-align: center; /* Center align the button container */
+            margin-top: 20px;   /* Add some space above the button */
+        }
+        
+        .cta-button {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 10px 20px; 
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem; 
+            display: inline-block; /* Ensure the button is inline-block for centering */
+        }
+        
+        .propulsion-list {
+            padding-left: 2rem; /* Indent the list */
+        }
+        
+        /* If you need to adjust the list's bullet points too */
+        .propulsion-list li {
+            list-style-type: disc; /* or any other bullet type if needed */
         }
 
+        .cta-button:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.05);
+        }
+        
         section {
             background: #fff;
             padding: 2rem;
@@ -161,7 +182,6 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease-out, transform 0.5s ease-out;
             opacity: 0;
             transform: translateY(50px);
-            text-align: left;
         }
 
         section:hover {
@@ -174,23 +194,15 @@
             transform: translateY(0);
         }
 
-        section h2, section h3 {
+        section h2 {
             margin-bottom: 2rem;
             color: var(--primary-color);
             font-size: 2rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
         }
 
-        section p {
-            margin-bottom: 1rem;
-        }
-
-        img {
-            max-width: 100%;
-            width: 70%; /* Reducing size to 70% of container width */
-            height: auto;
-            margin: 1.5rem auto; /* Center align images */
+        .section-link {
+            text-decoration: none;
+            color: inherit;
             display: block;
         }
 
@@ -200,7 +212,7 @@
             text-align: center;
             padding: 2rem 0;
             transition: background-color 0.3s ease;
-            position: relative;
+            position: relative; /* Ensure footer does not overlap content */
         }
 
         footer:hover {
@@ -212,73 +224,25 @@
             animation: fadeIn 1s ease-out;
         }
 
-        .cta-button {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 30px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .cta-button:hover {
-            background-color: var(--secondary-color);
-            transform: scale(1.05);
-        }
-
-        .paypal-button-container {
-            margin-top: 20px;
-        }
-
-        .hero {
-            text-align: center;
-            background: url('shop-background.jpg') no-repeat center center/cover;
-            min-height: 40vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            padding: 2rem 1rem;
-            position: relative;
-            width: 100%;
-        }
-
-        .hero h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .hero p {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 300;
-            font-size: 1.5rem;
-            margin-bottom: 3rem;
-            letter-spacing: 1px;
-            animation: fadeInUp 1.5s ease-out;
-        }
-
-        @keyframes fadeInUp {
+        @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(20px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
             }
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
         }
 
         @media (max-width: 768px) {
             .navbar .nav-links {
                 display: none;
             }
-
+            
             .mobile-menu {
                 display: block;
                 position: absolute;
@@ -286,32 +250,32 @@
                 top: 50%;
                 transform: translateY(-50%);
             }
-
+        
             .navbar {
                 flex-direction: column;
                 align-items: center;
             }
-
+            
             .logo {
                 margin-bottom: 0;
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                padding-top: 0.5rem;
-                padding-bottom: 0.5rem;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
             }
-
+        
             .logo span {
                 margin-left: auto;
                 margin-right: auto;
             }
-
+        
             .logo a {
                 margin-left: auto;
                 margin-right: 0;
             }
-
+        
             .menu-toggle {
                 order: 1;
             }
@@ -336,78 +300,71 @@
             </div>
             <ul class="nav-links">
                 <li><a href="/discover">Discover</a></li>
-                <li><a href="/history">History</a></li>
-                <li><a href="/shop" class="active">Shop</a></li>
+                <li><a href="/history" class="active">History</a></li>
+                <li><a href="/shop">Shop</a></li>
             </ul>
             <ul class="nav-links" id="mobileNav">
                 <li><a href="/discover">Discover</a></li>
-                <li><a href="/history">History</a></li>
-                <li><a href="/shop" class="active">Shop</a></li>
+                <li><a href="/history" class="active">History</a></li>
+                <li><a href="/shop">Shop</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Added Hero Section for Shop -->
-    <div class="hero">
-        <h1>Shop SpaceBox</h1>
-        <p>Explore our universe of rocket parts and educational kits.</p>
-    </div>
+<main>
+    <section id="welcome-section">
+        <h3>Where should you start?</h3>
+        <p><strong>Advance Your Engineering Skills:</strong><br><br>
+        Whether you're just starting out or unsure where to begin, our collection of TVC rocket parts is here to guide you. For those beginners, delve into the world of rocket engineering by reading our featured book, "Apollo Unveiled," which debunks Apollo mission misconceptions and inspires with tales of how the pioneers of space technology achieved what was once thought impossible. Our range, from simple educational kits to more complex components, helps you to climb the engineering ladder, turning every challenge into an opportunity for growth. Let the legacy of those who invented space travel technology inspire your journey as you explore the vast potential of engineering with us.</p>
+    </section>
 
-    <main>
-        <section id="welcome-section">
-            <h3>Where should you start?</h3>
-            <p><strong>Advance Your Engineering Skills:</strong><br><br>
-            Whether you're just starting out or unsure where to begin, our collection of TVC rocket parts is here to guide you. For those beginners, delve into the world of rocket engineering by reading our featured book, "Apollo Unveiled," which debunks Apollo mission misconceptions and inspires with tales of how the pioneers of space technology achieved what was once thought impossible. Our range, from simple educational kits to more complex components, helps you to climb the engineering ladder, turning every challenge into an opportunity for growth. Let the legacy of those who invented space travel technology inspire your journey as you explore the vast potential of engineering with us.</p>
-        </section>
+    <section class="variant-section">
+        <h2>Apollo Unveiled: SpaceBox's Comprehensive Moon Landing Analysis 🌑</h2>
+        <img src='product3.jpg' alt="Book" class="product-image">
+        <p>Dive into the ultimate Apollo moon landing breakdown with 'Apollo Unveiled' by SpaceBox. Whether you're a space buff, a curious mind, or just love a good read. Explore the real deal behind humanity's epic trip to the moon, separating fact from fiction. 'Apollo Unveiled' is your go-to guide for unraveling the mysteries and marvels of the Apollo era.</p>
+        <b>Price: £0.79</b>
+        <div class="paypal-button-container" id="paypal-button-container-3"></div>
+    </section>
 
-        <section class="variant-section">
-            <h2>Apollo Unveiled: SpaceBox's Comprehensive Moon Landing Analysis 🌑</h2>
-            <img src='product3.jpg' alt="Book" class="product-image">
-            <p>Dive into the ultimate Apollo moon landing breakdown with 'Apollo Unveiled' by SpaceBox. Whether you're a space buff, a curious mind, or just love a good read. Explore the real deal behind humanity's epic trip to the moon, separating fact from fiction. 'Apollo Unveiled' is your go-to guide for unraveling the mysteries and marvels of the Apollo era.</p>
-            <b>Price: £0.79</b>
-            <div class="paypal-button-container" id="paypal-button-container-3"></div>
-        </section>
+    <section class="variant-section">
+        <h2>EFC-4.2: High-Speed Flight Computer 🖥️</h2>
+        <img src='product1.jpg' alt="EFC-4.2" class="product-image">
+        <p>The EFC-4.2 flight computer is equipped with a MPU6050, which is an inertial measurement unit allowing the rocket to know its orientation. It also includes a BMP280 sensor for precise altitude and pressure readings, including temperature if desired.</p>
+        <b>Coming Soon...</b>
+    </section>
 
-        <section class="variant-section">
-            <h2>EFC-4.2: High-Speed Flight Computer 🖥️</h2>
-            <img src='product1.jpg' alt="EFC-4.2" class="product-image">
-            <p>The EFC-4.2 flight computer is equipped with a MPU6050, which is an inertial measurement unit allowing the rocket to know its orientation. It also includes a BMP280 sensor for precise altitude and pressure readings, including temperature if desired.</p>
-            <b>Coming Soon...</b>
-        </section>
+    <section class="variant-section">
+        <h2>TVC: Thrust Vector Control Mount 🚀</h2>
+        <img src='product2.jpg' alt="TVC Mount" class="product-image">
+        <p>This is the best Thrust Vector Control Mount you can buy for a model rocket. It offers the highest degree of freedom available and has been improved over 57 iterations for optimal performance.</p>
+        <b>Coming Soon...</b>
+    </section>
 
-        <section class="variant-section">
-            <h2>TVC: Thrust Vector Control Mount 🚀</h2>
-            <img src='product2.jpg' alt="TVC Mount" class="product-image">
-            <p>This is the best Thrust Vector Control Mount you can buy for a model rocket. It offers the highest degree of freedom available and has been improved over 57 iterations for optimal performance.</p>
-            <b>Coming Soon...</b>
-        </section>
+    <section class="variant-section">
+        <h2>Starter Kit: Beginner's Rocket Building Set 🔧</h2>
+        <img src='product4.jpg' alt="Starter Kit" class="product-image">
+        <p>The Starter Kit includes the EFC-4.2 flight computer, so when you're ready, you can utilize thrust vectoring in your projects. It also comes with a Parachute-Ejection-System (PES) and a static (non-vectoring) mount.</p>
+        <b>Coming Soon...</b>
+    </section>
 
-        <section class="variant-section">
-            <h2>Starter Kit: Beginner's Rocket Building Set 🔧</h2>
-            <img src='product4.jpg' alt="Starter Kit" class="product-image">
-            <p>The Starter Kit includes the EFC-4.2 flight computer, so when you're ready, you can utilize thrust vectoring in your projects. It also comes with a Parachute-Ejection-System (PES) and a static (non-vectoring) mount.</p>
-            <b>Coming Soon...</b>
-        </section>
-
-        <section class="variant-section">
-            <h2>Advanced Kit: Comprehensive Rocket Building Experience 💡</h2>
-            <img src='product5.jpg' alt="Advanced Kit" class="product-image">
-            <p>Advance your rocket building experience with our kit that includes a Rocket Body, EFC-4.2, TVC mount, and more for an in-depth project.</p>
-            <b>Coming Soon...</b>
-        </section>
-    </main>
+    <section class="variant-section">
+        <h2>Advanced Kit: Comprehensive Rocket Building Experience 💡</h2>
+        <img src='product5.jpg' alt="Advanced Kit" class="product-image">
+        <p>Advance your rocket building experience with our kit that includes a Rocket Body, EFC-4.2, TVC mount, and more for an in-depth project.</p>
+        <b>Coming Soon...</b>
+    </section>
+</main>
 
     <footer>
         <p>© 2024 SpaceBox, where the future of engineering and exploration begins.</p>
     </footer>
 
-    <script src="https://www.paypal.com/sdk/js?client-id=ARBP2J91GoENDAery-WC1o6ZqQgjLzLbr7jedb-PXyDW60j_tBu5__N_iUm8kpYH0gf9Yqnwz0V3-f5j&currency=GBP&vault=true"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const sections = document.querySelectorAll('section');
             const menuToggle = document.querySelector('.menu-toggle');
             const mobileNav = document.getElementById('mobileNav');
-
+            
             function isElementInViewport(el) {
                 const rect = el.getBoundingClientRect();
                 const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
@@ -441,36 +398,6 @@
                     mobileNav.style.display = "block";
                 }
             });
-
-            // PayPal button creation
-            function createButton(containerId, price) {
-                paypal.Buttons({
-                    style: {
-                        shape: 'pill',
-                        color: 'blue',
-                        layout: 'horizontal',
-                        label: 'paypal',
-                        tagline: false
-                    },
-                    createOrder: function(data, actions) {
-                        return actions.order.create({
-                            purchase_units: [{
-                                amount: {
-                                    value: price,
-                                    currency_code: 'GBP'
-                                }
-                            }]
-                        });
-                    },
-                    onApprove: function(data, actions) {
-                        return actions.order.capture().then(function(details) {
-                            alert('Transaction completed by ' + details.payer.name.given_name);
-                        });
-                    }
-                }).render('#' + containerId);
-            }
-
-            createButton('paypal-button-container-3', '0.79');
         });
     </script>
 </body>
