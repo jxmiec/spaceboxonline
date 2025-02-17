@@ -256,18 +256,6 @@
             padding: 1rem;
             background: #f4f4f4;
             border-radius: 5px;
-            animation: fadeIn 0.5s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         @media (max-width: 768px) {
@@ -360,7 +348,7 @@
 
         <section class="variant-section visible" id="EFC-4.2-section">
             <h2>EFC-4.2: High-Speed Flight Computer 🖥️</h2>
-            <button class="advanced-info-btn" onclick="toggleAdvancedInfo(this, 'EFC-4.2')">Advanced Info</button>
+            <button class="advanced-info-btn" onclick="toggleAdvancedInfo('EFC-4.2')">Advanced Info</button>
             <img src="product1.jpg" alt="EFC-4.2" class="product-image">
             <p>The EFC-4.2 flight computer is equipped with a MPU6050, which is an inertial measurement unit allowing the rocket to know its orientation. It also includes a BMP280 sensor for precise altitude and pressure readings, including temperature if desired.</p>
             <b>Coming Soon...</b>
@@ -371,7 +359,7 @@
 
         <section class="variant-section visible" id="TVC-section">
             <h2>TVC: Thrust Vector Control Mount 🚀</h2>
-            <button class="advanced-info-btn" onclick="toggleAdvancedInfo(this, 'TVC')">Advanced Info</button>
+            <button class="advanced-info-btn" onclick="toggleAdvancedInfo('TVC')">Advanced Info</button>
             <img src="product2.jpg" alt="TVC Mount" class="product-image">
             <p>This is the best Thrust Vector Control Mount you can buy for a model rocket. It offers the highest degree of freedom available and has been improved over 57 iterations for optimal performance.</p>
             <b>Coming Soon...</b>
@@ -382,7 +370,7 @@
 
         <section class="variant-section visible" id="StarterKit-section">
             <h2>Starter Kit: Beginner's Rocket Building Set 🔧</h2>
-            <button class="advanced-info-btn" onclick="toggleAdvancedInfo(this, 'StarterKit')">Advanced Info</button>
+            <button class="advanced-info-btn" onclick="toggleAdvancedInfo('StarterKit')">Advanced Info</button>
             <img src="product4.jpg" alt="Starter Kit" class="product-image">
             <p>The Starter Kit includes the EFC-4.2 flight computer, so when you're ready, you can utilize thrust vectoring in your projects. It also comes with a Parachute-Ejection-System (PES) and a static (non-vectoring) mount.</p>
             <b>Coming Soon...</b>
@@ -393,7 +381,7 @@
 
         <section class="variant-section visible" id="AdvancedKit-section">
             <h2>Advanced Kit: Comprehensive Rocket Building Experience 💡</h2>
-            <button class="advanced-info-btn" onclick="toggleAdvancedInfo(this, 'AdvancedKit')">Advanced Info</button>
+            <button class="advanced-info-btn" onclick="toggleAdvancedInfo('AdvancedKit')">Advanced Info</button>
             <img src="product5.jpg" alt="Advanced Kit" class="product-image">
             <p>Advance your rocket building experience with our kit that includes a Rocket Body, EFC-4.2, TVC mount, and more for an in-depth project.</p>
             <b>Coming Soon...</b>
@@ -408,70 +396,18 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('section');
-            const menuToggle = document.querySelector('.menu-toggle');
-            const mobileNav = document.getElementById('mobileNav');
+        function toggleAdvancedInfo(productId) {
+            const description = document.getElementById(productId + '-advanced');
+            const button = document.querySelector(`#${productId}-section .advanced-info-btn`);
             
-            function isElementInViewport(el) {
-                const rect = el.getBoundingClientRect();
-                const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
-                const windowWidth = (window.innerWidth || document.documentElement.clientWidth);
-                const buffer = 100;
-
-                return (
-                    rect.top <= windowHeight + buffer &&
-                    rect.left <= windowWidth + buffer &&
-                    rect.bottom >= 0 - buffer &&
-                    rect.right >= 0 - buffer
-                );
+            if (description.style.display === "none" || description.style.display === "") {
+                description.style.display = "block";
+                button.textContent = "Hide Info";
+            } else {
+                description.style.display = "none";
+                button.textContent = "Advanced Info";
             }
-
-            function handleScroll() {
-                sections.forEach(section => {
-                    if (isElementInViewport(section)) {
-                        section.classList.add('visible');
-                    }
-                });
-            }
-
-            window.addEventListener('scroll', handleScroll);
-            handleScroll();
-
-            menuToggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                if (mobileNav.style.display === "block") {
-                    mobileNav.style.display = "none";
-                } else {
-                    mobileNav.style.display = "block";
-                }
-            });
-
-            function toggleAdvancedInfo(button, productId) {
-                const description = document.getElementById(productId + '-advanced');
-                if (description.style.display === "none" || description.style.display === "") {
-                    description.style.display = "block";
-                    button.textContent = "Hide Info";
-                } else {
-                    description.style.display = "none";
-                    button.textContent = "Advanced Info";
-                }
-                
-                // Reset and trigger animation
-                button.style.animation = "none";
-                void button.offsetWidth; // Trigger reflow
-                button.style.animation = "buttonPulse 0.5s ease-out";
-            }
-
-            // Button animation
-            document.styleSheets[0].insertRule(`
-                @keyframes buttonPulse {
-                    0% { transform: scale(1); }
-                    50% { transform: scale(1.1); }
-                    100% { transform: scale(1); }
-                }
-            `, 0);
-        });
+        }
     </script>
 </body>
 </html>
