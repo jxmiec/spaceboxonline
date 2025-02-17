@@ -227,6 +227,29 @@
             height: auto;
         }
 
+        .advanced-info-btn {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .advanced-info-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .advanced-description {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f4f4f4;
+            border-radius: 5px;
+        }
+
         @media (max-width: 768px) {
             .navbar .nav-links {
                 display: none;
@@ -321,6 +344,10 @@
             <img src="product1.jpg" alt="EFC-4.2" class="product-image">
             <p>The EFC-4.2 flight computer is equipped with a MPU6050, which is an inertial measurement unit allowing the rocket to know its orientation. It also includes a BMP280 sensor for precise altitude and pressure readings, including temperature if desired.</p>
             <b>Coming Soon...</b>
+            <button class="advanced-info-btn" onclick="toggleAdvancedInfo(this, 'EFC-4.2')">Advanced Info</button>
+            <div class="advanced-description" id="EFC-4.2-advanced">
+                <p>The EFC-4.2 employs advanced algorithms for real-time data processing. It's designed with a fail-safe mode for emergency operations, ensuring reliability in critical conditions. Its integration with the MPU6050 allows for precise control adjustments based on orientation data, enhancing flight stability.</p>
+            </div>
         </section>
 
         <section class="variant-section visible">
@@ -328,6 +355,10 @@
             <img src="product2.jpg" alt="TVC Mount" class="product-image">
             <p>This is the best Thrust Vector Control Mount you can buy for a model rocket. It offers the highest degree of freedom available and has been improved over 57 iterations for optimal performance.</p>
             <b>Coming Soon...</b>
+            <button class="advanced-info-btn" onclick="toggleAdvancedInfo(this, 'TVC')">Advanced Info</button>
+            <div class="advanced-description" id="TVC-advanced">
+                <p>Our TVC mount features a unique dual-axis gimbal system, which provides exceptional control over rocket trajectory. Made from aerospace-grade materials, it withstands extreme conditions and offers precise thrust vectoring, crucial for complex maneuvers and stability during flight.</p>
+            </div>
         </section>
 
         <section class="variant-section visible">
@@ -335,6 +366,10 @@
             <img src="product4.jpg" alt="Starter Kit" class="product-image">
             <p>The Starter Kit includes the EFC-4.2 flight computer, so when you're ready, you can utilize thrust vectoring in your projects. It also comes with a Parachute-Ejection-System (PES) and a static (non-vectoring) mount.</p>
             <b>Coming Soon...</b>
+            <button class="advanced-info-btn" onclick="toggleAdvancedInfo(this, 'StarterKit')">Advanced Info</button>
+            <div class="advanced-description" id="StarterKit-advanced">
+                <p>This kit is perfect for learning the fundamentals of rocket construction and flight control. The included PES provides a safe recovery mechanism, and the kit's modularity allows for upgrades as your skills advance. It's an ideal starting point for understanding basic aerodynamics and electronics in rocketry.</p>
+            </div>
         </section>
 
         <section class="variant-section visible">
@@ -342,6 +377,10 @@
             <img src="product5.jpg" alt="Advanced Kit" class="product-image">
             <p>Advance your rocket building experience with our kit that includes a Rocket Body, EFC-4.2, TVC mount, and more for an in-depth project.</p>
             <b>Coming Soon...</b>
+            <button class="advanced-info-btn" onclick="toggleAdvancedInfo(this, 'AdvancedKit')">Advanced Info</button>
+            <div class="advanced-description" id="AdvancedKit-advanced">
+                <p>This advanced kit is tailored for those looking to explore complex rocket engineering. It includes high-precision components and a comprehensive guide for assembly, testing, and flight optimization. The kit supports advanced experiments in propulsion, guidance, and control systems.</p>
+            </div>
         </section>
     </main>
 
@@ -388,6 +427,17 @@
                     mobileNav.style.display = "block";
                 }
             });
+
+            function toggleAdvancedInfo(button, productId) {
+                const description = document.getElementById(productId + '-advanced');
+                if (description.style.display === "none" || description.style.display === "") {
+                    description.style.display = "block";
+                    button.textContent = "Hide Info";
+                } else {
+                    description.style.display = "none";
+                    button.textContent = "Advanced Info";
+                }
+            }
         });
     </script>
 </body>
