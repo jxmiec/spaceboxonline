@@ -22,7 +22,7 @@
 
         html, body {
             overflow: auto;
-            min-height: 100vh; /* Ensures body content extends at least to viewport height */
+            min-height: 100vh;
         }
 
         body {
@@ -30,7 +30,8 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.8;
-            font-size: 16px; 
+            font-size: 16px;
+            text-align: center; /* Center align all text */
         }
 
         header {
@@ -45,7 +46,7 @@
 
         .navbar {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             max-width: 1400px;
             margin: 0 auto;
@@ -131,7 +132,7 @@
 
         #mobileNav a {
             display: block;
-            text-align: left;
+            text-align: center;
             padding: 10px 1rem;
         }
 
@@ -139,33 +140,21 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 10px;
-            /* Ensure main has enough space */
-            min-height: calc(100vh - 150px); /* Assuming header/footer take up 150px in height */
+            min-height: calc(100vh - 150px);
         }
         
         .shop-cta {
-            text-align: center; /* Center align the button container */
-            margin-top: 20px;   /* Add some space above the button */
+            margin-top: 20px;
         }
         
         .cta-button {
             background-color: var(--primary-color);
             color: #fff;
-            padding: 10px 20px; 
+            padding: 10px 20px;
             border-radius: 50px;
             text-decoration: none;
             transition: all 0.3s ease;
-            font-size: 1rem; 
-            display: inline-block; /* Ensure the button is inline-block for centering */
-        }
-        
-        .propulsion-list {
-            padding-left: 2rem; /* Indent the list */
-        }
-        
-        /* If you need to adjust the list's bullet points too */
-        .propulsion-list li {
-            list-style-type: disc; /* or any other bullet type if needed */
+            font-size: 1rem;
         }
 
         .cta-button:hover {
@@ -176,7 +165,7 @@
         section {
             background: #fff;
             padding: 2rem;
-            margin: 3rem 0;
+            margin: 3rem auto;
             border-radius: 20px;
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease-out, transform 0.5s ease-out;
@@ -212,7 +201,7 @@
             text-align: center;
             padding: 2rem 0;
             transition: background-color 0.3s ease;
-            position: relative; /* Ensure footer does not overlap content */
+            position: relative;
         }
 
         footer:hover {
@@ -234,7 +223,7 @@
         }
 
         img {
-            max-width: 100%;
+            max-width: 100px; /* Set a small but clear size for images */
             height: auto;
         }
 
@@ -295,7 +284,7 @@
             <div class="logo">
                 <span>SPACEBOX</span>
                 <a href="/">
-                    <img src='logo.png' alt="SpaceBox Logo">
+                    <img src="logo.png" alt="SpaceBox Logo">
                 </a>
             </div>
             <ul class="nav-links">
@@ -311,49 +300,49 @@
         </nav>
     </header>
 
-<main>
-    <section id="welcome-section">
-        <h3>Where should you start?</h3>
-        <p><strong>Advance Your Engineering Skills:</strong><br><br>
-        Whether you're just starting out or unsure where to begin, our collection of TVC rocket parts is here to guide you. For those beginners, delve into the world of rocket engineering by reading our featured book, "Apollo Unveiled," which debunks Apollo mission misconceptions and inspires with tales of how the pioneers of space technology achieved what was once thought impossible. Our range, from simple educational kits to more complex components, helps you to climb the engineering ladder, turning every challenge into an opportunity for growth. Let the legacy of those who invented space travel technology inspire your journey as you explore the vast potential of engineering with us.</p>
-    </section>
+    <main>
+        <section id="welcome-section" class="visible">
+            <h3>Where should you start?</h3>
+            <p><strong>Advance Your Engineering Skills:</strong><br><br>
+            Whether you're just starting out or unsure where to begin, our collection of TVC rocket parts is here to guide you. For those beginners, delve into the world of rocket engineering by reading our featured book, "Apollo Unveiled," which debunks Apollo mission misconceptions and inspires with tales of how the pioneers of space technology achieved what was once thought impossible. Our range, from simple educational kits to more complex components, helps you to climb the engineering ladder, turning every challenge into an opportunity for growth. Let the legacy of those who invented space travel technology inspire your journey as you explore the vast potential of engineering with us.</p>
+        </section>
 
-    <section class="variant-section">
-        <h2>Apollo Unveiled: SpaceBox's Comprehensive Moon Landing Analysis 🌑</h2>
-        <img src='product3.jpg' alt="Book" class="product-image">
-        <p>Dive into the ultimate Apollo moon landing breakdown with 'Apollo Unveiled' by SpaceBox. Whether you're a space buff, a curious mind, or just love a good read. Explore the real deal behind humanity's epic trip to the moon, separating fact from fiction. 'Apollo Unveiled' is your go-to guide for unraveling the mysteries and marvels of the Apollo era.</p>
-        <b>Price: £0.79</b>
-        <div class="paypal-button-container" id="paypal-button-container-3"></div>
-    </section>
+        <section class="variant-section visible">
+            <h2>Apollo Unveiled: SpaceBox's Comprehensive Moon Landing Analysis 🌑</h2>
+            <img src="product3.jpg" alt="Book" class="product-image">
+            <p>Dive into the ultimate Apollo moon landing breakdown with 'Apollo Unveiled' by SpaceBox. Whether you're a space buff, a curious mind, or just love a good read. Explore the real deal behind humanity's epic trip to the moon, separating fact from fiction. 'Apollo Unveiled' is your go-to guide for unraveling the mysteries and marvels of the Apollo era.</p>
+            <b>Price: £0.79</b>
+            <div class="paypal-button-container" id="paypal-button-container-3"></div>
+        </section>
 
-    <section class="variant-section">
-        <h2>EFC-4.2: High-Speed Flight Computer 🖥️</h2>
-        <img src='product1.jpg' alt="EFC-4.2" class="product-image">
-        <p>The EFC-4.2 flight computer is equipped with a MPU6050, which is an inertial measurement unit allowing the rocket to know its orientation. It also includes a BMP280 sensor for precise altitude and pressure readings, including temperature if desired.</p>
-        <b>Coming Soon...</b>
-    </section>
+        <section class="variant-section visible">
+            <h2>EFC-4.2: High-Speed Flight Computer 🖥️</h2>
+            <img src="product1.jpg" alt="EFC-4.2" class="product-image">
+            <p>The EFC-4.2 flight computer is equipped with a MPU6050, which is an inertial measurement unit allowing the rocket to know its orientation. It also includes a BMP280 sensor for precise altitude and pressure readings, including temperature if desired.</p>
+            <b>Coming Soon...</b>
+        </section>
 
-    <section class="variant-section">
-        <h2>TVC: Thrust Vector Control Mount 🚀</h2>
-        <img src='product2.jpg' alt="TVC Mount" class="product-image">
-        <p>This is the best Thrust Vector Control Mount you can buy for a model rocket. It offers the highest degree of freedom available and has been improved over 57 iterations for optimal performance.</p>
-        <b>Coming Soon...</b>
-    </section>
+        <section class="variant-section visible">
+            <h2>TVC: Thrust Vector Control Mount 🚀</h2>
+            <img src="product2.jpg" alt="TVC Mount" class="product-image">
+            <p>This is the best Thrust Vector Control Mount you can buy for a model rocket. It offers the highest degree of freedom available and has been improved over 57 iterations for optimal performance.</p>
+            <b>Coming Soon...</b>
+        </section>
 
-    <section class="variant-section">
-        <h2>Starter Kit: Beginner's Rocket Building Set 🔧</h2>
-        <img src='product4.jpg' alt="Starter Kit" class="product-image">
-        <p>The Starter Kit includes the EFC-4.2 flight computer, so when you're ready, you can utilize thrust vectoring in your projects. It also comes with a Parachute-Ejection-System (PES) and a static (non-vectoring) mount.</p>
-        <b>Coming Soon...</b>
-    </section>
+        <section class="variant-section visible">
+            <h2>Starter Kit: Beginner's Rocket Building Set 🔧</h2>
+            <img src="product4.jpg" alt="Starter Kit" class="product-image">
+            <p>The Starter Kit includes the EFC-4.2 flight computer, so when you're ready, you can utilize thrust vectoring in your projects. It also comes with a Parachute-Ejection-System (PES) and a static (non-vectoring) mount.</p>
+            <b>Coming Soon...</b>
+        </section>
 
-    <section class="variant-section">
-        <h2>Advanced Kit: Comprehensive Rocket Building Experience 💡</h2>
-        <img src='product5.jpg' alt="Advanced Kit" class="product-image">
-        <p>Advance your rocket building experience with our kit that includes a Rocket Body, EFC-4.2, TVC mount, and more for an in-depth project.</p>
-        <b>Coming Soon...</b>
-    </section>
-</main>
+        <section class="variant-section visible">
+            <h2>Advanced Kit: Comprehensive Rocket Building Experience 💡</h2>
+            <img src="product5.jpg" alt="Advanced Kit" class="product-image">
+            <p>Advance your rocket building experience with our kit that includes a Rocket Body, EFC-4.2, TVC mount, and more for an in-depth project.</p>
+            <b>Coming Soon...</b>
+        </section>
+    </main>
 
     <footer>
         <p>© 2024 SpaceBox, where the future of engineering and exploration begins.</p>
@@ -369,7 +358,7 @@
                 const rect = el.getBoundingClientRect();
                 const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
                 const windowWidth = (window.innerWidth || document.documentElement.clientWidth);
-                const buffer = 100; // Small buffer in pixels
+                const buffer = 100;
 
                 return (
                     rect.top <= windowHeight + buffer &&
