@@ -172,6 +172,7 @@
             transition: all 0.3s ease;
             font-size: 1rem;
             display: inline-block;
+            cursor: pointer;
         }
 
         .cta-button:hover {
@@ -290,6 +291,11 @@
             padding: 1rem;
         }
 
+        /* Hide the default PayPal button container */
+        .paypal-button-container {
+            display: none;
+        }
+
         @media (max-width: 768px) {
             .navbar .nav-links {
                 display: none;
@@ -319,7 +325,7 @@
             }
         
             .logo span {
-                margin-left: auto;
+                margin-left: 10px; /* Shift SPACEBOX right on mobile */
                 margin-right: auto;
             }
         
@@ -375,7 +381,7 @@
             <img src="product3.jpg" alt="Book titled Apollo Unveiled">
             <p>Dive into the ultimate Apollo moon landing breakdown with 'Apollo Unveiled' by SpaceBox. Whether you're a space buff, a curious mind, or just love a good read. Explore the real deal behind humanity's epic trip to the moon, separating fact from fiction. 'Apollo Unveiled' is your go-to guide for unraveling the mysteries and marvels of the Apollo era.</p>
             <p class="price">Price: £0.79</p>
-            <a href="#" class="cta-button">Buy Now</a>
+            <a href="#" class="cta-button" id="buy-now-btn">Buy Now</a>
             <div class="paypal-button-container" id="paypal-button-container-3"></div>
         </section>
 
@@ -471,7 +477,8 @@
     </script>
     <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=GBP"></script>
     <script>
-        paypal.Buttons({
+        // Initialize PayPal Buttons but don’t render them initially
+        const paypalButtons = paypal.Buttons({
             createOrder: function(data, actions) {
                 return actions.order.create({
                     purchase_units: [{
@@ -486,8 +493,20 @@
                 return actions.order.capture().then(function(details) {
                     alert('Transaction completed by ' + details.payer.name.given_name);
                 });
+            },
+            onError: function(err) {
+                console.error('PayPal error:', err);
+                alert('An error occurred during the payment process. Please try again.');
             }
-        }).render('#paypal-button-container-3');
+        });
+
+        // Trigger PayPal payment flow when "Buy Now" is clicked
+        document.getElementById('buy-now-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            paypalButtons.render('#paypal-button-container-3'); // Render PayPal UI
+            document.querySelector('.paypal-button-container').style.display = 'block'; // Show container
+            paypalButtons.open(); // Programmatically open PayPal window (if supported)
+        });
     </script>
 </body>
 </html>
