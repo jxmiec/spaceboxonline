@@ -26,7 +26,7 @@
         }
 
         body {
-            font-family: 'Roboto', Arial, sans-serif;
+            font-family: 'Montserrat', Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.8;
@@ -115,6 +115,18 @@
             transition: all 0.3s ease;
         }
 
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
         #mobileNav {
             display: none;
             width: 100%;
@@ -124,6 +136,10 @@
             top: 100%;
             left: 0;
             z-index: 999;
+        }
+
+        #mobileNav.active {
+            display: block;
         }
 
         #mobileNav li {
@@ -155,6 +171,7 @@
             text-decoration: none;
             transition: all 0.3s ease;
             font-size: 1rem;
+            display: inline-block;
         }
 
         .cta-button:hover {
@@ -194,6 +211,12 @@
             text-decoration: none;
             color: inherit;
             display: block;
+        }
+
+        .price {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 1rem 0;
         }
 
         footer {
@@ -315,7 +338,7 @@
     <header>
         <nav class="navbar">
             <div class="mobile-menu">
-                <a href="#" class="menu-toggle">
+                <a href="#" class="menu-toggle" aria-label="Toggle navigation menu">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -341,62 +364,63 @@
     </header>
 
     <main>
-        <section id="welcome-section" class="visible">
-            <h3>Where should you start?</h3>
+        <section id="welcome-section">
+            <h1>Where should you start?</h1>
             <br>
             <p>Whether you're just starting out or unsure where to begin, our collection of TVC rocket parts is here to guide you. For those beginners, delve into the world of rocket engineering by reading our featured book, "Apollo Unveiled," which debunks Apollo mission misconceptions and inspires with tales of how the pioneers of space technology achieved what was once thought impossible. Our range, from simple educational kits to more complex components, helps you to climb the engineering ladder, turning every challenge into an opportunity for growth. Let the legacy of those who invented space travel technology inspire your journey as you explore the vast potential of engineering with us.</p>
         </section>
 
-        <section class="variant-section visible">
+        <section class="variant-section">
             <h2>Apollo Unveiled: SpaceBox's Comprehensive Moon Landing Analysis 🌑</h2>
-            <img src="product3.jpg" alt="Book" class="product-image">
+            <img src="product3.jpg" alt="Book titled Apollo Unveiled">
             <p>Dive into the ultimate Apollo moon landing breakdown with 'Apollo Unveiled' by SpaceBox. Whether you're a space buff, a curious mind, or just love a good read. Explore the real deal behind humanity's epic trip to the moon, separating fact from fiction. 'Apollo Unveiled' is your go-to guide for unraveling the mysteries and marvels of the Apollo era.</p>
-            <b>Price: £0.79</b>
+            <p class="price">Price: £0.79</p>
+            <a href="#" class="cta-button">Buy Now</a>
             <div class="paypal-button-container" id="paypal-button-container-3"></div>
         </section>
 
-        <section class="variant-section visible" id="EFC-4.2-section">
+        <section class="variant-section" id="EFC_4_2-section">
             <h2>EFC-4.2: High-Speed Flight Computer 🖥️</h2>
-            <button class="advanced-info-btn" onclick="toggleAdvancedInfo('EFC-4.2')">Advanced Info</button>
-            <img src="product1.jpg" alt="EFC-4.2" class="product-image">
+            <button class="advanced-info-btn" onclick="toggleAdvancedInfo('EFC_4_2')">Advanced Info</button>
+            <img src="product1.jpg" alt="EFC-4.2 High-Speed Flight Computer">
             <p>The EFC-4.2 flight computer is equipped with a MPU6050, which is an inertial measurement unit allowing the rocket to know its orientation. It also includes a BMP280 sensor for precise altitude and pressure readings, including temperature if desired.</p>
-            <div class="advanced-description" id="EFC-4.2-advanced">
+            <div class="advanced-description" id="EFC_4_2-advanced">
                 <p>The EFC-4.2 employs advanced algorithms for real-time data processing. It's designed with a fail-safe mode for emergency operations, ensuring reliability in critical conditions. Its integration with the MPU6050 allows for precise control adjustments based on orientation data, enhancing flight stability.</p>
             </div>
-            <b>Coming Soon...</b>
+            <p class="price">Coming Soon...</p>
         </section>
 
-        <section class="variant-section visible" id="TVC-section">
+        <section class="variant-section" id="TVC-section">
             <h2>TVC: Thrust Vector Control Mount 🚀</h2>
             <button class="advanced-info-btn" onclick="toggleAdvancedInfo('TVC')">Advanced Info</button>
-            <img src="product2.jpg" alt="TVC Mount" class="product-image">
+            <img src="product2.jpg" alt="Thrust Vector Control Mount">
             <p>This is the best Thrust Vector Control Mount you can buy for a model rocket. It offers the highest degree of freedom available and has been improved over 57 iterations for optimal performance.</p>
             <div class="advanced-description" id="TVC-advanced">
                 <p>Our TVC mount features a unique dual-axis gimbal system, which provides exceptional control over rocket trajectory. Made from aerospace-grade materials, it withstands extreme conditions and offers precise thrust vectoring, crucial for complex maneuvers and stability during flight.</p>
             </div>
-            <b>Coming Soon...</b>
+            <p class="price">Coming Soon...</p>
         </section>
 
-        <section class="variant-section visible" id="StarterKit-section">
+        <section class="variant-section" id="StarterKit-section">
             <h2>Starter Kit: Beginner's Rocket Building Set 🔧</h2>
             <button class="advanced-info-btn" onclick="toggleAdvancedInfo('StarterKit')">Advanced Info</button>
-            <img src="product4.jpg" alt="Starter Kit" class="product-image">
+            <img src="product4.jpg" alt="Beginner's Rocket Building Starter Kit">
             <p>The Starter Kit includes the EFC-4.2 flight computer, so when you're ready, you can utilize thrust vectoring in your projects. It also comes with a Parachute-Ejection-System (PES) and a static (non-vectoring) mount.</p>
             <div class="advanced-description" id="StarterKit-advanced">
                 <p>This kit is perfect for learning the fundamentals of rocket construction and flight control. The included PES provides a safe recovery mechanism, and the kit's modularity allows for upgrades as your skills advance. It's an ideal starting point for understanding basic aerodynamics and electronics in rocketry.</p>
             </div>
-            <b>Coming Soon...</b>
+            <p class="price">Coming Soon...</p>
         </section>
 
-        <section class="variant-section visible" id="AdvancedKit-section">
+        <section class="variant-section" id="AdvancedKit-section">
             <h2>Advanced Kit: Comprehensive Rocket Building Experience 💡</h2>
             <button class="advanced-info-btn" onclick="toggleAdvancedInfo('AdvancedKit')">Advanced Info</button>
-            <img src="product5.jpg" alt="Advanced Kit" class="product-image">
+            <img src="product5.jpg" alt="Advanced Rocket Building Kit">
             <p>Advance your rocket building experience with our kit that includes a Rocket Body, EFC-4.2, TVC mount, and more for an in-depth project.</p>
             <div class="advanced-description" id="AdvancedKit-advanced">
                 <p>This advanced kit is tailored for those looking to explore complex rocket engineering. It includes high-precision components and a comprehensive guide for assembly, testing, and flight optimization. The kit supports advanced experiments in propulsion, guidance, and control systems.</p>
             </div>
-            <b>Coming Soon...</b>
+            <p class="price">Coming Soon...</p>
         </section>
     </main>
 
@@ -405,6 +429,33 @@
     </footer>
 
     <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function(e) {
+            e.preventDefault();
+            const mobileNav = document.getElementById('mobileNav');
+            const menuToggle = this;
+            mobileNav.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // Section visibility on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => {
+                section.classList.remove('visible'); // Remove initially
+                observer.observe(section);
+            });
+        });
+
+        // Toggle advanced info
         function toggleAdvancedInfo(productId) {
             const description = document.getElementById(productId + '-advanced');
             const button = document.querySelector(`#${productId}-section .advanced-info-btn`);
@@ -417,6 +468,26 @@
                 button.textContent = "Hide Info";
             }
         }
+    </script>
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=GBP"></script>
+    <script>
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '0.79',
+                            currency_code: 'GBP'
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('Transaction completed by ' + details.payer.name.given_name);
+                });
+            }
+        }).render('#paypal-button-container-3');
     </script>
 </body>
 </html>
