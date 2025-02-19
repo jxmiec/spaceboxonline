@@ -291,9 +291,19 @@
             padding: 1rem;
         }
 
-        /* Hide the default PayPal button container */
-        .paypal-button-container {
-            display: none;
+        /* Style PayPal button to match cta-button */
+        #paypal-button-container-3 .paypal-button {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        #paypal-button-container-3 .paypal-button:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.05);
         }
 
         @media (max-width: 768px) {
@@ -304,7 +314,7 @@
             .mobile-menu {
                 display: block;
                 position: absolute;
-                left: 1rem;
+                left: 0; /* Align to left edge */
                 top: 50%;
                 transform: translateY(-50%);
             }
@@ -325,7 +335,7 @@
             }
         
             .logo span {
-                margin-left: 10px; /* Shift SPACEBOX right on mobile */
+                margin-left: 40px; /* Shift SPACEBOX right to clear hamburger */
                 margin-right: auto;
             }
         
@@ -381,8 +391,7 @@
             <img src="product3.jpg" alt="Book titled Apollo Unveiled">
             <p>Dive into the ultimate Apollo moon landing breakdown with 'Apollo Unveiled' by SpaceBox. Whether you're a space buff, a curious mind, or just love a good read. Explore the real deal behind humanity's epic trip to the moon, separating fact from fiction. 'Apollo Unveiled' is your go-to guide for unraveling the mysteries and marvels of the Apollo era.</p>
             <p class="price">Price: £0.79</p>
-            <a href="#" class="cta-button" id="buy-now-btn">Buy Now</a>
-            <div class="paypal-button-container" id="paypal-button-container-3"></div>
+            <div id="paypal-button-container-3"></div>
         </section>
 
         <section class="variant-section" id="EFC_4_2-section">
@@ -477,8 +486,7 @@
     </script>
     <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=GBP"></script>
     <script>
-        // Initialize PayPal Buttons but don’t render them initially
-        const paypalButtons = paypal.Buttons({
+        paypal.Buttons({
             createOrder: function(data, actions) {
                 return actions.order.create({
                     purchase_units: [{
@@ -497,16 +505,14 @@
             onError: function(err) {
                 console.error('PayPal error:', err);
                 alert('An error occurred during the payment process. Please try again.');
+            },
+            style: {
+                layout: 'vertical',
+                color: 'white',
+                shape: 'pill',
+                label: 'paypal'
             }
-        });
-
-        // Trigger PayPal payment flow when "Buy Now" is clicked
-        document.getElementById('buy-now-btn').addEventListener('click', function(e) {
-            e.preventDefault();
-            paypalButtons.render('#paypal-button-container-3'); // Render PayPal UI
-            document.querySelector('.paypal-button-container').style.display = 'block'; // Show container
-            paypalButtons.open(); // Programmatically open PayPal window (if supported)
-        });
+        }).render('#paypal-button-container-3');
     </script>
 </body>
 </html>
