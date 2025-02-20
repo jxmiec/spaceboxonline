@@ -287,8 +287,24 @@
 
         .advanced-description.show {
             display: block;
-            max-height: 500px; /* Adjust this value based on content */
+            max-height: 500px;
             padding: 1rem;
+        }
+
+        /* PayPal button styling */
+        .paypal-buttons {
+            max-width: 250px !important;
+            margin: 0 auto !important;
+        }
+
+        /* Fix bullet point indentation */
+        .advanced-description ul {
+            padding-left: 20px;
+            list-style-position: outside;
+        }
+
+        .advanced-description li {
+            margin-left: 10px;
         }
 
         @media (max-width: 768px) {
@@ -299,7 +315,7 @@
             .mobile-menu {
                 display: block;
                 position: absolute;
-                left: 0; /* Align to left edge */
+                left: 0;
                 top: 50%;
                 transform: translateY(-50%);
             }
@@ -320,7 +336,7 @@
             }
         
             .logo span {
-                margin-left: 40px; /* Shift SPACEBOX right to clear hamburger */
+                margin-left: 40px;
                 margin-right: auto;
             }
         
@@ -376,7 +392,7 @@
             <img src="product3.jpg" alt="Book titled Apollo Unveiled">
             <p>Dive into the ultimate Apollo moon landing breakdown with 'Apollo Unveiled' by SpaceBox. Whether you're a space buff, a curious mind, or just love a good read. Explore the real deal behind humanity's epic trip to the moon, separating fact from fiction. 'Apollo Unveiled' is your go-to guide for unraveling the mysteries and marvels of the Apollo era.</p>
             <p class="price">Price: £0.79</p>
-            <div id="paypal-button-container-3"></div>
+            <div id="paypal-button-container-3" style="max-width: 250px; margin: 0 auto;"></div>
             <p style="font-size: 0.8em; margin-top: 5px;">You can pay with PayPal or with your credit/debit card.</p>
         </section>
 
@@ -483,7 +499,7 @@
             }, { threshold: 0.1 });
 
             sections.forEach(section => {
-                section.classList.remove('visible'); // Remove initially
+                section.classList.remove('visible');
                 observer.observe(section);
             });
         });
