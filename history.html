@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SpaceBox - History</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceBox - Lunar Landing</title>
     <link rel="icon" type="image/x-icon" href="spacebox-logo.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet"> 
     <style>
@@ -20,11 +20,6 @@
             box-sizing: border-box;
         }
 
-        html, body {
-            overflow: auto;
-            min-height: 100vh;
-        }
-
         body {
             font-family: 'Montserrat', Arial, sans-serif;
             background-color: var(--bg-color);
@@ -34,268 +29,63 @@
             text-align: center;
         }
 
-        header {
+        #game-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 20px;
+        }
+
+        #game-canvas {
             background: #000;
-            color: #fff;
-            padding: 1rem 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            width: 800px;
+            height: 600px;
             margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .navbar a {
-            color: #fff;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            transition: background 0.3s ease;
-        }
-
-        .navbar a:hover {
-            background: var(--primary-color);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo img {
-            height: 50px;
-            width: auto;
-            margin-right: 15px;
-        }
-
-        .logo span {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .logo a:hover {
-            background: none;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-        }
-
-        .nav-links li {
-            margin-left: 1.5rem;
-        }
-
-        .mobile-menu {
-            display: none;
-        }
-
-        .menu-toggle {
             display: block;
-            cursor: pointer;
-            color: #fff;
-            font-size: 1.5rem;
-            padding: 0.5rem;
-            margin-right: 1rem;
         }
 
-        .menu-toggle span {
-            display: block;
-            width: 25px;
-            height: 3px;
+        #controls {
+            margin: 20px 0;
+            padding: 1rem;
             background: #fff;
-            margin: 5px 0;
-            transition: all 0.3s ease;
+            border-radius: 10px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
         }
 
-        .menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
-        #mobileNav {
-            display: none;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            padding: 1rem 0;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            z-index: 999;
-        }
-
-        #mobileNav.active {
-            display: block;
-        }
-
-        #mobileNav li {
-            margin: 0;
-        }
-
-        #mobileNav a {
-            display: block;
-            text-align: left;
-            padding: 10px 1rem;
-        }
-
-        main {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 10px;
-            min-height: calc(100vh - 150px);
-        }
-        
-        .shop-cta {
-            text-align: center;
-            margin-top: 20px;
-        }
-        
-        .cta-button {
+        .control-button {
             background-color: var(--primary-color);
             color: #fff;
-            padding: 10px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-            display: inline-block;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            margin: 0 5px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
-        .cta-button:hover {
+        .control-button:hover {
             background-color: var(--secondary-color);
-            transform: scale(1.05);
         }
-        
-        .propulsion-list {
-            padding-left: 2rem;
-            list-style-position: outside;
+
+        #status {
+            position: absolute;
+            width: 800px;
+            color: #fff;
+            font-size: 1rem;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
         }
-        
-        .propulsion-list li {
+
+        #speed {
+            float: left;
             margin-left: 10px;
         }
 
-        section {
-            background: #fff;
-            padding: 2rem;
-            margin: 3rem 0;
-            border-radius: 20px;
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease-out, transform 0.5s ease-out;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        section:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
-        }
-
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        section h2 {
-            margin-bottom: 2rem;
-            color: var(--primary-color);
-            font-size: 2rem;
-        }
-
-        .section-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        footer {
-            background-color: var(--primary-color);
-            color: #fff;
-            text-align: center;
-            padding: 2rem 0;
-            transition: background-color 0.3s ease;
-            position: relative;
-        }
-
-        footer:hover {
-            background-color: var(--secondary-color);
-        }
-
-        footer p {
-            font-size: 1rem;
-            animation: fadeIn 1s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        @media (max-width: 768px) {
-            .navbar .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu {
-                display: block;
-                position: absolute;
-                left: 0;
-                top: 50%;
-                transform: translateY(-50%);
-            }
-        
-            .navbar {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .logo {
-                margin-bottom: 0;
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding-top: 1rem;
-                padding-bottom: 1rem;
-            }
-        
-            .logo span {
-                margin-left: 40px;
-                margin-right: auto;
-            }
-        
-            .logo a {
-                margin-left: auto;
-                margin-right: 0;
-            }
-        
-            .menu-toggle {
-                order: 1;
-            }
+        #propellant {
+            float: right;
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -317,64 +107,32 @@
             </div>
             <ul class="nav-links">
                 <li><a href="/discover">Discover</a></li>
-                <li><a href="/history" class="active">History</a></li>
+                <li><a href="/history" class="active">Lunar Landing</a></li>
                 <li><a href="/shop">Shop</a></li>
             </ul>
             <ul class="nav-links" id="mobileNav">
                 <li><a href="/discover">Discover</a></li>
-                <li><a href="/history" class="active">History</a></li>
+                <li><a href="/history" class="active">Lunar Landing</a></li>
                 <li><a href="/shop">Shop</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section>
-            <h2>Mercury Program</h2>
-            <p><strong>Mercury Redstone 1A (MR-1A)</strong>: 19 December 1960, suborbital.</p>
-            <p><strong>Mercury Redstone 2 (MR-2)</strong>: 31 January 1961, suborbital, carried chimpanzee "Ham".</p>
-            <p><strong>Mercury Redstone 3 (MR-3)</strong>: 5 May 1961, suborbital, piloted by Alan Shepard.</p>
-            <p><strong>Mercury Redstone 4 (MR-4)</strong>: 21 July 1961, piloted by Gus Grissom, film was lost when the spacecraft sank.</p>
-            <p><strong>Mercury Atlas 4 (MA-4)</strong>: 13 September 1961, 1 orbit.</p>
-            <p><strong>Mercury Atlas 5 (MA-5)</strong>: 29 November 1961, 2 orbits, carried chimpanzee "Enos".</p>
-            <p><strong>Mercury Atlas 6 (MA-6)</strong>: 20 February 1962, 3 orbits, piloted by John Glenn.</p>
-            <p><strong>Mercury Atlas 7 (MA-7)</strong>: 24 May 1962, 3 orbits, piloted by Scott Carpenter.</p>
-            <p><strong>Mercury Atlas 8 (MA-8)</strong>: 3 October 1962, 6 orbits, piloted by Walter Schirra.</p>
-            <p><strong>Mercury Atlas 9 (MA-9)</strong>: 15 May 1963, 22 orbits, piloted by Gordon Cooper.</p>
-        </section>
-
-        <section>
-            <h2>Gemini Program</h2>
-            <p><strong>Gemini III</strong>: 23 March 1965, first crewed flight.</p>
-            <p><strong>Gemini IV</strong>: 3-7 June 1965, first EVA.</p>
-            <p><strong>Gemini V</strong>: 21-29 August 1965, first week-long flight, first fuel cells.</p>
-            <p><strong>Gemini VII</strong>: 4-18 December 1965, first rendezvous with crewed vehicle (Gemini VI-A).</p>
-            <p><strong>Gemini VI-A</strong>: 15-16 December 1965, first rendezvous with crewed vehicle (Gemini VII).</p>
-            <p><strong>Gemini VIII</strong>: 16-17 March 1966, first docking (Agena target vehicle).</p>
-            <p><strong>Gemini IX-A</strong>: 3-6 June 1966, third rendezvous.</p>
-            <p><strong>Gemini X</strong>: 18-21 July 1966, first use of docked Agena to propel Gemini spacecraft.</p>
-            <p><strong>Gemini XI</strong>: 12-15 September 1966, docking and maneuvering with Agena, altitude record.</p>
-            <p><strong>Gemini XII</strong>: 11-15 November 1966, first fully successful EVA (2 hours 6 minutes).</p>
-        </section>
-
-        <section>
-            <h2>Apollo Program</h2>
-            <p><strong>Apollo 1</strong>: 27 January 1967, Not flown, Cabin fire (Saturn-IB)</p>
-            <p><strong>Apollo 4</strong>: 09 November 1967, First test of the Saturn V</p>
-            <p><strong>Apollo 5</strong>: 22 January 1968, Unmanned test of the LM (Saturn-IB, same used in Apollo 1)</p>
-            <p><strong>Apollo 6</strong>: 04 April 1968, Second test of the Saturn V</p>
-            <p><strong>Apollo 7</strong>: 11-22 October 1968, First manned CSM, Earth orbit (Saturn-IB)</p>
-            <p><strong>Apollo 8</strong>: 21-27 December 1968, First humans in lunar orbit</p>
-            <p><strong>Apollo 9</strong>: 3-13 March 1969, Manned docking of the LM and CSM in Earth orbit</p>
-            <p><strong>Apollo 10</strong>: 18-26 May 1969, Manned testing the LM in lunar orbit</p>
-            <p><strong>Apollo 11</strong>: 16-24 July 1969, First manned landing on the Moon</p>
-            <p><strong>Apollo 12</strong>: 14-24 November 1969, Precision landing near Surveyor 3</p>
-            <p><strong>Apollo 13</strong>: 11-17 April 1970, Successful failure, in-flight abort</p>
-            <p><strong>Apollo 14</strong>: 31 January-9 February 1971, Exploration of Fra Mauro</p>
-            <p><strong>Apollo 15</strong>: 26 July-7 August 1971, First J-type mission, lunar rover used</p>
-            <p><strong>Apollo 16</strong>: 16-27 April 1972, Exploration of Descartes Highlands</p>
-            <p><strong>Apollo 17</strong>: 7-19 December 1972, Last manned Moon landing, Taurus-Littrow valley</p>
-            <p>Note: The designations Apollo 2 and 3 were not used for any missions. Following the tragic Apollo 1 fire, the widows of the Apollo 1 crew requested the next successful manned mission to be named Apollo 1 in honor of their husbands. The missions AS-201, AS-202, and AS-203, which were important tests leading up to the manned flights, are worth noting but were not officially named Apollo 2 or 3.</p>
+        <section id="game-container">
+            <h2>Lunar Landing Challenge</h2>
+            <p>Land the rocket softly (< 2 m/s) using just enough propellant!</p>
+            <div id="status">
+                <span id="speed">Speed: 0 m/s</span>
+                <span id="propellant">Propellant: 100%</span>
+            </div>
+            <canvas id="game-canvas" width="800" height="600"></canvas>
+            <div id="controls">
+                <button class="control-button" id="left-thruster">Left Thruster</button>
+                <button class="control-button" id="main-thruster">Main Thruster</button>
+                <button class="control-button" id="right-thruster">Right Thruster</button>
+                <button class="control-button" id="restart">Play Again</button>
+            </div>
         </section>
     </main>
 
@@ -392,22 +150,155 @@
             menuToggle.classList.toggle('active');
         });
 
-        // Section visibility on scroll
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('section');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
+        // Game Logic
+        const canvas = document.getElementById('game-canvas');
+        const ctx = canvas.getContext('2d');
+        const speedDisplay = document.getElementById('speed');
+        const propellantDisplay = document.getElementById('propellant');
 
-            sections.forEach(section => {
-                section.classList.remove('visible');
-                observer.observe(section);
-            });
+        let game = {
+            rocket: {
+                x: 400,
+                y: 50,
+                width: 20,
+                height: 40,
+                velocityY: 0,
+                velocityX: 0,
+                propellant: 30 // Calibrated for just enough with perfect play
+            },
+            landingPad: {
+                x: 350,
+                y: 550,
+                width: 100,
+                height: 10
+            },
+            gravity: 0.05, // Lunar gravity (~1/6 Earth)
+            gameOver: false
+        };
+
+        function drawRocket() {
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(game.rocket.x, game.rocket.y, game.rocket.width, game.rocket.height);
+            if (mainThrust) {
+                ctx.fillStyle = '#ff4500';
+                ctx.fillRect(game.rocket.x + 5, game.rocket.y + game.rocket.height, 10, 10);
+            }
+        }
+
+        function drawLandingPad() {
+            ctx.fillStyle = '#666';
+            ctx.fillRect(game.landingPad.x, game.landingPad.y, game.landingPad.width, game.landingPad.height);
+        }
+
+        function drawStars() {
+            ctx.fillStyle = '#fff';
+            for (let i = 0; i < 50; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                ctx.fillRect(x, y, 2, 2);
+            }
+        }
+
+        let mainThrust = false;
+        let leftThrust = false;
+        let rightThrust = false;
+
+        function update() {
+            if (game.gameOver) return;
+
+            // Apply gravity
+            game.rocket.velocityY += game.gravity;
+
+            // Apply thrusters
+            if (mainThrust && game.rocket.propellant > 0) {
+                game.rocket.velocityY -= 0.15;
+                game.rocket.propellant -= 0.1;
+            }
+            if (leftThrust && game.rocket.propellant > 0) {
+                game.rocket.velocityX -= 0.05;
+                game.rocket.propellant -= 0.05;
+            }
+            if (rightThrust && game.rocket.propellant > 0) {
+                game.rocket.velocityX += 0.05;
+                game.rocket.propellant -= 0.05;
+            }
+
+            // Update position
+            game.rocket.x += game.rocket.velocityX;
+            game.rocket.y += game.rocket.velocityY;
+
+            // Boundaries
+            if (game.rocket.x < 0) game.rocket.x = 0;
+            if (game.rocket.x > canvas.width - game.rocket.width) 
+                game.rocket.x = canvas.width - game.rocket.width;
+
+            // Convert velocity to m/s (approximate scale)
+            const speedMs = Math.abs(game.rocket.velocityY * 10).toFixed(1);
+
+            // Check landing
+            if (game.rocket.y + game.rocket.height >= game.landingPad.y && 
+                game.rocket.x >= game.landingPad.x && 
+                game.rocket.x + game.rocket.width <= game.landingPad.x + game.landingPad.width) {
+                game.gameOver = true;
+                if (speedMs < 2) {
+                    alert('Success! Perfect landing at ' + speedMs + ' m/s');
+                } else {
+                    alert('Failure! Landing too fast at ' + speedMs + ' m/s');
+                }
+            } else if (game.rocket.y > canvas.height) {
+                game.gameOver = true;
+                alert('Failure! You crashed into the lunar surface!');
+            }
+
+            // Update display
+            speedDisplay.textContent = `Speed: ${speedMs} m/s`;
+            propellantDisplay.textContent = `Propellant: ${Math.max(0, Math.floor(game.rocket.propellant / 30 * 100))}%`;
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawStars();
+            drawLandingPad();
+            drawRocket();
+        }
+
+        function gameLoop() {
+            update();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+
+        function resetGame() {
+            game.rocket.x = 400;
+            game.rocket.y = 50;
+            game.rocket.velocityX = 0;
+            game.rocket.velocityY = 0;
+            game.rocket.propellant = 30;
+            game.gameOver = false;
+        }
+
+        // Controls
+        document.getElementById('main-thruster').addEventListener('mousedown', () => mainThrust = true);
+        document.getElementById('main-thruster').addEventListener('mouseup', () => mainThrust = false);
+        document.getElementById('left-thruster').addEventListener('mousedown', () => leftThrust = true);
+        document.getElementById('left-thruster').addEventListener('mouseup', () => leftThrust = false);
+        document.getElementById('right-thruster').addEventListener('mousedown', () => rightThrust = true);
+        document.getElementById('right-thruster').addEventListener('mouseup', () => rightThrust = false);
+        document.getElementById('restart').addEventListener('click', resetGame);
+
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowUp') mainThrust = true;
+            if (e.key === 'ArrowLeft') leftThrust = true;
+            if (e.key === 'ArrowRight') rightThrust = true;
         });
+        document.addEventListener('keyup', (e) => {
+            if (e.key === 'ArrowUp') mainThrust = false;
+            if (e.key === 'ArrowLeft') leftThrust = false;
+            if (e.key === 'ArrowRight') rightThrust = false;
+        });
+
+        gameLoop();
     </script>
 </body>
 </html>
