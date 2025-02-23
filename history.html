@@ -213,6 +213,42 @@
             margin-right: 10px;
         }
 
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .popup.success {
+            border: 3px solid #2ecc71;
+        }
+
+        .popup.failure {
+            border: 3px solid #e74c3c;
+        }
+
+        .popup button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .popup button:hover {
+            background: var(--secondary-color);
+        }
+
         footer {
             background-color: var(--primary-color);
             color: #fff;
@@ -313,9 +349,19 @@
                 <span id="propellant">Propellant: 100%</span>
             </div>
             <canvas id="game-canvas" width="800" height="600"></canvas>
-            <button id="restart" style="margin-top: 20px; padding: 10px 20px; background: var(--primary-color); color: #fff; border: none; border-radius: 5px; cursor: pointer;">Play Again</button>
         </section>
     </main>
+
+    <div id="successPopup" class="popup success">
+        <h3>Success!</h3>
+        <p>You landed safely at <span id="successSpeed"></span> m/s!</p>
+        <button onclick="resetGame()">Play Again</button>
+    </div>
+    <div id="failPopup" class="popup failure">
+        <h3>Mission Failed</h3>
+        <p><span id="failMessage"></span></p>
+        <button onclick="resetGame()">Try Again</button>
+    </div>
 
     <footer>
         <p>© 2024 SpaceBox, where the future of engineering and exploration begins.</p>
@@ -353,6 +399,10 @@
         const ctx = canvas.getContext('2d');
         const speedDisplay = document.getElementById('speed');
         const propellantDisplay = document.getElementById('propellant');
+        const successPopup = document.getElementById('successPopup');
+        const failPopup = document.getElementById('failPopup');
+        const successSpeed = document.getElementById('successSpeed');
+        const failMessage = document.getElementById('failMessage');
 
         let game = {
             rocket: {
@@ -362,7 +412,7 @@
                 height: 60,
                 velocityY: 0,
                 velocityX: 0,
-                propellant: 35 // Tuned for just enough with perfect play
+                propellant: 35
             },
             landingPad: {
                 x: 350,
@@ -375,23 +425,20 @@
         };
 
         function drawRocket() {
-            // Detailed rocket
             ctx.fillStyle = '#fff';
             ctx.beginPath();
-            ctx.moveTo(game.rocket.x + game.rocket.width / 2, game.rocket.y); // Nose
-            ctx.lineTo(game.rocket.x, game.rocket.y + game.rocket.height * 0.7); // Left side
-            ctx.lineTo(game.rocket.x + 5, game.rocket.y + game.rocket.height); // Left base
-            ctx.lineTo(game.rocket.x + game.rocket.width - 5, game.rocket.y + game.rocket.height); // Right base
-            ctx.lineTo(game.rocket.x + game.rocket.width, game.rocket.y + game.rocket.height * 0.7); // Right side
+            ctx.moveTo(game.rocket.x + game.rocket.width / 2, game.rocket.y);
+            ctx.lineTo(game.rocket.x, game.rocket.y + game.rocket.height * 0.7);
+            ctx.lineTo(game.rocket.x + 5, game.rocket.y + game.rocket.height);
+            ctx.lineTo(game.rocket.x + game.rocket.width - 5, game.rocket.y + game.rocket.height);
+            ctx.lineTo(game.rocket.x + game.rocket.width, game.rocket.y + game.rocket.height * 0.7);
             ctx.closePath();
             ctx.fill();
 
-            // Fins
             ctx.fillStyle = '#ccc';
-            ctx.fillRect(game.rocket.x - 5, game.rocket.y + game.rocket.height * 0.7, 5, 15);
+            ctx.fillRect(game.rocket.x - 5, game.rocket.y + game.rolley.height * 0.7, 5, 15);
             ctx.fillRect(game.rocket.x + game.rocket.width, game.rocket.y + game.rocket.height * 0.7, 5, 15);
 
-            // Thruster flame
             if (mainThrust) {
                 ctx.fillStyle = '#ff4500';
                 ctx.beginPath();
@@ -404,15 +451,10 @@
         }
 
         function drawLunarSurface() {
-            // Lunar ground
             ctx.fillStyle = '#666';
             ctx.fillRect(0, 570, canvas.width, 30);
-
-            // Landing pad
             ctx.fillStyle = '#888';
             ctx.fillRect(game.landingPad.x, game.landingPad.y, game.landingPad.width, game.landingPad.height);
-
-            // Craters
             ctx.fillStyle = '#555';
             ctx.beginPath();
             ctx.arc(100, 585, 20, 0, Math.PI * 2);
@@ -437,10 +479,8 @@
         function update() {
             if (game.gameOver) return;
 
-            // Apply gravity
             game.rocket.velocityY += game.gravity;
 
-            // Apply thrusters
             if (mainThrust && game.rocket.propellant > 0) {
                 game.rocket.velocityY -= 0.15;
                 game.rocket.propellant -= 0.1;
@@ -454,34 +494,32 @@
                 game.rocket.propellant -= 0.05;
             }
 
-            // Update position
             game.rocket.x += game.rocket.velocityX;
             game.rocket.y += game.rocket.velocityY;
 
-            // Boundaries
             if (game.rocket.x < 0) game.rocket.x = 0;
             if (game.rocket.x > canvas.width - game.rocket.width) 
                 game.rocket.x = canvas.width - game.rocket.width;
 
-            // Convert velocity to m/s
             const speedMs = Math.abs(game.rocket.velocityY * 10).toFixed(1);
 
-            // Check landing
             if (game.rocket.y + game.rocket.height >= game.landingPad.y && 
                 game.rocket.x >= game.landingPad.x && 
                 game.rocket.x + game.rocket.width <= game.landingPad.x + game.landingPad.width) {
                 game.gameOver = true;
                 if (speedMs <= 5) {
-                    alert('Success! Landed at ' + speedMs + ' m/s');
+                    successSpeed.textContent = speedMs;
+                    successPopup.style.display = 'block';
                 } else {
-                    alert('Failure! Landed too fast at ' + speedMs + ' m/s');
+                    failMessage.textContent = `Landed too fast at ${speedMs} m/s`;
+                    failPopup.style.display = 'block';
                 }
             } else if (game.rocket.y + game.rocket.height > canvas.height - 30) {
                 game.gameOver = true;
-                alert('Failure! Crashed into lunar surface at ' + speedMs + ' m/s');
+                failMessage.textContent = `Crashed into lunar surface at ${speedMs} m/s`;
+                failPopup.style.display = 'block';
             }
 
-            // Update display
             speedDisplay.textContent = `Speed: ${speedMs} m/s`;
             propellantDisplay.textContent = `Propellant: ${Math.max(0, Math.floor(game.rocket.propellant / 35 * 100))}%`;
         }
@@ -506,21 +544,32 @@
             game.rocket.velocityY = 0;
             game.rocket.propellant = 35;
             game.gameOver = false;
+            leftThrust = false;
+            rightThrust = false;
+            mainThrust = false;
+            successPopup.style.display = 'none';
+            failPopup.style.display = 'none';
         }
 
         // Keyboard controls
         document.addEventListener('keydown', (e) => {
-            if (e.key === ' ') mainThrust = true;
+            if (e.key === ' ' && !game.gameOver) {
+                mainThrust = true;
+                e.preventDefault(); // Prevent page scrolling
+            }
             if (e.key === 'ArrowLeft') leftThrust = true;
             if (e.key === 'ArrowRight') rightThrust = true;
         });
+
         document.addEventListener('keyup', (e) => {
-            if (e.key === ' ') mainThrust = false;
+            if (e.key === ' ' && !game.gameOver) {
+                mainThrust = false;
+            } else if (e.key === ' ' && game.gameOver) {
+                resetGame();
+            }
             if (e.key === 'ArrowLeft') leftThrust = false;
             if (e.key === 'ArrowRight') rightThrust = false;
         });
-
-        document.getElementById('restart').addEventListener('click', resetGame);
 
         gameLoop();
     </script>
