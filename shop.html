@@ -14,342 +14,353 @@
             --bg-color: #f0f2f5;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        html, body {
-            overflow: auto;
-            min-height: 100vh;
-        }
+    html, body {
+        overflow: auto;
+        min-height: 100vh;
+    }
 
-        body {
-            font-family: 'Montserrat', Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.8;
-            font-size: 16px;
-            text-align: center;
-        }
+    body {
+        font-family: 'Montserrat', Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.8;
+        font-size: 16px;
+        text-align: center;
+    }
 
-        header {
-            background: #000;
-            color: #fff;
-            padding: 1rem 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+    header {
+        background: #000;
+        color: #fff;
+        padding: 1rem 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
 
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .navbar a {
+        color: #fff;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        transition: background 0.3s ease;
+    }
+
+    .navbar a:hover {
+        background: var(--primary-color);
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+    }
+
+    .logo img {
+        height: 50px;
+        width: auto;
+        margin-right: 15px;
+    }
+
+    .logo span {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .logo a:hover {
+        background: none;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+    }
+
+    .nav-links li {
+        margin-left: 1.5rem;
+    }
+
+    .mobile-menu {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+        color: #fff;
+        font-size: 1.5rem;
+        padding: 0.5rem;
+        margin-right: 1rem;
+    }
+
+    .menu-toggle span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background: #fff;
+        margin: 5px 0;
+        transition: all 0.3s ease;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    #mobileNav {
+        display: none;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 1rem 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 999;
+    }
+
+    #mobileNav.active {
+        display: block;
+    }
+
+    #mobileNav li {
+        margin: 0;
+    }
+
+    #mobileNav a {
+        display: block;
+        text-align: left;
+        padding: 10px 1rem;
+    }
+
+    main {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 10px;
+        min-height: calc(100vh - 150px);
+    }
+    
+    .shop-cta {
+        margin-top: 20px;
+    }
+    
+    .cta-button {
+        background-color: var(--primary-color);
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 50px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .cta-button:hover {
+        background-color: var(--secondary-color);
+        transform: scale(1.05);
+    }
+    
+    section {
+        position: relative;
+        background: #fff;
+        padding: 2rem;
+        margin: 3rem auto;
+        border-radius: 20px;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease-out, transform 0.5s ease-out;
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    section:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    section.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    section h2 {
+        margin-bottom: 2rem;
+        color: var(--primary-color);
+        font-size: 2rem;
+    }
+
+    .section-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+
+    .price {
+        font-weight: bold;
+        color: var(--primary-color);
+        margin: 1rem 0;
+    }
+
+    footer {
+        background-color: var(--primary-color);
+        color: #fff;
+        text-align: center;
+        padding: 2rem 0;
+        transition: background-color 0.3s ease;
+        position: relative;
+    }
+
+    footer:hover {
+        background-color: var(--secondary-color);
+    }
+
+    footer p {
+        font-size: 1rem;
+        animation: fadeIn 1s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    img {
+        max-width: 350px;
+        height: auto;
+    }
+
+    .advanced-info-btn {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background-color: var(--primary-color);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+        transition: all 0.3s ease, transform 0.3s ease;
+        z-index: 1;
+    }
+
+    .advanced-info-btn:hover {
+        background-color: var(--secondary-color);
+    }
+
+    .advanced-info-btn:active {
+        transform: scale(0.95);
+    }
+
+    .advanced-description {
+        display: none;
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #f4f4f4;
+        border-radius: 5px;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+    }
+
+    .advanced-description.show {
+        display: block;
+        max-height: 500px;
+        padding: 1rem;
+    }
+
+    /* PayPal button styling */
+    .paypal-buttons {
+        max-width: 250px !important;
+        margin: 0 auto !important;
+    }
+
+    /* Apple Pay button styling */
+    .apple-pay-button {
+        display: inline-block;
+        -webkit-appearance: -apple-pay-button;
+        -apple-pay-button-type: buy;
+        -apple-pay-button-style: black;
+        width: 100%;
+        height: 40px;
+        border-radius: 5px;
+    }
+
+    /* Fix bullet point indentation */
+    .advanced-description ul {
+        padding-left: 20px;
+        list-style-position: outside;
+    }
+
+    .advanced-description li {
+        margin-left: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .navbar .nav-links {
+            display: none;
+        }
+        
+        .mobile-menu {
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    
         .navbar {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .logo {
+            margin-bottom: 0;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 1rem;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
         }
-
-        .navbar a {
-            color: #fff;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            transition: background 0.3s ease;
-        }
-
-        .navbar a:hover {
-            background: var(--primary-color);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo img {
-            height: 50px;
-            width: auto;
-            margin-right: 15px;
-        }
-
+    
         .logo span {
-            font-size: 1.5rem;
-            font-weight: bold;
+            margin-left: 40px;
+            margin-right: auto;
         }
-
-        .logo a:hover {
-            background: none;
+    
+        .logo a {
+            margin-left: auto;
+            margin-right: 0;
         }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-        }
-
-        .nav-links li {
-            margin-left: 1.5rem;
-        }
-
-        .mobile-menu {
-            display: none;
-        }
-
+    
         .menu-toggle {
-            display: block;
-            cursor: pointer;
-            color: #fff;
-            font-size: 1.5rem;
-            padding: 0.5rem;
-            margin-right: 1rem;
+            order: 1;
         }
-
-        .menu-toggle span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background: #fff;
-            margin: 5px 0;
-            transition: all 0.3s ease;
-        }
-
-        .menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
-        #mobileNav {
-            display: none;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            padding: 1rem 0;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            z-index: 999;
-        }
-
-        #mobileNav.active {
-            display: block;
-        }
-
-        #mobileNav li {
-            margin: 0;
-        }
-
-        #mobileNav a {
-            display: block;
-            text-align: left;
-            padding: 10px 1rem;
-        }
-
-        main {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 10px;
-            min-height: calc(100vh - 150px);
-        }
-        
-        .shop-cta {
-            margin-top: 20px;
-        }
-        
-        .cta-button {
-            background-color: var(--primary-color);
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-            display: inline-block;
-            cursor: pointer;
-        }
-
-        .cta-button:hover {
-            background-color: var(--secondary-color);
-            transform: scale(1.05);
-        }
-        
-        section {
-            position: relative;
-            background: #fff;
-            padding: 2rem;
-            margin: 3rem auto;
-            border-radius: 20px;
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease-out, transform 0.5s ease-out;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        section:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
-        }
-
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        section h2 {
-            margin-bottom: 2rem;
-            color: var(--primary-color);
-            font-size: 2rem;
-        }
-
-        .section-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .price {
-            font-weight: bold;
-            color: var(--primary-color);
-            margin: 1rem 0;
-        }
-
-        footer {
-            background-color: var(--primary-color);
-            color: #fff;
-            text-align: center;
-            padding: 2rem 0;
-            transition: background-color 0.3s ease;
-            position: relative;
-        }
-
-        footer:hover {
-            background-color: var(--secondary-color);
-        }
-
-        footer p {
-            font-size: 1rem;
-            animation: fadeIn 1s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        img {
-            max-width: 350px;
-            height: auto;
-        }
-
-        .advanced-info-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background-color: var(--primary-color);
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
-            cursor: pointer;
-            transition: all 0.3s ease, transform 0.3s ease;
-            z-index: 1;
-        }
-
-        .advanced-info-btn:hover {
-            background-color: var(--secondary-color);
-        }
-
-        .advanced-info-btn:active {
-            transform: scale(0.95);
-        }
-
-        .advanced-description {
-            display: none;
-            margin-top: 1rem;
-            padding: 1rem;
-            background: #f4f4f4;
-            border-radius: 5px;
-            overflow: hidden;
-            max-height: 0;
-            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
-        }
-
-        .advanced-description.show {
-            display: block;
-            max-height: 500px;
-            padding: 1rem;
-        }
-
-        /* PayPal button styling */
-        .paypal-buttons {
-            max-width: 250px !important;
-            margin: 0 auto !important;
-        }
-
-        /* Fix bullet point indentation */
-        .advanced-description ul {
-            padding-left: 20px;
-            list-style-position: outside;
-        }
-
-        .advanced-description li {
-            margin-left: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .navbar .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu {
-                display: block;
-                position: absolute;
-                left: 0;
-                top: 50%;
-                transform: translateY(-50%);
-            }
-        
-            .navbar {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .logo {
-                margin-bottom: 0;
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding-top: 1rem;
-                padding-bottom: 1rem;
-            }
-        
-            .logo span {
-                margin-left: 40px;
-                margin-right: auto;
-            }
-        
-            .logo a {
-                margin-left: auto;
-                margin-right: 0;
-            }
-        
-            .menu-toggle {
-                order: 1;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
     <header>
@@ -380,234 +391,283 @@
         </nav>
     </header>
 
-    <main>
-        <section id="welcome-section">
-            <h1>Where should you start?</h1>
+<main>
+    <section id="welcome-section">
+        <h1>Where should you start?</h1>
+        <br>
+        <p>Whether you're just starting out or unsure where to begin, our collection of TVC rocket parts is here to guide you. For those beginners, delve into the world of rocket engineering by reading our featured book, "Apollo Unveiled," which debunks Apollo mission misconceptions and inspires with tales of how the pioneers of space technology achieved what was once thought impossible. Our range, from simple educational kits to more complex components, helps you to climb the engineering ladder, turning every challenge into an opportunity for growth. Let the legacy of those who invented space travel technology inspire your journey as you explore the vast potential of engineering with us.</p>
+    </section>
+
+    <section class="variant-section">
+        <h2>Apollo Unveiled: SpaceBox's Comprehensive Moon Landing Analysis 🌑</h2>
+        <img src="product3.jpg" alt="Book titled Apollo Unveiled">
+        <p>Dive into the ultimate Apollo moon landing breakdown with 'Apollo Unveiled' by SpaceBox. Whether you're a space buff, a curious mind, or just love a good read. Explore the real deal behind humanity's epic trip to the moon, separating fact from fiction. 'Apollo Unveiled' is your go-to guide for unraveling the mysteries and marvels of the Apollo era.</p>
+        <p class="price">Price: £0.79</p>
+        <div id="paypal-button-container-3" style="max-width: 250px; margin: 0 auto;"></div>
+        <div id="apple-pay-button-3" style="max-width: 250px; margin: 10px auto;"></div>
+        <p style="font-size: 0.8em; margin-top: 5px;">You can pay with PayPal, Apple Pay, or your credit/debit card.</p>
+    </section>
+
+    <section class="variant-section" id="EFC_4_2-section">
+        <br>
+        <h2>EFC-4.2: High-Speed Flight Computer 🖥️</h2>
+        <button class="advanced-info-btn" onclick="toggleAdvancedInfo('EFC_4_2')">Advanced Info</button>
+        <img src="product1.jpg" alt="EFC-4.2 High-Speed Flight Computer">
+        <p>The EFC-4.2 flight computer is equipped with a MPU6050, which is an inertial measurement unit allowing the rocket to know its orientation. It also includes a BMP280 sensor for precise altitude and pressure readings, including temperature if desired.</p>
+        <div class="advanced-description" id="EFC_4_2-advanced">
+            <p>The EFC-4.2 employs advanced algorithms for real-time data processing. It's designed with a fail-safe mode for emergency operations, ensuring reliability in critical conditions. Its integration with the MPU6050 allows for precise control adjustments based on orientation data, enhancing flight stability.</p>
             <br>
-            <p>Whether you're just starting out or unsure where to begin, our collection of TVC rocket parts is here to guide you. For those beginners, delve into the world of rocket engineering by reading our featured book, "Apollo Unveiled," which debunks Apollo mission misconceptions and inspires with tales of how the pioneers of space technology achieved what was once thought impossible. Our range, from simple educational kits to more complex components, helps you to climb the engineering ladder, turning every challenge into an opportunity for growth. Let the legacy of those who invented space travel technology inspire your journey as you explore the vast potential of engineering with us.</p>
-        </section>
+            <p><strong>What's Included:</strong></p>
+            <ul>
+                <li>ARM Cortex-M7 Processor at 600 MHz.</li>
+                <li>MPU6050 Inertial Measurement Unit.</li>
+                <li>BMP280 Barometric Pressure Sensor.</li>
+                <li>3x Pulse Width Modulation (PWM) pins.</li>
+                <li>Advanced Data Recording for Analysis.</li>
+                <li>Optional Built-in PID-TVC ready software.</li>
+                <li>Fail-safe/abort recovery mechanism for emergency scenarios.</li>
+            </ul>
+        </div>
+        <p class="price">Coming Soon...</p>
+    </section>
 
-        <section class="variant-section">
-            <h2>Apollo Unveiled: SpaceBox's Comprehensive Moon Landing Analysis 🌑</h2>
-            <img src="product3.jpg" alt="Book titled Apollo Unveiled">
-            <p>Dive into the ultimate Apollo moon landing breakdown with 'Apollo Unveiled' by SpaceBox. Whether you're a space buff, a curious mind, or just love a good read. Explore the real deal behind humanity's epic trip to the moon, separating fact from fiction. 'Apollo Unveiled' is your go-to guide for unraveling the mysteries and marvels of the Apollo era.</p>
-            <p class="price">Price: £0.79</p>
-            <div id="paypal-button-container-3" style="max-width: 250px; margin: 0 auto;"></div>
-            <p style="font-size: 0.8em; margin-top: 5px;">You can pay with PayPal, Apple Pay, or your credit/debit card.</p>
-        </section>
-
-        <section class="variant-section" id="EFC_4_2-section">
+    <section class="variant-section" id="TVC-section">
+        <br>
+        <h2>TVC: Thrust Vector Control Mount 🚀</h2>
+        <button class="advanced-info-btn" onclick="toggleAdvancedInfo('TVC')">Advanced Info</button>
+        <img src="product2.jpg" alt="Thrust Vector Control Mount">
+        <p>This is the best Thrust Vector Control Mount you can buy for a model rocket. It offers the highest degree of freedom available and has been improved over 57 iterations for optimal performance.</p>
+        <div class="advanced-description" id="TVC-advanced">
+            <p>Our TVC mount features a unique dual-axis gimbal system, which provides exceptional control over rocket trajectory. Made from aerospace-grade materials, it withstands extreme conditions and offers precise thrust vectoring, crucial for complex maneuvers and stability during flight.</p>
             <br>
-            <h2>EFC-4.2: High-Speed Flight Computer 🖥️</h2>
-            <button class="advanced-info-btn" onclick="toggleAdvancedInfo('EFC_4_2')">Advanced Info</button>
-            <img src="product1.jpg" alt="EFC-4.2 High-Speed Flight Computer">
-            <p>The EFC-4.2 flight computer is equipped with a MPU6050, which is an inertial measurement unit allowing the rocket to know its orientation. It also includes a BMP280 sensor for precise altitude and pressure readings, including temperature if desired.</p>
-            <div class="advanced-description" id="EFC_4_2-advanced">
-                <p>The EFC-4.2 employs advanced algorithms for real-time data processing. It's designed with a fail-safe mode for emergency operations, ensuring reliability in critical conditions. Its integration with the MPU6050 allows for precise control adjustments based on orientation data, enhancing flight stability.</p>
-                <br>
-                <p><strong>What's Included:</strong></p>
-                <ul>
-                    <li>ARM Cortex-M7 Processor at 600 MHz.</li>
-                    <li>MPU6050 Inertial Measurement Unit.</li>
-                    <li>BMP280 Barometric Pressure Sensor.</li>
-                    <li>3x Pulse Width Modulation (PWM) pins.</li>
-                    <li>Advanced Data Recording for Analysis.</li>
-                    <li>Optional Built-in PID-TVC ready software.</li>
-                    <li>Fail-safe/abort recovery mechanism for emergency scenarios.</li>
-                </ul>
-            </div>
-            <p class="price">Coming Soon...</p>
-        </section>
+            <p><strong>What's Included:</strong></p>
+            <ul>
+                <li>Gimble Range of 19.°</li>
+                <li>Dual-axis gimbal system for precise control.</li>
+                <li>Strong reliable PLA frame.</li>
+                <li>2x High-speed MG90S servo motors.</li>
+                <li>Mounting hardware and connectors.</li>
+            </ul>
+        </div>
+        <p class="price">Price: £78.00</p>
+        <div id="paypal-button-container-tvc" style="max-width: 250px; margin: 0 auto;"></div>
+        <div id="apple-pay-button-tvc" style="max-width: 250px; margin: 10px auto;"></div>
+        <p style="font-size: 0.8em; margin-top: 5px;">You can pay with PayPal, Apple Pay, or your credit/debit card.</p>
+    </section>
 
-        <section class="variant-section" id="TVC-section">
+    <section class="variant-section" id="StarterKit-section">
+        <br>
+        <h2>Starter Kit: Beginner's Rocket Building Set 🔧</h2>
+        <button class="advanced-info-btn" onclick="toggleAdvancedInfo('StarterKit')">Advanced Info</button>
+        <img src="product4.jpg" alt="Beginner's Rocket Building Starter Kit">
+        <p>The Starter Kit includes the EFC-4.2 flight computer, so when you're ready, you can utilize thrust vectoring in your projects. It also comes with a Parachute-Ejection-System (PES) and a static (non-vectoring) mount.</p>
+        <div class="advanced-description" id="StarterKit-advanced">
+            <p>This kit is perfect for learning the fundamentals of rocket construction and flight control. The included PES provides a safe recovery mechanism, and the kit's modularity allows for upgrades as your skills advance. It's an ideal starting point for understanding basic aerodynamics and electronics in rocketry.</p>
             <br>
-            <h2>TVC: Thrust Vector Control Mount 🚀</h2>
-            <button class="advanced-info-btn" onclick="toggleAdvancedInfo('TVC')">Advanced Info</button>
-            <img src="product2.jpg" alt="Thrust Vector Control Mount">
-            <p>This is the best Thrust Vector Control Mount you can buy for a model rocket. It offers the highest degree of freedom available and has been improved over 57 iterations for optimal performance.</p>
-            <div class="advanced-description" id="TVC-advanced">
-                <p>Our TVC mount features a unique dual-axis gimbal system, which provides exceptional control over rocket trajectory. Made from aerospace-grade materials, it withstands extreme conditions and offers precise thrust vectoring, crucial for complex maneuvers and stability during flight.</p>
-                <br>
-                <p><strong>What's Included:</strong></p>
-                <ul>
-                    <li>Gimble Range of 19.°</li>
-                    <li>Dual-axis gimbal system for precise control.</li>
-                    <li>Strong reliable PLA frame.</li>
-                    <li>2x High-speed MG90S servo motors.</li>
-                    <li>Mounting hardware and connectors.</li>
-                </ul>
-            </div>
-            <p class="price">Price: £78.00</p>
-            <div id="paypal-button-container-tvc" style="max-width: 250px; margin: 0 auto;"></div>
-            <p style="font-size: 0.8em; margin-top: 5px;">You can pay with PayPal, Apple Pay, or your credit/debit card.</p>
-        </section>
+            <p><strong>What's Included:</strong></p>
+            <ul>
+                <li>EFC-4.2 Flight Computer.</li>
+                <li>Parachute-Ejection-System (PES).</li>
+                <li>Static (non-vectoring) mount.</li>
+                <li>Basic carbon rocket body frame.</li>
+                <li>Instruction manual and educational resources.</li>
+            </ul>
+        </div>
+        <p class="price">Coming Soon...</p>
+    </section>
 
-        <section class="variant-section" id="StarterKit-section">
+    <section class="variant-section" id="AdvancedKit-section">
+        <br>
+        <h2>Advanced Kit: Comprehensive Rocket Building Experience 💡</h2>
+        <button class="advanced-info-btn" onclick="toggleAdvancedInfo('AdvancedKit')">Advanced Info</button>
+        <img src="product5.jpg" alt="Advanced Rocket Building Kit">
+        <p>Advance your rocket building experience with our kit that includes a Rocket Body, EFC-4.2, TVC mount, and more for an in-depth project.</p>
+        <div class="advanced-description" id="AdvancedKit-advanced">
+            <p>This advanced kit is tailored for those looking to explore complex rocket engineering. It includes high-precision components and a comprehensive guide for assembly, testing, and flight optimization. The kit supports advanced experiments in propulsion, guidance, and control systems.</p>
             <br>
-            <h2>Starter Kit: Beginner's Rocket Building Set 🔧</h2>
-            <button class="advanced-info-btn" onclick="toggleAdvancedInfo('StarterKit')">Advanced Info</button>
-            <img src="product4.jpg" alt="Beginner's Rocket Building Starter Kit">
-            <p>The Starter Kit includes the EFC-4.2 flight computer, so when you're ready, you can utilize thrust vectoring in your projects. It also comes with a Parachute-Ejection-System (PES) and a static (non-vectoring) mount.</p>
-            <div class="advanced-description" id="StarterKit-advanced">
-                <p>This kit is perfect for learning the fundamentals of rocket construction and flight control. The included PES provides a safe recovery mechanism, and the kit's modularity allows for upgrades as your skills advance. It's an ideal starting point for understanding basic aerodynamics and electronics in rocketry.</p>
-                <br>
-                <p><strong>What's Included:</strong></p>
-                <ul>
-                    <li>EFC-4.2 Flight Computer.</li>
-                    <li>Parachute-Ejection-System (PES).</li>
-                    <li>Static (non-vectoring) mount.</li>
-                    <li>Basic carbon rocket body frame.</li>
-                    <li>Instruction manual and educational resources.</li>
-                </ul>
-            </div>
-            <p class="price">Coming Soon...</p>
-        </section>
+            <p><strong>What's Included:</strong></p>
+            <ul>
+                <li>EFC-4.2 Flight Computer (Software Loaded).</li>
+                <li>Carbon rocket body.</li>
+                <li>TVC (Thrust Vector Control) mount.</li>
+                <li>Parachute-Ejection-System (PES).</li>
+                <li>Wiring and connectors.</li>
+                <li>Detailed assembly and testing guide.</li>
+                <li>1x use FREE PID Tuning.</li>
+            </ul>
+        </div>
+        <p class="price">Coming Soon...</p>
+    </section>
+</main>
 
-        <section class="variant-section" id="AdvancedKit-section">
-            <br>
-            <h2>Advanced Kit: Comprehensive Rocket Building Experience 💡</h2>
-            <button class="advanced-info-btn" onclick="toggleAdvancedInfo('AdvancedKit')">Advanced Info</button>
-            <img src="product5.jpg" alt="Advanced Rocket Building Kit">
-            <p>Advance your rocket building experience with our kit that includes a Rocket Body, EFC-4.2, TVC mount, and more for an in-depth project.</p>
-            <div class="advanced-description" id="AdvancedKit-advanced">
-                <p>This advanced kit is tailored for those looking to explore complex rocket engineering. It includes high-precision components and a comprehensive guide for assembly, testing, and flight optimization. The kit supports advanced experiments in propulsion, guidance, and control systems.</p>
-                <br>
-                <p><strong>What's Included:</strong></p>
-                <ul>
-                    <li>EFC-4.2 Flight Computer (Software Loaded).</li>
-                    <li>Carbon rocket body.</li>
-                    <li>TVC (Thrust Vector Control) mount.</li>
-                    <li>Parachute-Ejection-System (PES).</li>
-                    <li>Wiring and connectors.</li>
-                    <li>Detailed assembly and testing guide.</li>
-                    <li>1x use FREE PID Tuning.</li>
-                </ul>
-            </div>
-            <p class="price">Coming Soon...</p>
-        </section>
-    </main>
+<footer>
+    <p>© 2024 SpaceBox, where the future of engineering and exploration begins.</p>
+</footer>
 
-    <footer>
-        <p>© 2024 SpaceBox, where the future of engineering and exploration begins.</p>
-    </footer>
+<!-- Updated PayPal SDK with Apple Pay support -->
+<script src="https://www.paypal.com/sdk/js?client-id=ARBP2J91GoENDAery-WC1o6ZqQgjLzLbr7jedb-PXyDW60j_tBu5__N_iUm8kpYH0gf9Yqnwz0V3-f5j&components=buttons,applepay&currency=GBP"></script>
+<script>
+    // Mobile menu toggle
+    document.querySelector('.menu-toggle').addEventListener('click', function(e) {
+        e.preventDefault();
+        const mobileNav = document.getElementById('mobileNav');
+        const menuToggle = this;
+        mobileNav.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+    });
 
-    <script src="https://www.paypal.com/sdk/js?client-id=ARBP2J91GoENDAery-WC1o6ZqQgjLzLbr7jedb-PXyDW60j_tBu5__N_iUm8kpYH0gf9Yqnwz0V3-f5j&components=buttons,applepay¤cy=GBP"></script>
-    <script>
-        // Log SDK load
-        console.log('PayPal SDK script included');
-
-        // Wait for DOM to load
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM fully loaded');
-
-            // Mobile menu toggle
-            document.querySelector('.menu-toggle').addEventListener('click', function(e) {
-                e.preventDefault();
-                const mobileNav = document.getElementById('mobileNav');
-                const menuToggle = this;
-                mobileNav.classList.toggle('active');
-                menuToggle.classList.toggle('active');
-            });
-
-            // Section visibility on scroll
-            const sections = document.querySelectorAll('section');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            sections.forEach(section => {
-                section.classList.remove('visible');
-                observer.observe(section);
-            });
-
-            // Toggle advanced info
-            function toggleAdvancedInfo(productId) {
-                const description = document.getElementById(productId + '-advanced');
-                const button = document.querySelector(`#${productId}-section .advanced-info-btn`);
-                
-                if (description.classList.contains('show')) {
-                    description.classList.remove('show');
-                    button.textContent = "Advanced Info";
-                } else {
-                    description.classList.add('show');
-                    button.textContent = "Hide Info";
+    // Section visibility on scroll
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
-            }
-
-            // Check if paypal object exists
-            if (typeof paypal === 'undefined') {
-                console.error('PayPal SDK not loaded');
-                return;
-            } else {
-                console.log('PayPal SDK loaded successfully');
-            }
-
-            // PayPal for Apollo Unveiled
-            paypal.Buttons({
-                createOrder: function(data, actions) {
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: '0.79',
-                                currency_code: 'GBP'
-                            },
-                            description: 'Apollo Unveiled Book'
-                        }],
-                        application_context: {
-                            shipping_preference: 'NO_SHIPPING'
-                        }
-                    });
-                },
-                onApprove: function(data, actions) {
-                    return actions.order.capture().then(function(details) {
-                        alert('Transaction completed by ' + details.payer.name.given_name);
-                    });
-                },
-                onError: function(err) {
-                    console.error('PayPal error for Apollo Unveiled:', err);
-                    alert('An error occurred. Please try again.');
-                }
-            }).render('#paypal-button-container-3').then(() => {
-                console.log('PayPal button for Apollo Unveiled rendered');
-            }).catch(err => {
-                console.error('Error rendering Apollo Unveiled button:', err);
             });
+        }, { threshold: 0.1 });
 
-            // PayPal for TVC
-            paypal.Buttons({
-                createOrder: function(data, actions) {
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: '78.00',
-                                currency_code: 'GBP'
-                            },
-                            description: 'TVC Thrust Vector Control Mount'
-                        }],
-                        application_context: {
-                            shipping_preference: 'SET_PROVIDED_ADDRESS'
-                        }
-                    });
-                },
-                onApprove: function(data, actions) {
-                    return actions.order.capture().then(function(details) {
-                        alert('Transaction completed by ' + details.payer.name.given_name);
-                    });
-                },
-                onError: function(err) {
-                    console.error('PayPal error for TVC:', err);
-                    alert('An error occurred. Please try again.');
-                }
-            }).render('#paypal-button-container-tvc').then(() => {
-                console.log('PayPal button for TVC rendered');
-            }).catch(err => {
-                console.error('Error rendering TVC button:', err);
-            });
+        sections.forEach(section => {
+            section.classList.remove('visible');
+            observer.observe(section);
         });
-    </script>
+    });
+
+    // Toggle advanced info
+    function toggleAdvancedInfo(productId) {
+        const description = document.getElementById(productId + '-advanced');
+        const button = document.querySelector(`#${productId}-section .advanced-info-btn`);
+        
+        if (description.classList.contains('show')) {
+            description.classList.remove('show');
+            button.textContent = "Advanced Info";
+        } else {
+            description.classList.add('show');
+            button.textContent = "Hide Info";
+        }
+    }
+
+    // PayPal for Apollo Unveiled (includes Apple Pay)
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '0.79',
+                        currency_code: 'GBP'
+                    },
+                    description: 'Apollo Unveiled Book'
+                }],
+                application_context: {
+                    shipping_preference: 'NO_SHIPPING'
+                }
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                alert('Transaction completed by ' + details.payer.name.given_name);
+            });
+        },
+        onError: function(err) {
+            console.error('PayPal error for Apollo Unveiled:', err);
+            alert('An error occurred during the payment process. Please try again.');
+        }
+    }).render('#paypal-button-container-3');
+
+    // PayPal Apple Pay standalone button for Apollo Unveiled
+    paypal.Buttons({
+        fundingSource: paypal.FUNDING.APPLEPAY,
+        style: {
+            layout: 'vertical',
+            color: 'black',
+            shape: 'rect',
+            label: 'applepay'
+        },
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '0.79',
+                        currency_code: 'GBP'
+                    },
+                    description: 'Apollo Unveiled Book'
+                }],
+                application_context: {
+                    shipping_preference: 'NO_SHIPPING'
+                }
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                alert('Apple Pay transaction completed by ' + details.payer.name.given_name);
+            });
+        },
+        onError: function(err) {
+            console.error('Apple Pay error for Apollo Unveiled:', err);
+            alert('An error occurred with Apple Pay. Please try again.');
+        }
+    }).render('#apple-pay-button-3');
+
+    // PayPal for TVC (includes Apple Pay)
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '78.00',
+                        currency_code: 'GBP'
+                    },
+                    description: 'TVC Thrust Vector Control Mount'
+                }],
+                application_context: {
+                    shipping_preference: 'SET_PROVIDED_ADDRESS'
+                }
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                alert('Transaction completed by ' + details.payer.name.given_name);
+            });
+        },
+        onError: function(err) {
+            console.error('PayPal error for TVC:', err);
+            alert('An error occurred during the payment process. Please try again.');
+        }
+    }).render('#paypal-button-container-tvc');
+
+    // PayPal Apple Pay standalone button for TVC
+    paypal.Buttons({
+        fundingSource: paypal.FUNDING.APPLEPAY,
+        style: {
+            layout: 'vertical',
+            color: 'black',
+            shape: 'rect',
+            label: 'applepay'
+        },
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '78.00',
+                        currency_code: 'GBP'
+                    },
+                    description: 'TVC Thrust Vector Control Mount'
+                }],
+                application_context: {
+                    shipping_preference: 'SET_PROVIDED_ADDRESS'
+                }
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                alert('Apple Pay transaction completed by ' + details.payer.name.given_name);
+            });
+        },
+        onError: function(err) {
+            console.error('Apple Pay error for TVC:', err);
+            alert('An error occurred with Apple Pay. Please try again.');
+        }
+    }).render('#apple-pay-button-tvc');
+</script>
 </body>
 </html>
