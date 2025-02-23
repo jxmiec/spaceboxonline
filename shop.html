@@ -491,114 +491,126 @@
         <p>© 2024 SpaceBox, where the future of engineering and exploration begins.</p>
     </footer>
 
-    <!-- Updated PayPal SDK with Apple Pay support -->
-    <script src="https://www.paypal.com/sdk/js?client-id=ARBP2J91GoENDAery-WC1o6ZqQgjLzLbr7jedb-PXyDW60j_tBu5__N_iUm8kpYH0gf9Yqnwz0V3-f5j&components=buttons,applepay&currency=GBP"></script>
-    <script>
-        // Mobile menu toggle
-        document.querySelector('.menu-toggle').addEventListener('click', function(e) {
-            e.preventDefault();
-            const mobileNav = document.getElementById('mobileNav');
-            const menuToggle = this;
-            mobileNav.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        });
+<script src="https://www.paypal.com/sdk/js?client-id=ARBP2J91GoENDAery-WC1o6ZqQgjLzLbr7jedb-PXyDW60j_tBu5__N_iUm8kpYH0gf9Yqnwz0V3-f5j&components=buttons,applepay¤cy=GBP"></script>
+<script>
+    // Mobile menu toggle
+    document.querySelector('.menu-toggle').addEventListener('click', function(e) {
+        e.preventDefault();
+        const mobileNav = document.getElementById('mobileNav');
+        const menuToggle = this;
+        mobileNav.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+    });
 
-        // Section visibility on scroll
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('section');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            sections.forEach(section => {
-                section.classList.remove('visible');
-                observer.observe(section);
+    // Section visibility on scroll
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
             });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            section.classList.remove('visible');
+            observer.observe(section);
         });
+    });
 
-        // Toggle advanced info
-        function toggleAdvancedInfo(productId) {
-            const description = document.getElementById(productId + '-advanced');
-            const button = document.querySelector(`#${productId}-section .advanced-info-btn`);
-            
-            if (description.classList.contains('show')) {
-                description.classList.remove('show');
-                button.textContent = "Advanced Info";
-            } else {
-                description.classList.add('show');
-                button.textContent = "Hide Info";
-            }
+    // Toggle advanced info
+    function toggleAdvancedInfo(productId) {
+        const description = document.getElementById(productId + '-advanced');
+        const button = document.querySelector(`#${productId}-section .advanced-info-btn`);
+        
+        if (description.classList.contains('show')) {
+            description.classList.remove('show');
+            button.textContent = "Advanced Info";
+        } else {
+            description.classList.add('show');
+            button.textContent = "Hide Info";
         }
+    }
 
-        // PayPal (with Apple Pay) for Apollo Unveiled
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '0.79',
-                            currency_code: 'GBP'
-                        },
-                        description: 'Apollo Unveiled Book'
-                    }],
-                    application_context: {
-                        shipping_preference: 'NO_SHIPPING' // Digital good, no shipping
-                    }
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    alert('Transaction completed by ' + details.payer.name.given_name);
-                    // Optionally redirect or update UI here
-                });
-            },
-            onError: function(err) {
-                console.error('PayPal error:', err);
-                alert('An error occurred during the payment process. Please try again.');
-            },
-            style: {
-                layout: 'vertical',
-                color: 'blue',
-                shape: 'rect'
-            }
-        }).render('#paypal-button-container-3');
+    // Check Apple Pay availability
+    if (typeof paypal.Applepay === 'undefined') {
+        console.log('Apple Pay component failed to load in PayPal SDK');
+    } else {
+        paypal.Applepay().then(() => {
+            console.log('Apple Pay is available via PayPal');
+        }).catch(err => {
+            console.error('Apple Pay not available:', err);
+        });
+    }
 
-        // PayPal (with Apple Pay) for TVC
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '78.00',
-                            currency_code: 'GBP'
-                        },
-                        description: 'TVC Thrust Vector Control Mount'
-                    }],
-                    application_context: {
-                        shipping_preference: 'SET_PROVIDED_ADDRESS' // Physical good, adjust if needed
-                    }
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    alert('Transaction completed by ' + details.payer.name.given_name);
-                    // Optionally redirect or update UI here
-                });
-            },
-            onError: function(err) {
-                console.error('PayPal error:', err);
-                alert('An error occurred during the payment process. Please try again.');
-            },
-            style: {
-                layout: 'vertical',
-                color: 'blue',
-                shape: 'rect'
-            }
-        }).render('#paypal-button-container-tvc');
-    </script>
+    // PayPal (with Apple Pay) for Apollo Unveiled
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '0.79',
+                        currency_code: 'GBP'
+                    },
+                    description: 'Apollo Unveiled Book'
+                }],
+                application_context: {
+                    shipping_preference: 'NO_SHIPPING'
+                }
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                alert('Transaction completed by ' + details.payer.name.given_name);
+            });
+        },
+        onError: function(err) {
+            console.error('PayPal error for Apollo Unveiled:', err);
+            alert('An error occurred during the payment process. Please try again.');
+        },
+        style: {
+            layout: 'vertical',
+            color: 'blue',
+            shape: 'rect'
+        }
+    }).render('#paypal-button-container-3').then(() => {
+        console.log('PayPal button for Apollo Unveiled rendered');
+    });
+
+    // PayPal (with Apple Pay) for TVC
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '78.00',
+                        currency_code: 'GBP'
+                    },
+                    description: 'TVC Thrust Vector Control Mount'
+                }],
+                application_context: {
+                    shipping_preference: 'SET_PROVIDED_ADDRESS'
+                }
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                alert('Transaction completed by ' + details.payer.name.given_name);
+            });
+        },
+        onError: function(err) {
+            console.error('PayPal error for TVC:', err);
+            alert('An error occurred during the payment process. Please try again.');
+        },
+        style: {
+            layout: 'vertical',
+            color: 'blue',
+            shape: 'rect'
+        }
+    }).render('#paypal-button-container-tvc').then(() => {
+        console.log('PayPal button for TVC rendered');
+    });
+</script>
 </body>
 </html>
