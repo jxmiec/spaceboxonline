@@ -168,6 +168,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease-out, transform 0.5s ease-out;
             opacity: 0;
             transform: translateY(50px);
+            position: relative;
         }
 
         section:hover {
@@ -215,38 +216,64 @@
 
         .popup {
             display: none;
-            position: fixed;
+            position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             background: #fff;
             padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
             z-index: 1000;
             text-align: center;
+            width: 300px;
         }
 
         .popup.success {
-            border: 3px solid #2ecc71;
+            border: 3px solid #00cc00;
         }
 
         .popup.failure {
-            border: 3px solid #e74c3c;
+            border: 3px solid #ff3333;
+        }
+
+        .popup h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .popup.success h3 {
+            color: #00cc00;
+        }
+
+        .popup.failure h3 {
+            color: #ff3333;
         }
 
         .popup button {
-            margin-top: 20px;
-            padding: 10px 20px;
             background: var(--primary-color);
             color: #fff;
+            padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin-top: 1rem;
+            transition: background 0.3s ease;
         }
 
         .popup button:hover {
             background: var(--secondary-color);
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
         }
 
         footer {
@@ -308,6 +335,10 @@
                 width: 100%;
                 height: 400px;
             }
+
+            .popup {
+                width: 80%;
+            }
         }
     </style>
 </head>
@@ -349,19 +380,19 @@
                 <span id="propellant">Propellant: 100%</span>
             </div>
             <canvas id="game-canvas" width="800" height="600"></canvas>
+            <div id="overlay" class="overlay"></div>
+            <div id="success-popup" class="popup success">
+                <h3>Success!</h3>
+                <p id="success-message"></p>
+                <button onclick="resetGame()">Play Again</button>
+            </div>
+            <div id="failure-popup" class="popup failure">
+                <h3>Failure!</h3>
+                <p id="failure-message"></p>
+                <button onclick="resetGame()">Try Again</button>
+            </div>
         </section>
     </main>
-
-    <div id="successPopup" class="popup success">
-        <h3>Success!</h3>
-        <p>You landed safely at <span id="successSpeed"></span> m/s!</p>
-        <button onclick="resetGame()">Play Again</button>
-    </div>
-    <div id="failPopup" class="popup failure">
-        <h3>Mission Failed</h3>
-        <p><span id="failMessage"></span></p>
-        <button onclick="resetGame()">Try Again</button>
-    </div>
 
     <footer>
         <p>© 2024 SpaceBox, where the future of engineering and exploration begins.</p>
@@ -399,10 +430,11 @@
         const ctx = canvas.getContext('2d');
         const speedDisplay = document.getElementById('speed');
         const propellantDisplay = document.getElementById('propellant');
-        const successPopup = document.getElementById('successPopup');
-        const failPopup = document.getElementById('failPopup');
-        const successSpeed = document.getElementById('successSpeed');
-        const failMessage = document.getElementById('failMessage');
+        const overlay = document.getElementById('overlay');
+        const successPopup = document.getElementById('success-popup');
+        const failurePopup = document.getElementById('failure-popup');
+        const successMessage = document.getElementById('success-message');
+        const failureMessage = document.getElementById('failure-message');
 
         let game = {
             rocket: {
@@ -436,7 +468,7 @@
             ctx.fill();
 
             ctx.fillStyle = '#ccc';
-            ctx.fillRect(game.rocket.x - 5, game.rocket.y + game.rolley.height * 0.7, 5, 15);
+            ctx.fillRect(game.rocket.x - 5, game.rocket.y + game.rocket.height * 0.7, 5, 15);
             ctx.fillRect(game.rocket.x + game.rocket.width, game.rocket.y + game.rocket.height * 0.7, 5, 15);
 
             if (mainThrust) {
@@ -507,17 +539,19 @@
                 game.rocket.x >= game.landingPad.x && 
                 game.rocket.x + game.rocket.width <= game.landingPad.x + game.landingPad.width) {
                 game.gameOver = true;
+                overlay.style.display = 'block';
                 if (speedMs <= 5) {
-                    successSpeed.textContent = speedMs;
+                    successMessage.textContent = `Landed successfully at ${speedMs} m/s!`;
                     successPopup.style.display = 'block';
                 } else {
-                    failMessage.textContent = `Landed too fast at ${speedMs} m/s`;
-                    failPopup.style.display = 'block';
+                    failureMessage.textContent = `Landed too fast at ${speedMs} m/s`;
+                    failurePopup.style.display = 'block';
                 }
             } else if (game.rocket.y + game.rocket.height > canvas.height - 30) {
                 game.gameOver = true;
-                failMessage.textContent = `Crashed into lunar surface at ${speedMs} m/s`;
-                failPopup.style.display = 'block';
+                overlay.style.display = 'block';
+                failureMessage.textContent = `Crashed into lunar surface at ${speedMs} m/s`;
+                failurePopup.style.display = 'block';
             }
 
             speedDisplay.textContent = `Speed: ${speedMs} m/s`;
@@ -544,29 +578,26 @@
             game.rocket.velocityY = 0;
             game.rocket.propellant = 35;
             game.gameOver = false;
+            mainThrust = false;
             leftThrust = false;
             rightThrust = false;
-            mainThrust = false;
+            overlay.style.display = 'none';
             successPopup.style.display = 'none';
-            failPopup.style.display = 'none';
+            failurePopup.style.display = 'none';
         }
 
         // Keyboard controls
         document.addEventListener('keydown', (e) => {
-            if (e.key === ' ' && !game.gameOver) {
+            if (e.key === ' ') {
+                e.preventDefault();
                 mainThrust = true;
-                e.preventDefault(); // Prevent page scrolling
             }
             if (e.key === 'ArrowLeft') leftThrust = true;
             if (e.key === 'ArrowRight') rightThrust = true;
         });
 
         document.addEventListener('keyup', (e) => {
-            if (e.key === ' ' && !game.gameOver) {
-                mainThrust = false;
-            } else if (e.key === ' ' && game.gameOver) {
-                resetGame();
-            }
+            if (e.key === ' ') mainThrust = false;
             if (e.key === 'ArrowLeft') leftThrust = false;
             if (e.key === 'ArrowRight') rightThrust = false;
         });
