@@ -197,21 +197,45 @@
         }
 
         #status {
-            position: relative;
+            position: absolute;
+            top: 10px;
             width: 800px;
             color: #fff;
             font-size: 1rem;
-            margin: 10px auto;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
         }
 
         #speed {
-            float: left;
-            margin-left: 10px;
+            position: absolute;
+            left: 10px;
         }
 
-        #propellant {
-            float: right;
-            margin-right: 10px;
+        #propellant-container {
+            position: absolute;
+            right: 10px;
+            text-align: right;
+        }
+
+        #propellant-bar {
+            width: 100px;
+            height: 10px;
+            background: #333;
+            border: 1px solid #fff;
+            border-radius: 5px;
+        }
+
+        #propellant-fill {
+            height: 100%;
+            background: #00cc00;
+            border-radius: 3px;
+            transition: width 0.1s ease;
+        }
+
+        #propellant-text {
+            margin-top: 5px;
+            font-size: 0.9rem;
         }
 
         .popup {
@@ -336,6 +360,14 @@
                 height: 400px;
             }
 
+            #status {
+                width: 100%;
+            }
+
+            #propellant-bar {
+                width: 80px;
+            }
+
             .popup {
                 width: 80%;
             }
@@ -377,7 +409,12 @@
             <p>Land the rocket on the lunar surface at 5 m/s or less!<br>Use Spacebar for main thruster, Arrow keys for steering.</p>
             <div id="status">
                 <span id="speed">Speed: 0 m/s</span>
-                <span id="propellant">Propellant: 100%</span>
+                <div id="propellant-container">
+                    <div id="propellant-bar">
+                        <div id="propellant-fill" style="width: 100%;"></div>
+                    </div>
+                    <div id="propellant-text">100%</div>
+                </div>
             </div>
             <canvas id="game-canvas" width="800" height="600"></canvas>
             <div id="overlay" class="overlay"></div>
@@ -429,7 +466,8 @@
         const canvas = document.getElementById('game-canvas');
         const ctx = canvas.getContext('2d');
         const speedDisplay = document.getElementById('speed');
-        const propellantDisplay = document.getElementById('propellant');
+        const propellantFill = document.getElementById('propellant-fill');
+        const propellantText = document.getElementById('propellant-text');
         const overlay = document.getElementById('overlay');
         const successPopup = document.getElementById('success-popup');
         const failurePopup = document.getElementById('failure-popup');
@@ -534,6 +572,7 @@
                 game.rocket.x = canvas.width - game.rocket.width;
 
             const speedMs = Math.abs(game.rocket.velocityY * 10).toFixed(1);
+            const propellantPercent = Math.max(0, Math.floor(game.rocket.propellant / 35 * 100));
 
             if (game.rocket.y + game.rocket.height >= game.landingPad.y && 
                 game.rocket.x >= game.landingPad.x && 
@@ -555,7 +594,8 @@
             }
 
             speedDisplay.textContent = `Speed: ${speedMs} m/s`;
-            propellantDisplay.textContent = `Propellant: ${Math.max(0, Math.floor(game.rocket.propellant / 35 * 100))}%`;
+            propellantFill.style.width = `${propellantPercent}%`;
+            propellantText.textContent = `${propellantPercent}%`;
         }
 
         function draw() {
