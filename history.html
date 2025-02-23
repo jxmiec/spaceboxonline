@@ -187,35 +187,43 @@
             font-size: 2rem;
         }
 
-        #game-canvas {
-            background: #000;
-            border: 2px solid var(--primary-color);
+        #game-container {
+            position: relative;
             width: 800px;
             height: 600px;
             margin: 0 auto;
+        }
+
+        #game-canvas {
+            background: #000;
+            border: 2px solid var(--primary-color);
+            width: 100%;
+            height: 100%;
             display: block;
         }
 
         #status {
             position: absolute;
-            top: 10px;
-            width: 800px;
+            top: 0;
+            left: 0;
+            width: 100%;
             color: #fff;
             font-size: 1rem;
-            left: 50%;
-            transform: translateX(-50%);
             pointer-events: none;
+            z-index: 10;
         }
 
         #speed {
             position: absolute;
             left: 10px;
+            top: 10px;
         }
 
         #propellant-container {
             position: absolute;
             right: 10px;
-            text-align: right;
+            top: 10px;
+            text-align: center;
         }
 
         #propellant-bar {
@@ -355,13 +363,9 @@
                 order: 1;
             }
 
-            #game-canvas {
+            #game-container {
                 width: 100%;
                 height: 400px;
-            }
-
-            #status {
-                width: 100%;
             }
 
             #propellant-bar {
@@ -407,26 +411,28 @@
         <section>
             <h2>Lunar Landing Challenge</h2>
             <p>Land the rocket on the lunar surface at 5 m/s or less!<br>Use Spacebar for main thruster, Arrow keys for steering.</p>
-            <div id="status">
-                <span id="speed">Speed: 0 m/s</span>
-                <div id="propellant-container">
-                    <div id="propellant-bar">
-                        <div id="propellant-fill" style="width: 100%;"></div>
+            <div id="game-container">
+                <div id="status">
+                    <span id="speed">Speed: 0 m/s</span>
+                    <div id="propellant-container">
+                        <div id="propellant-bar">
+                            <div id="propellant-fill" style="width: 100%;"></div>
+                        </div>
+                        <div id="propellant-text">100%</div>
                     </div>
-                    <div id="propellant-text">100%</div>
                 </div>
-            </div>
-            <canvas id="game-canvas" width="800" height="600"></canvas>
-            <div id="overlay" class="overlay"></div>
-            <div id="success-popup" class="popup success">
-                <h3>Success!</h3>
-                <p id="success-message"></p>
-                <button onclick="resetGame()">Play Again</button>
-            </div>
-            <div id="failure-popup" class="popup failure">
-                <h3>Failure!</h3>
-                <p id="failure-message"></p>
-                <button onclick="resetGame()">Try Again</button>
+                <canvas id="game-canvas" width="800" height="600"></canvas>
+                <div id="overlay" class="overlay"></div>
+                <div id="success-popup" class="popup success">
+                    <h3>Success!</h3>
+                    <p id="success-message"></p>
+                    <button onclick="resetGame()">Play Again</button>
+                </div>
+                <div id="failure-popup" class="popup failure">
+                    <h3>Failure!</h3>
+                    <p id="failure-message"></p>
+                    <button onclick="resetGame()">Try Again</button>
+                </div>
             </div>
         </section>
     </main>
@@ -509,7 +515,7 @@
             ctx.fillRect(game.rocket.x - 5, game.rocket.y + game.rocket.height * 0.7, 5, 15);
             ctx.fillRect(game.rocket.x + game.rocket.width, game.rocket.y + game.rocket.height * 0.7, 5, 15);
 
-            if (mainThrust) {
+            if (mainThrust && game.rocket.propellant > 0) {
                 ctx.fillStyle = '#ff4500';
                 ctx.beginPath();
                 ctx.moveTo(game.rocket.x + 5, game.rocket.y + game.rocket.height);
