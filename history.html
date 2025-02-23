@@ -246,6 +246,48 @@
             font-size: 0.9rem;
         }
 
+        #controls {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            width: 100%;
+            max-width: 800px;
+            padding: 0 10px;
+            display: none; /* Hidden by default */
+        }
+
+        .control-btn {
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 15px;
+            margin: 5px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 60px;
+            height: 60px;
+            touch-action: manipulation;
+        }
+
+        .control-btn:active {
+            background: var(--secondary-color);
+        }
+
+        .control-btn.left {
+            float: left;
+        }
+
+        .control-btn.right {
+            float: left;
+        }
+
+        .control-btn.thrust {
+            float: right;
+        }
+
         .popup {
             display: none;
             position: absolute;
@@ -372,6 +414,17 @@
                 width: 80px;
             }
 
+            #controls {
+                display: flex; /* Show controls only on mobile */
+                justify-content: space-between;
+            }
+
+            .control-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1rem;
+            }
+
             .popup {
                 width: 80%;
             }
@@ -410,7 +463,7 @@
     <main>
         <section>
             <h2>Lunar Landing Challenge</h2>
-            <p>Land the rocket on the lunar surface at 5 m/s or less!<br>Use Left/Right Arrows to rotate, Spacebar to thrust.</p>
+            <p>Land the rocket on the lunar surface at 5 m/s or less!<br>Desktop: Left/Right Arrows to rotate, Spacebar to thrust<br>Mobile: Use on-screen buttons</p>
             <div id="game-container">
                 <div id="status">
                     <span id="speed">Speed: 0 m/s</span>
@@ -422,6 +475,11 @@
                     </div>
                 </div>
                 <canvas id="game-canvas" width="800" height="600"></canvas>
+                <div id="controls">
+                    <button class="control-btn left" id="rotate-left">◄</button>
+                    <button class="control-btn right" id="rotate-right">►</button>
+                    <button class="control-btn thrust" id="thrust">▲</button>
+                </div>
                 <div id="overlay" class="overlay"></div>
                 <div id="success-popup" class="popup success">
                     <h3>Success!</h3>
@@ -479,6 +537,9 @@
         const failurePopup = document.getElementById('failure-popup');
         const successMessage = document.getElementById('success-message');
         const failureMessage = document.getElementById('failure-message');
+        const rotateLeftBtn = document.getElementById('rotate-left');
+        const rotateRightBtn = document.getElementById('rotate-right');
+        const thrustBtn = document.getElementById('thrust');
 
         let game = {
             rocket: {
@@ -486,12 +547,12 @@
                 y: canvas.height / 2,
                 width: 30,
                 height: 60,
-                velocityX: 2, // Initial horizontal motion
+                velocityX: 2,
                 velocityY: 0,
                 propellant: 35,
-                angle: 0 // In radians
+                angle: 0
             },
-            groundY: canvas.height + 30, // Start ground below canvas
+            groundY: canvas.height + 30,
             landingPad: {
                 x: 350,
                 width: 100,
@@ -507,17 +568,17 @@
             ctx.rotate(game.rocket.angle);
             ctx.fillStyle = '#fff';
             ctx.beginPath();
-            ctx.moveTo(0, -game.rocket.height / 2); // Top
-            ctx.lineTo(-game.rocket.width / 2, game.rocket.height / 2 * 0.7); // Left side
-            ctx.lineTo(-game.rocket.width / 2 + 5, game.rocket.height / 2); // Left base
-            ctx.lineTo(game.rocket.width / 2 - 5, game.rocket.height / 2); // Right base
-            ctx.lineTo(game.rocket.width / 2, game.rocket.height / 2 * 0.7); // Right side
+            ctx.moveTo(0, -game.rocket.height / 2);
+            ctx.lineTo(-game.rocket.width / 2, game.rocket.height / 2 * 0.7);
+            ctx.lineTo(-game.rocket.width / 2 + 5, game.rocket.height / 2);
+            ctx.lineTo(game.rocket.width / 2 - 5, game.rocket.height / 2);
+            ctx.lineTo(game.rocket.width / 2, game.rocket.height / 2 * 0.7);
             ctx.closePath();
             ctx.fill();
 
             ctx.fillStyle = '#ccc';
-            ctx.fillRect(-game.rocket.width / 2 - 5, game.rocket.height / 2 * 0.7, 5, 15); // Left fin
-            ctx.fillRect(game.rocket.width / 2, game.rocket.height / 2 * 0.7, 5, 15); // Right fin
+            ctx.fillRect(-game.rocket.width / 2 - 5, game.rocket.height / 2 * 0.7, 5, 15);
+            ctx.fillRect(game.rocket.width / 2, game.rocket.height / 2 * 0.7, 5, 15);
 
             if (mainThrust && game.rocket.propellant > 0) {
                 ctx.fillStyle = '#ff4500';
@@ -561,37 +622,31 @@
         function update() {
             if (game.gameOver) return;
 
-            // Ground scrolls up
             if (game.groundY > canvas.height - 30) {
                 game.groundY -= 1;
             } else {
                 game.groundY = canvas.height - 30;
-                game.rocket.velocityY += game.gravity; // Apply gravity only when ground is in view
+                game.rocket.velocityY += game.gravity;
             }
 
-            // Rotate craft
             if (rotateLeft) game.rocket.angle -= 0.05;
             if (rotateRight) game.rocket.angle += 0.05;
 
-            // Thrust in direction of angle
             if (mainThrust && game.rocket.propellant > 0) {
                 game.rocket.velocityX += Math.sin(game.rocket.angle) * 0.15;
                 game.rocket.velocityY -= Math.cos(game.rocket.angle) * 0.15;
                 game.rocket.propellant -= 0.1;
             }
 
-            // Update position
             game.rocket.x += game.rocket.velocityX;
             game.rocket.y += game.rocket.velocityY;
 
-            // Boundaries
             if (game.rocket.x < 0) game.rocket.x = 0;
             if (game.rocket.x > canvas.width - game.rocket.width) game.rocket.x = canvas.width - game.rocket.width;
 
             const speedMs = Math.sqrt(game.rocket.velocityX ** 2 + game.rocket.velocityY ** 2) * 10;
             const propellantPercent = Math.max(0, Math.floor(game.rocket.propellant / 35 * 100));
 
-            // Check landing
             if (game.rocket.y + game.rocket.height >= game.landingPad.y && 
                 game.rocket.x >= game.landingPad.x && 
                 game.rocket.x + game.rocket.width <= game.landingPad.x + game.landingPad.width &&
@@ -647,7 +702,7 @@
             failurePopup.style.display = 'none';
         }
 
-        // Keyboard controls
+        // Desktop Keyboard Controls
         document.addEventListener('keydown', (e) => {
             if (e.key === ' ') {
                 e.preventDefault();
@@ -662,6 +717,33 @@
             if (e.key === 'ArrowLeft') rotateLeft = false;
             if (e.key === 'ArrowRight') rotateRight = false;
         });
+
+        // Mobile Touch Controls
+        rotateLeftBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            rotateLeft = true;
+        });
+        rotateLeftBtn.addEventListener('touchend', () => rotateLeft = false);
+
+        rotateRightBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            rotateRight = true;
+        });
+        rotateRightBtn.addEventListener('touchend', () => rotateRight = false);
+
+        thrustBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            mainThrust = true;
+        });
+        thrustBtn.addEventListener('touchend', () => mainThrust = false);
+
+        // Mouse fallback for testing on desktop (optional)
+        rotateLeftBtn.addEventListener('mousedown', () => rotateLeft = true);
+        rotateLeftBtn.addEventListener('mouseup', () => rotateLeft = false);
+        rotateRightBtn.addEventListener('mousedown', () => rotateRight = true);
+        rotateRightBtn.addEventListener('mouseup', () => rotateRight = false);
+        thrustBtn.addEventListener('mousedown', () => mainThrust = true);
+        thrustBtn.addEventListener('mouseup', () => mainThrust = false);
 
         gameLoop();
     </script>
