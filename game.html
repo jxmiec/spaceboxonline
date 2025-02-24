@@ -247,15 +247,12 @@
         }
 
         #controls {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
+            display: none; /* Hidden by default */
+            justify-content: center;
+            margin-top: 20px;
             width: 100%;
             max-width: 800px;
             padding: 0 10px;
-            display: none; /* Hidden by default */
         }
 
         .control-btn {
@@ -277,15 +274,15 @@
         }
 
         .control-btn.left {
-            float: left;
+            order: 1;
         }
 
         .control-btn.right {
-            float: left;
+            order: 2;
         }
 
         .control-btn.thrust {
-            float: right;
+            order: 3;
         }
 
         .popup {
@@ -416,7 +413,7 @@
 
             #controls {
                 display: flex; /* Show controls only on mobile */
-                justify-content: space-between;
+                justify-content: center;
             }
 
             .control-btn {
@@ -475,11 +472,6 @@
                     </div>
                 </div>
                 <canvas id="game-canvas" width="800" height="600"></canvas>
-                <div id="controls">
-                    <button class="control-btn left" id="rotate-left">◄</button>
-                    <button class="control-btn right" id="rotate-right">►</button>
-                    <button class="control-btn thrust" id="thrust">▲</button>
-                </div>
                 <div id="overlay" class="overlay"></div>
                 <div id="success-popup" class="popup success">
                     <h3>Success!</h3>
@@ -491,6 +483,11 @@
                     <p id="failure-message"></p>
                     <button onclick="resetGame()">Try Again</button>
                 </div>
+            </div>
+            <div id="controls">
+                <button class="control-btn left" id="rotate-left">◄</button>
+                <button class="control-btn right" id="rotate-right">►</button>
+                <button class="control-btn thrust" id="thrust">▲</button>
             </div>
         </section>
     </main>
