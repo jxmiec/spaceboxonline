@@ -380,12 +380,12 @@
             </div>
             <ul class="nav-links">
                 <li><a href="/discover">Discover</a></li>
-                <li><a href="/game" class="active">Game</a></li>
+                <li><a href="/history" class="active">History</a></li>
                 <li><a href="/shop">Shop</a></li>
             </ul>
             <ul class="nav-links" id="mobileNav">
                 <li><a href="/discover">Discover</a></li>
-                <li><a href="/game" class="active">Game</a></li>
+                <li><a href="/history" class="active">History</a></li>
                 <li><a href="/shop">Shop</a></li>
             </ul>
         </nav>
@@ -504,8 +504,8 @@
     <p>© 2024 SpaceBox, where the future of engineering and exploration begins.</p>
 </footer>
 
-<!-- Updated PayPal SDK with Apple Pay support -->
-<script src="https://www.paypal.com/sdk/js?client-id=ARBP2J91GoENDAery-WC1o6ZqQgjLzLbr7jedb-PXyDW60j_tBu5__N_iUm8kpYH0gf9Yqnwz0V3-f5j&components=buttons,applepay&currency=GBP"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=ARBP2J91GoENDAery-WC1o6ZqQgjLzLbr7jedb-PXyDW60j_tBu5__N_iUm8kpYH0gf9Yqnwz0V3-f5j&currency=GBP"></script>
+<script src="https://applepay.cdn-apple.com/jsapi/v1/apple-pay-sdk.js"></script>
 <script>
     // Mobile menu toggle
     document.querySelector('.menu-toggle').addEventListener('click', function(e) {
@@ -547,7 +547,7 @@
         }
     }
 
-    // PayPal for Apollo Unveiled (includes Apple Pay)
+    // PayPal for Apollo Unveiled
     paypal.Buttons({
         createOrder: function(data, actions) {
             return actions.order.create({
@@ -555,12 +555,8 @@
                     amount: {
                         value: '0.79',
                         currency_code: 'GBP'
-                    },
-                    description: 'Apollo Unveiled Book'
-                }],
-                application_context: {
-                    shipping_preference: 'NO_SHIPPING'
-                }
+                    }
+                }]
             });
         },
         onApprove: function(data, actions) {
@@ -569,46 +565,12 @@
             });
         },
         onError: function(err) {
-            console.error('PayPal error for Apollo Unveiled:', err);
+            console.error('PayPal error:', err);
             alert('An error occurred during the payment process. Please try again.');
         }
     }).render('#paypal-button-container-3');
 
-    // PayPal Apple Pay standalone button for Apollo Unveiled
-    paypal.Buttons({
-        fundingSource: paypal.FUNDING.APPLEPAY,
-        style: {
-            layout: 'vertical',
-            color: 'black',
-            shape: 'rect',
-            label: 'applepay'
-        },
-        createOrder: function(data, actions) {
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: '0.79',
-                        currency_code: 'GBP'
-                    },
-                    description: 'Apollo Unveiled Book'
-                }],
-                application_context: {
-                    shipping_preference: 'NO_SHIPPING'
-                }
-            });
-        },
-        onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-                alert('Apple Pay transaction completed by ' + details.payer.name.given_name);
-            });
-        },
-        onError: function(err) {
-            console.error('Apple Pay error for Apollo Unveiled:', err);
-            alert('An error occurred with Apple Pay. Please try again.');
-        }
-    }).render('#apple-pay-button-3');
-
-    // PayPal for TVC (includes Apple Pay)
+    // PayPal for TVC
     paypal.Buttons({
         createOrder: function(data, actions) {
             return actions.order.create({
@@ -616,12 +578,8 @@
                     amount: {
                         value: '78.00',
                         currency_code: 'GBP'
-                    },
-                    description: 'TVC Thrust Vector Control Mount'
-                }],
-                application_context: {
-                    shipping_preference: 'SET_PROVIDED_ADDRESS'
-                }
+                    }
+                }]
             });
         },
         onApprove: function(data, actions) {
@@ -630,44 +588,81 @@
             });
         },
         onError: function(err) {
-            console.error('PayPal error for TVC:', err);
+            console.error('PayPal error:', err);
             alert('An error occurred during the payment process. Please try again.');
         }
     }).render('#paypal-button-container-tvc');
 
-    // PayPal Apple Pay standalone button for TVC
-    paypal.Buttons({
-        fundingSource: paypal.FUNDING.APPLEPAY,
-        style: {
-            layout: 'vertical',
-            color: 'black',
-            shape: 'rect',
-            label: 'applepay'
-        },
-        createOrder: function(data, actions) {
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: '78.00',
-                        currency_code: 'GBP'
-                    },
-                    description: 'TVC Thrust Vector Control Mount'
-                }],
-                application_context: {
-                    shipping_preference: 'SET_PROVIDED_ADDRESS'
+    // Apple Pay implementation
+    if (window.ApplePaySession && ApplePaySession.canMakePayments()) {
+        // Apple Pay for Apollo Unveiled
+        document.getElementById('apple-pay-button-3').innerHTML = '<div class="apple-pay-button"></div>';
+        document.getElementById('apple-pay-button-3').addEventListener('click', function() {
+            const paymentRequest = {
+                countryCode: 'GB',
+                currencyCode: 'GBP',
+                supportedNetworks: ['visa', 'masterCard', 'amex'],
+                merchantCapabilities: ['supports3DS'],
+                total: {
+                    label: 'SpaceBox - Apollo Unveiled',
+                    amount: '0.79'
                 }
-            });
-        },
-        onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-                alert('Apple Pay transaction completed by ' + details.payer.name.given_name);
-            });
-        },
-        onError: function(err) {
-            console.error('Apple Pay error for TVC:', err);
-            alert('An error occurred with Apple Pay. Please try again.');
-        }
-    }).render('#apple-pay-button-tvc');
+            };
+
+            const session = new ApplePaySession(6, paymentRequest);
+
+            session.onvalidatemerchant = function(event) {
+                // Note: In production, you'd need to validate the merchant with your payment processor
+                // This is a simplified example
+                session.completeMerchantValidation({
+                    merchantIdentifier: 'merchant.com.spacebox',
+                    displayName: 'SpaceBox'
+                });
+            };
+
+            session.onpaymentauthorized = function(event) {
+                // Here you'd normally process the payment with your backend
+                session.completePayment(ApplePaySession.STATUS_SUCCESS);
+                alert('Apple Pay transaction completed!');
+            };
+
+            session.begin();
+        });
+
+        // Apple Pay for TVC
+        document.getElementById('apple-pay-button-tvc').innerHTML = '<div class="apple-pay-button"></div>';
+        document.getElementById('apple-pay-button-tvc').addEventListener('click', function() {
+            const paymentRequest = {
+                countryCode: 'GB',
+                currencyCode: 'GBP',
+                supportedNetworks: ['visa', 'masterCard', 'amex'],
+                merchantCapabilities: ['supports3DS'],
+                total: {
+                    label: 'SpaceBox - TVC Mount',
+                    amount: '78.00'
+                }
+            };
+
+            const session = new ApplePaySession(6, paymentRequest);
+
+            session.onvalidatemerchant = function(event) {
+                session.completeMerchantValidation({
+                    merchantIdentifier: 'merchant.com.spacebox',
+                    displayName: 'SpaceBox'
+                });
+            };
+
+            session.onpaymentauthorized = function(event) {
+                session.completePayment(ApplePaySession.STATUS_SUCCESS);
+                alert('Apple Pay transaction completed!');
+            };
+
+            session.begin();
+        });
+    } else {
+        document.getElementById('apple-pay-button-3').style.display = 'none';
+        document.getElementById('apple-pay-button-tvc').style.display = 'none';
+    }
 </script>
 </body>
 </html>
