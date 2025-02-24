@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SpaceBox - Lunar Landing</title>
+    <link rel="icon" type="image/x-icon" href="spacebox-logo.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet"> 
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #0d47a1;
+            --text-color: #333;
+            --bg-color: #f0f2f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            overflow: auto;
+            min-height: 100vh;
+        }
+
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        header {
+            background: #000;
+            color: #fff;
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background: var(--primary-color);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            margin-right: 15px;
+        }
+
+        .logo span {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo a:hover {
+            background: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        .menu-toggle {
+            display: block;
+            cursor: pointer;
+            color: #fff;
+            font-size: 1.5rem;
+            padding: 0.5rem;
+            margin-right: 1rem;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        #mobileNav {
+            display: none;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem 0;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 999;
+        }
+
+        #mobileNav.active {
+            display: block;
+        }
+
+        #mobileNav li {
+            margin: 0;
+        }
+
+        #mobileNav a {
+            display: block;
+            text-align: left;
+            padding: 10px 1rem;
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 10px;
+            min-height: calc(100vh - 150px);
+        }
+
+        section {
+            background: #fff;
+            padding: 2rem;
+            margin: 3rem 0;
+            border-radius: 20px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease-out, transform 0.5s ease-out;
+            opacity: 0;
+            transform: translateY(50px);
+            position: relative;
+        }
+
+        section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section h2 {
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        #game-container {
+            position: relative;
+            width: 800px;
+            height: 600px;
+            margin: 0 auto;
+        }
+
+        #game-canvas {
+            background: #000;
+            border: 2px solid var(--primary-color);
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        #status {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            color: #fff;
+            font-size: 1rem;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        #speed {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+
+        #propellant-container {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            text-align: center;
+        }
+
+        #propellant-bar {
+            width: 100px;
+            height: 10px;
+            background: #333;
+            border: 1px solid #fff;
+            border-radius: 5px;
+        }
+
+        #propellant-fill {
+            height: 100%;
+            background: #00cc00;
+            border-radius: 3px;
+            transition: width 0.1s ease;
+        }
+
+        #propellant-text {
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+
+        #controls {
+            display: none; /* Hidden by default */
+            margin-top: 10px;
+            text-align: center;
+            z-index: 10;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .control-btn {
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 15px;
+            margin: 5px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 60px;
+            height: 60px;
+            touch-action: manipulation;
+            display: inline-block;
+        }
+
+        .control-btn:active {
+            background: var(--secondary-color);
+        }
+
+        .popup {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-align: center;
+            width: 300px;
+        }
+
+        .popup.success {
+            border: 3px solid #00cc00;
+        }
+
+        .popup.failure {
+            border: 3px solid #ff3333;
+        }
+
+        .popup h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .popup.success h3 {
+            color: #00cc00;
+        }
+
+        .popup.failure h3 {
+            color: #ff3333;
+        }
+
+        .popup button {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .popup button:hover {
+            background: var(--secondary-color);
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            padding: 2rem 0;
+            transition: background-color 0.3s ease;
+            position: relative;
+        }
+
+        footer:hover {
+            background-color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .navbar .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .logo {
+                margin-bottom: 0;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+        
+            .logo span {
+                margin-left: 40px;
+                margin-right: auto;
+            }
+        
+            .logo a {
+                margin-left: auto;
+                margin-right: 0;
+            }
+        
+            .menu-toggle {
+                order: 1;
+            }
+
+            #game-container {
+                width: 100%;
+                height: 400px;
+            }
+
+            #propellant-bar {
+                width: 80px;
+            }
+
+            #controls {
+                display: block; /* Show controls only on mobile */
+            }
+
+            .control-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1rem;
+            }
+
+            .popup {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="mobile-menu">
+                <a href="#" class="menu-toggle" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </div>
+            <div class="logo">
+                <span>SPACEBOX</span>
+                <a href="/">
+                    <img src='logo.png' alt="SpaceBox Logo">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/discover">Discover</a></li>
+                <li><a href="/game" class="active">Game</a></li>
+                <li><a href="/shop">Shop</a></li>
+            </ul>
+            <ul class="nav-links" id="mobileNav">
+                <li><a href="/discover">Discover</a></li>
+                <li><a href="/game" class="active">Game</a></li>
+                <li><a href="/shop">Shop</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Lunar Landing Challenge</h2>
+            <p>Land the rocket on the lunar surface at 5 m/s or less!<br>Desktop: Left/Right Arrows to rotate, Spacebar to thrust<br>Mobile: Use on-screen buttons</p>
+            <div id="game-container">
+                <div id="status">
+                    <span id="speed">Speed: 0 m/s</span>
+                    <div id="propellant-container">
+                        <div id="propellant-bar">
+                            <div id="propellant-fill" style="width: 100%;"></div>
+                        </div>
+                        <div id="propellant-text">100%</div>
+                    </div>
+                </div>
+                <canvas id="game-canvas" width="800" height="600"></canvas>
+                <div id="overlay" class="overlay"></div>
+                <div id="success-popup" class="popup success">
+                    <h3>Success!</h3>
+                    <p id="success-message"></p>
+                    <button onclick="resetGame()">Play Again</button>
+                </div>
+                <div id="failure-popup" class="popup failure">
+                    <h3>Failure!</h3>
+                    <p id="failure-message"></p>
+                    <button onclick="resetGame()">Try Again</button>
+                </div>
+            </div>
+            <div id="controls">
+                <button class="control-btn" id="rotate-left">◄</button>
+                <button class="control-btn" id="rotate-right">►</button>
+                <button class="control-btn" id="thrust">▲</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 SpaceBox, where the future of engineering and exploration begins.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function(e) {
+            e.preventDefault();
+            const mobileNav = document.getElementById('mobileNav');
+            const menuToggle = this;
+            mobileNav.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // Section visibility
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => {
+                section.classList.remove('visible');
+                observer.observe(section);
+            });
+        });
+
+        // Game Logic
+        const canvas = document.getElementById('game-canvas');
+        const ctx = canvas.getContext('2d');
+        const speedDisplay = document.getElementById('speed');
+        const propellantFill = document.getElementById('propellant-fill');
+        const propellantText = document.getElementById('propellant-text');
+        const overlay = document.getElementById('overlay');
+        const successPopup = document.getElementById('success-popup');
+        const failurePopup = document.getElementById('failure-popup');
+        const successMessage = document.getElementById('success-message');
+        const failureMessage = document.getElementById('failure-message');
+        const rotateLeftBtn = document.getElementById('rotate-left');
+        const rotateRightBtn = document.getElementById('rotate-right');
+        const thrustBtn = document.getElementById('thrust');
+
+        let game = {
+            rocket: {
+                x: 100,
+                y: canvas.height / 2,
+                width: 30,
+                height: 60,
+                velocityX: 2,
+                velocityY: 0,
+                propellant: 35,
+                angle: 0
+            },
+            groundY: canvas.height + 30,
+            landingPad: {
+                x: 350,
+                width: 100,
+                height: 10
+            },
+            gravity: 0.05,
+            gameOver: false
+        };
+
+        function drawRocket() {
+            ctx.save();
+            ctx.translate(game.rocket.x + game.rocket.width / 2, game.rocket.y + game.rocket.height / 2);
+            ctx.rotate(game.rocket.angle);
+            ctx.fillStyle = '#fff';
+            ctx.beginPath();
+            ctx.moveTo(0, -game.rocket.height / 2);
+            ctx.lineTo(-game.rocket.width / 2, game.rocket.height / 2 * 0.7);
+            ctx.lineTo(-game.rocket.width / 2 + 5, game.rocket.height / 2);
+            ctx.lineTo(game.rocket.width / 2 - 5, game.rocket.height / 2);
+            ctx.lineTo(game.rocket.width / 2, game.rocket.height / 2 * 0.7);
+            ctx.closePath();
+            ctx.fill();
+
+            ctx.fillStyle = '#ccc';
+            ctx.fillRect(-game.rocket.width / 2 - 5, game.rocket.height / 2 * 0.7, 5, 15);
+            ctx.fillRect(game.rocket.width / 2, game.rocket.height / 2 * 0.7, 5, 15);
+
+            if (mainThrust && game.rocket.propellant > 0) {
+                ctx.fillStyle = '#ff4500';
+                ctx.beginPath();
+                ctx.moveTo(-game.rocket.width / 2 + 5, game.rocket.height / 2);
+                ctx.lineTo(game.rocket.width / 2 - 5, game.rocket.height / 2);
+                ctx.lineTo(0, game.rocket.height / 2 + 20);
+                ctx.closePath();
+                ctx.fill();
+            }
+            ctx.restore();
+        }
+
+        function drawLunarSurface() {
+            game.landingPad.y = game.groundY - game.landingPad.height;
+            ctx.fillStyle = '#666';
+            ctx.fillRect(0, game.groundY, canvas.width, canvas.height - game.groundY + 30);
+            ctx.fillStyle = '#888';
+            ctx.fillRect(game.landingPad.x, game.landingPad.y, game.landingPad.width, game.landingPad.height);
+            ctx.fillStyle = '#555';
+            ctx.beginPath();
+            ctx.arc(100, game.groundY + 15, 20, 0, Math.PI * 2);
+            ctx.arc(600, game.groundY + 10, 15, 0, Math.PI * 2);
+            ctx.arc(300, game.groundY + 20, 25, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        function drawStars() {
+            ctx.fillStyle = '#fff';
+            for (let i = 0; i < 50; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * (game.groundY - 30);
+                ctx.fillRect(x, y, 2, 2);
+            }
+        }
+
+        let mainThrust = false;
+        let rotateLeft = false;
+        let rotateRight = false;
+
+        function update() {
+            if (game.gameOver) return;
+
+            if (game.groundY > canvas.height - 30) {
+                game.groundY -= 1;
+            } else {
+                game.groundY = canvas.height - 30;
+                game.rocket.velocityY += game.gravity;
+            }
+
+            if (rotateLeft) game.rocket.angle -= 0.05;
+            if (rotateRight) game.rocket.angle += 0.05;
+
+            if (mainThrust && game.rocket.propellant > 0) {
+                game.rocket.velocityX += Math.sin(game.rocket.angle) * 0.15;
+                game.rocket.velocityY -= Math.cos(game.rocket.angle) * 0.15;
+                game.rocket.propellant -= 0.1;
+            }
+
+            game.rocket.x += game.rocket.velocityX;
+            game.rocket.y += game.rocket.velocityY;
+
+            if (game.rocket.x < 0) game.rocket.x = 0;
+            if (game.rocket.x > canvas.width - game.rocket.width) game.rocket.x = canvas.width - game.rocket.width;
+
+            const speedMs = Math.sqrt(game.rocket.velocityX ** 2 + game.rocket.velocityY ** 2) * 10;
+            const propellantPercent = Math.max(0, Math.floor(game.rocket.propellant / 35 * 100));
+
+            if (game.rocket.y + game.rocket.height >= game.landingPad.y && 
+                game.rocket.x >= game.landingPad.x && 
+                game.rocket.x + game.rocket.width <= game.landingPad.x + game.landingPad.width &&
+                game.groundY === canvas.height - 30) {
+                game.gameOver = true;
+                overlay.style.display = 'block';
+                if (speedMs <= 5) {
+                    successMessage.textContent = `Landed successfully at ${speedMs.toFixed(1)} m/s!`;
+                    successPopup.style.display = 'block';
+                } else {
+                    failureMessage.textContent = `Landed too fast at ${speedMs.toFixed(1)} m/s`;
+                    failurePopup.style.display = 'block';
+                }
+            } else if (game.rocket.y + game.rocket.height > game.groundY) {
+                game.gameOver = true;
+                overlay.style.display = 'block';
+                failureMessage.textContent = `Crashed into lunar surface at ${speedMs.toFixed(1)} m/s`;
+                failurePopup.style.display = 'block';
+            }
+
+            speedDisplay.textContent = `Speed: ${speedMs.toFixed(1)} m/s`;
+            propellantFill.style.width = `${propellantPercent}%`;
+            propellantText.textContent = `${propellantPercent}%`;
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawStars();
+            drawLunarSurface();
+            drawRocket();
+        }
+
+        function gameLoop() {
+            update();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+
+        function resetGame() {
+            game.rocket.x = 100;
+            game.rocket.y = canvas.height / 2;
+            game.rocket.velocityX = 2;
+            game.rocket.velocityY = 0;
+            game.rocket.propellant = 35;
+            game.rocket.angle = 0;
+            game.groundY = canvas.height + 30;
+            game.gameOver = false;
+            mainThrust = false;
+            rotateLeft = false;
+            rotateRight = false;
+            overlay.style.display = 'none';
+            successPopup.style.display = 'none';
+            failurePopup.style.display = 'none';
+        }
+
+        // Desktop Keyboard Controls
+        document.addEventListener('keydown', (e) => {
+            if (e.key === ' ') {
+                e.preventDefault();
+                mainThrust = true;
+            }
+            if (e.key === 'ArrowLeft') rotateLeft = true;
+            if (e.key === 'ArrowRight') rotateRight = true;
+        });
+
+        document.addEventListener('keyup', (e) => {
+            if (e.key === ' ') mainThrust = false;
+            if (e.key === 'ArrowLeft') rotateLeft = false;
+            if (e.key === 'ArrowRight') rotateRight = false;
+        });
+
+        // Mobile Touch Controls
+        rotateLeftBtn.addEventListener('touchstart', (e...
+
+Something went wrong, please try again.
