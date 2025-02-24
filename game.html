@@ -182,7 +182,7 @@
         }
 
         section h2 {
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
             color: var(--primary-color);
             font-size: 2rem;
         }
@@ -247,11 +247,15 @@
         }
 
         #controls {
-            display: none; /* Hidden by default */
-            margin-top: 10px;
-            text-align: center;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
             width: 100%;
             max-width: 800px;
+            padding: 0 10px;
+            display: none; /* Hidden by default */
         }
 
         .control-btn {
@@ -266,11 +270,22 @@
             width: 60px;
             height: 60px;
             touch-action: manipulation;
-            display: inline-block;
         }
 
         .control-btn:active {
             background: var(--secondary-color);
+        }
+
+        .control-btn.left {
+            float: left;
+        }
+
+        .control-btn.right {
+            float: left;
+        }
+
+        .control-btn.thrust {
+            float: right;
         }
 
         .popup {
@@ -400,7 +415,8 @@
             }
 
             #controls {
-                display: block; /* Show controls only on mobile */
+                display: flex; /* Show controls only on mobile */
+                justify-content: space-between;
             }
 
             .control-btn {
@@ -433,12 +449,12 @@
             </div>
             <ul class="nav-links">
                 <li><a href="/discover">Discover</a></li>
-                <li><a href="/history" class="active">Lunar Landing</a></li>
+                <li><a href="/game" class="active">Game</a></li>
                 <li><a href="/shop">Shop</a></li>
             </ul>
             <ul class="nav-links" id="mobileNav">
                 <li><a href="/discover">Discover</a></li>
-                <li><a href="/history" class="active">Lunar Landing</a></li>
+                <li><a href="/game" class="active">Game</a></li>
                 <li><a href="/shop">Shop</a></li>
             </ul>
         </nav>
@@ -447,7 +463,7 @@
     <main>
         <section>
             <h2>Lunar Landing Challenge</h2>
-            <p>Land the rocket on the lunar surface at 5 m/s or less!<br>Desktop: Left/Right Arrows to rotate, Spacebar to thrust<br>Mobile: Use on-screen buttons below</p>
+            <p>Land the rocket on the lunar surface at 5 m/s or less!<br>Desktop: Left/Right Arrows to rotate, Spacebar to thrust<br>Mobile: Use on-screen buttons</p>
             <div id="game-container">
                 <div id="status">
                     <span id="speed">Speed: 0 m/s</span>
@@ -459,6 +475,11 @@
                     </div>
                 </div>
                 <canvas id="game-canvas" width="800" height="600"></canvas>
+                <div id="controls">
+                    <button class="control-btn left" id="rotate-left">◄</button>
+                    <button class="control-btn right" id="rotate-right">►</button>
+                    <button class="control-btn thrust" id="thrust">▲</button>
+                </div>
                 <div id="overlay" class="overlay"></div>
                 <div id="success-popup" class="popup success">
                     <h3>Success!</h3>
@@ -470,11 +491,6 @@
                     <p id="failure-message"></p>
                     <button onclick="resetGame()">Try Again</button>
                 </div>
-            </div>
-            <div id="controls">
-                <button class="control-btn" id="rotate-left">◄</button>
-                <button class="control-btn" id="rotate-right">►</button>
-                <button class="control-btn" id="thrust">▲</button>
             </div>
         </section>
     </main>
@@ -504,7 +520,10 @@
                 });
             }, { threshold: 0.1 });
 
-            sections.forEach(section => Observer.observe(section));
+            sections.forEach(section => {
+                section.classList.remove('visible');
+                observer.observe(section);
+            });
         });
 
         // Game Logic
