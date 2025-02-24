@@ -182,7 +182,7 @@
         }
 
         section h2 {
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             color: var(--primary-color);
             font-size: 2rem;
         }
@@ -250,7 +250,6 @@
             display: none; /* Hidden by default */
             margin-top: 10px;
             text-align: center;
-            z-index: 10;
             width: 100%;
             max-width: 800px;
         }
@@ -434,12 +433,12 @@
             </div>
             <ul class="nav-links">
                 <li><a href="/discover">Discover</a></li>
-                <li><a href="/game" class="active">Game</a></li>
+                <li><a href="/history" class="active">Lunar Landing</a></li>
                 <li><a href="/shop">Shop</a></li>
             </ul>
             <ul class="nav-links" id="mobileNav">
                 <li><a href="/discover">Discover</a></li>
-                <li><a href="/game" class="active">Game</a></li>
+                <li><a href="/history" class="active">Lunar Landing</a></li>
                 <li><a href="/shop">Shop</a></li>
             </ul>
         </nav>
@@ -448,7 +447,7 @@
     <main>
         <section>
             <h2>Lunar Landing Challenge</h2>
-            <p>Land the rocket on the lunar surface at 5 m/s or less!<br>Desktop: Left/Right Arrows to rotate, Spacebar to thrust<br>Mobile: Use on-screen buttons</p>
+            <p>Land the rocket on the lunar surface at 5 m/s or less!<br>Desktop: Left/Right Arrows to rotate, Spacebar to thrust<br>Mobile: Use on-screen buttons below</p>
             <div id="game-container">
                 <div id="status">
                     <span id="speed">Speed: 0 m/s</span>
@@ -505,10 +504,7 @@
                 });
             }, { threshold: 0.1 });
 
-            sections.forEach(section => {
-                section.classList.remove('visible');
-                observer.observe(section);
-            });
+            sections.forEach(section => Observer.observe(section));
         });
 
         // Game Logic
@@ -704,6 +700,33 @@
         });
 
         // Mobile Touch Controls
-        rotateLeftBtn.addEventListener('touchstart', (e...
+        rotateLeftBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            rotateLeft = true;
+        });
+        rotateLeftBtn.addEventListener('touchend', () => rotateLeft = false);
 
-Something went wrong, please try again.
+        rotateRightBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            rotateRight = true;
+        });
+        rotateRightBtn.addEventListener('touchend', () => rotateRight = false);
+
+        thrustBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            mainThrust = true;
+        });
+        thrustBtn.addEventListener('touchend', () => mainThrust = false);
+
+        // Mouse fallback for testing on desktop (optional)
+        rotateLeftBtn.addEventListener('mousedown', () => rotateLeft = true);
+        rotateLeftBtn.addEventListener('mouseup', () => rotateLeft = false);
+        rotateRightBtn.addEventListener('mousedown', () => rotateRight = true);
+        rotateRightBtn.addEventListener('mouseup', () => rotateRight = false);
+        thrustBtn.addEventListener('mousedown', () => mainThrust = true);
+        thrustBtn.addEventListener('mouseup', () => mainThrust = false);
+
+        gameLoop();
+    </script>
+</body>
+</html>
