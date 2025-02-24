@@ -247,15 +247,12 @@
         }
 
         #controls {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
+            display: none; /* Hidden by default */
+            margin-top: 10px;
+            text-align: center;
             z-index: 10;
             width: 100%;
             max-width: 800px;
-            padding: 0 10px;
-            display: none; /* Hidden by default */
         }
 
         .control-btn {
@@ -270,22 +267,11 @@
             width: 60px;
             height: 60px;
             touch-action: manipulation;
+            display: inline-block;
         }
 
         .control-btn:active {
             background: var(--secondary-color);
-        }
-
-        .control-btn.left {
-            float: left;
-        }
-
-        .control-btn.right {
-            float: left;
-        }
-
-        .control-btn.thrust {
-            float: right;
         }
 
         .popup {
@@ -415,8 +401,7 @@
             }
 
             #controls {
-                display: flex; /* Show controls only on mobile */
-                justify-content: space-between;
+                display: block; /* Show controls only on mobile */
             }
 
             .control-btn {
@@ -449,12 +434,12 @@
             </div>
             <ul class="nav-links">
                 <li><a href="/discover">Discover</a></li>
-                <li><a href="/history" class="active">Lunar Landing</a></li>
+                <li><a href="/game" class="active">Game</a></li>
                 <li><a href="/shop">Shop</a></li>
             </ul>
             <ul class="nav-links" id="mobileNav">
                 <li><a href="/discover">Discover</a></li>
-                <li><a href="/history" class="active">Lunar Landing</a></li>
+                <li><a href="/game" class="active">Game</a></li>
                 <li><a href="/shop">Shop</a></li>
             </ul>
         </nav>
@@ -475,11 +460,6 @@
                     </div>
                 </div>
                 <canvas id="game-canvas" width="800" height="600"></canvas>
-                <div id="controls">
-                    <button class="control-btn left" id="rotate-left">◄</button>
-                    <button class="control-btn right" id="rotate-right">►</button>
-                    <button class="control-btn thrust" id="thrust">▲</button>
-                </div>
                 <div id="overlay" class="overlay"></div>
                 <div id="success-popup" class="popup success">
                     <h3>Success!</h3>
@@ -491,6 +471,11 @@
                     <p id="failure-message"></p>
                     <button onclick="resetGame()">Try Again</button>
                 </div>
+            </div>
+            <div id="controls">
+                <button class="control-btn" id="rotate-left">◄</button>
+                <button class="control-btn" id="rotate-right">►</button>
+                <button class="control-btn" id="thrust">▲</button>
             </div>
         </section>
     </main>
@@ -719,33 +704,6 @@
         });
 
         // Mobile Touch Controls
-        rotateLeftBtn.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            rotateLeft = true;
-        });
-        rotateLeftBtn.addEventListener('touchend', () => rotateLeft = false);
+        rotateLeftBtn.addEventListener('touchstart', (e...
 
-        rotateRightBtn.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            rotateRight = true;
-        });
-        rotateRightBtn.addEventListener('touchend', () => rotateRight = false);
-
-        thrustBtn.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            mainThrust = true;
-        });
-        thrustBtn.addEventListener('touchend', () => mainThrust = false);
-
-        // Mouse fallback for testing on desktop (optional)
-        rotateLeftBtn.addEventListener('mousedown', () => rotateLeft = true);
-        rotateLeftBtn.addEventListener('mouseup', () => rotateLeft = false);
-        rotateRightBtn.addEventListener('mousedown', () => rotateRight = true);
-        rotateRightBtn.addEventListener('mouseup', () => rotateRight = false);
-        thrustBtn.addEventListener('mousedown', () => mainThrust = true);
-        thrustBtn.addEventListener('mouseup', () => mainThrust = false);
-
-        gameLoop();
-    </script>
-</body>
-</html>
+Something went wrong, please try again.
